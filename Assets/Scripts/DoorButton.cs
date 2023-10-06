@@ -5,6 +5,8 @@ using UnityEngine;
 public class DoorButton : MonoBehaviour
 {
     [SerializeField] Door door;
+    [SerializeField] GameObject bounceBlock;
+    [SerializeField] AudioClip activateSound;
 
     enum Type
     {
@@ -45,7 +47,7 @@ public class DoorButton : MonoBehaviour
         else
         {
             Activate();
-            Debug.Log(collision.gameObject.name);
+            FindObjectOfType<AudioManager>().PlayClip("CrankActivate");
         }
     }
 
@@ -54,8 +56,9 @@ public class DoorButton : MonoBehaviour
         if (isPressed) { return; }
         isPressed = true;
         myAnimator.SetBool("isPressed", isPressed);
-        door.Open();
+        if (door) door.Open();
         //myCollider.enabled = false;
+        if (bounceBlock) bounceBlock.SetActive(true);
     }
 
     private void DeActivate()
@@ -71,6 +74,7 @@ public class DoorButton : MonoBehaviour
     bool IsSomethingOnIt()
     {
         RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, 1f);
+        FindObjectOfType<AudioManager>().PlayClip("CrankActivate");
         //Debug.Log(hit.collider.gameObject.name);
         return hit.collider != null;
     }

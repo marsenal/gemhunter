@@ -6,9 +6,12 @@ public class Bird : MonoBehaviour
 {
     Animator myAnimator;
     bool isFlying = false;
+
+    [SerializeField] Vector2 flyDirection;
     void Start()
     {
         myAnimator = GetComponent<Animator>();
+        //flyDirection = new Vector2 (Random.Range());
     }
 
     void Update()
@@ -27,6 +30,8 @@ public class Bird : MonoBehaviour
 
     private void FlyAway()
     {
-        transform.position += new Vector3(2f * Time.deltaTime, 5f * Time.deltaTime, 0f);         
+        float speedx = Random.Range(2f, 5f);
+        float speedy = Random.Range(5f, 8f);
+        transform.position += new Vector3(speedx * Time.deltaTime, speedy * Time.deltaTime, 0f);         
     }
 }

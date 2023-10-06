@@ -31,19 +31,6 @@ public class LevelSelect : MonoBehaviour
 
     void Update()
     {
-        /*if (canvas1.enabled == true)
-        {
-            shownScreen = 1;
-            leftArrow.interactable = false;
-            rightArrow.interactable = true;
-        }
-        else
-        {
-            shownScreen = 2;
-            leftArrow.interactable = true;
-            rightArrow.interactable = false;
-        }*/
-
         if (shownScreen == 1)
         {
             leftArrow.interactable = false;
@@ -59,18 +46,14 @@ public class LevelSelect : MonoBehaviour
 
     }
 
-    public void ChangeToScreen(int screen)
+    public void ChangeToScreen(int screen) //call this when pressing arrows
     {
         switch (screen)
         {
             case 1:
-                /*canvas1.enabled = true;
-                canvas2.enabled = false;*/
                 shownScreen = 1;
                 break;
             case 2:
-                /*canvas1.enabled = false;
-                canvas2.enabled = true;*/
                 shownScreen = 2;
                 break;
         }

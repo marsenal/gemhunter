@@ -162,6 +162,7 @@ MonoBehaviour:
   jumpSpeed: 22
   bounceSpeed: 1000
   maxDropSpeed: 0
+  dustTrail: {fileID: 8831298486390030045, guid: 5c009507a58ca89428fd516367187d7a, type: 3}
   myState: 0
 --- !u!114 &7859520775376005459
 MonoBehaviour:
@@ -282,10 +283,10 @@ MonoBehaviour:
     m_ActionName: Player/Jump[/Keyboard/space]
   - m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 0}
-        m_TargetAssemblyTypeName: EscapeMenu, Assembly-CSharp
-        m_MethodName: OpenMenu
-        m_Mode: 1
+      - m_Target: {fileID: 7859520775376005456}
+        m_TargetAssemblyTypeName: Player, Assembly-CSharp
+        m_MethodName: OnBack
+        m_Mode: 0
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine

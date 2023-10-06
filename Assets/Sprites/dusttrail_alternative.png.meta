@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 9cf5ac05974fb204092910dda46c7c17
+guid: 849601b6f893afc4e9764b691a7454cc
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 32
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -129,106 +129,85 @@ TextureImporter:
     serializedVersion: 2
     sprites:
     - serializedVersion: 2
-      name: bird_alternative_blinking_0
+      name: dusttrail_alternative_0
       rect:
         serializedVersion: 2
         x: 0
         y: 0
-        width: 15
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: c68f14200a251374385ecf39d6ef2939
-      internalID: -50139122
+      spriteID: 9efef61c84dea6346beae3448e0fe58e
+      internalID: 509261163
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bird_alternative_blinking_1
+      name: dusttrail_alternative_1
       rect:
         serializedVersion: 2
-        x: 15
+        x: 32
         y: 0
-        width: 15
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: 5d82b1b82ffc18443bfc99c39bab6759
-      internalID: 1053925213
+      spriteID: 5e1f4e36e6bf70c45a5178ef16d6debe
+      internalID: 1081129871
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bird_alternative_blinking_2
+      name: dusttrail_alternative_2
       rect:
         serializedVersion: 2
-        x: 30
+        x: 64
         y: 0
-        width: 15
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: b75e2a875cffb7343a96b9f08b155fcf
-      internalID: 65394021
+      spriteID: 57314557d072a0f4f82ada4f8c3d230d
+      internalID: -801315665
       vertices: []
       indices: 
       edges: []
       weights: []
     - serializedVersion: 2
-      name: bird_alternative_blinking_3
+      name: dusttrail_alternative_3
       rect:
         serializedVersion: 2
-        x: 45
+        x: 96
         y: 0
-        width: 15
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
+        width: 32
+        height: 32
+      alignment: 9
+      pivot: {x: 0.5, y: 0.4}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
       tessellationDetail: 0
       bones: []
-      spriteID: f1be5c3c2a2a55c4b864c93327e61030
-      internalID: 2116118540
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: bird_alternative_blinking_4
-      rect:
-        serializedVersion: 2
-        x: 60
-        y: 0
-        width: 15
-        height: 10
-      alignment: 0
-      pivot: {x: 0, y: 0}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
-      tessellationDetail: 0
-      bones: []
-      spriteID: 438a72fa7ad315446af833724563e4e2
-      internalID: 944215513
+      spriteID: 1cb76d72344d30647b2081cf49d9d6a6
+      internalID: -1009517799
       vertices: []
       indices: 
       edges: []
@@ -244,11 +223,10 @@ TextureImporter:
     weights: []
     secondaryTextures: []
     nameFileIdTable:
-      bird_alternative_blinking_0: -50139122
-      bird_alternative_blinking_1: 1053925213
-      bird_alternative_blinking_2: 65394021
-      bird_alternative_blinking_3: 2116118540
-      bird_alternative_blinking_4: 944215513
+      dusttrail_alternative_0: 509261163
+      dusttrail_alternative_1: 1081129871
+      dusttrail_alternative_2: -801315665
+      dusttrail_alternative_3: -1009517799
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

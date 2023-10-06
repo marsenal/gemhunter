@@ -24,22 +24,30 @@ public class LevelChanger : MonoBehaviour
 
     public void FadeOut()
     {
-        if (escapeButton != null)
+        if (escapeButton)
         {
             escapeButton.enabled = false;
         }
         myAnimator.SetTrigger("FadeOut");
+        FindObjectOfType<AudioManager>().PlayClip("FadeOut");
+
+    }
+
+    public void FadeInSound() //use this on the animation keyframe
+    {
+        
     }
 
     public void EnableEscapeButton()
     {
-        escapeButton.enabled = true;
-    } //using these in the animation keyframe
+        if (escapeButton) escapeButton.enabled = true;
+    } //using these in the animation keyframe - fadout/in animation, to not be able to pause while fading
     public void DisableEscapeButton()
     {
-        escapeButton.enabled = false;
+        if (escapeButton) escapeButton.enabled = false;
+        FindObjectOfType<AudioManager>().PlayClip("FadeIn");
     }
-    public void LoadScene(int sceneToLoad)
+    public void LoadScene(int sceneToLoad) //used on the level select buttons and when dying/completing level
     {
         FadeOut();
         StartCoroutine(LoadSceneWithDelay(sceneToLoad));

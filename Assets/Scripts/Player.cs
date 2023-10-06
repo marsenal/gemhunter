@@ -18,9 +18,13 @@ public class Player : MonoBehaviour
     [Header("Movement Values")]
     [SerializeField] float moveSpeed;
     [SerializeField] float jumpSpeed;
-    [SerializeField] float bounceSpeed;
     [SerializeField] float maxDropSpeed;
 
+    [Header("Visual things")]
+    [SerializeField] GameObject dustTrail;
+
+    [Header("Sounds")]
+    [SerializeField] AudioClip jumpSound;
 
     bool isMovingLeft = false;
     bool isMovingRight = false;
@@ -49,11 +53,6 @@ public class Player : MonoBehaviour
         myAnimator = GetComponent<Animator>();
         myBodyCollider = GetComponent<BoxCollider2D>();
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
-    }
-
-    void FixedUpdate()
-    {
- 
     }
 
     void Update()
@@ -155,6 +154,8 @@ public class Player : MonoBehaviour
         if (IsGrounded())
         {
             myRigidbody.velocity = new Vector2(moveInput.x * moveSpeed, jumpSpeed);
+            Instantiate(dustTrail, transform.position, Quaternion.identity);
+            FindObjectOfType<AudioManager>().PlayClip("JumpSound");
         }
     }
 
@@ -163,6 +164,8 @@ public class Player : MonoBehaviour
         if (IsGrounded() && value && isAlive)
         {
             myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, jumpSpeed);
+            Instantiate(dustTrail, transform.position, Quaternion.identity);
+            FindObjectOfType<AudioManager>().PlayClip("JumpSound");
         }
     }
 
@@ -213,6 +216,7 @@ public class Player : MonoBehaviour
             FreezePosition();
             transform.position = collision.transform.position; //align player with the portal
 
+            FindObjectOfType<AudioManager>().PlayClip("Portal");
             LevelSystem.AddToLevelList(currentSceneIndex); //this checks the level in the db
             if (hasGem) LevelSystem.AddToGemsList(currentSceneIndex); //this checks the gem in the db - if it was collected
             SaveSystem.SaveGame();
@@ -234,7 +238,12 @@ public class Player : MonoBehaviour
             }
 
         }
-    }        
+        if (IsGrounded())
+        {
+            Instantiate(dustTrail, transform.position, Quaternion.identity);
+
+        }
+    }
 
     public void PickedUpGem() //this is called in the Gem script and makes sure gem is only counted if the level is completed
     {
