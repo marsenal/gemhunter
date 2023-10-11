@@ -29,7 +29,7 @@ public class LevelChanger : MonoBehaviour
             escapeButton.enabled = false;
         }
         myAnimator.SetTrigger("FadeOut");
-        FindObjectOfType<AudioManager>().PlayClip("FadeOut");
+        //FindObjectOfType<AudioManager>().PlayClip("FadeOut"); - disabled until a better loading sound
 
     }
 
@@ -45,7 +45,7 @@ public class LevelChanger : MonoBehaviour
     public void DisableEscapeButton()
     {
         if (escapeButton) escapeButton.enabled = false;
-        FindObjectOfType<AudioManager>().PlayClip("FadeIn");
+        //FindObjectOfType<AudioManager>().PlayClip("FadeIn"); - disabled until a better loading sound
     }
     public void LoadScene(int sceneToLoad) //used on the level select buttons and when dying/completing level
     {

@@ -23,9 +23,6 @@ public class Player : MonoBehaviour
     [Header("Visual things")]
     [SerializeField] GameObject dustTrail;
 
-    [Header("Sounds")]
-    [SerializeField] AudioClip jumpSound;
-
     bool isMovingLeft = false;
     bool isMovingRight = false;
 
@@ -211,7 +208,7 @@ public class Player : MonoBehaviour
                 Die();
             }*/ 
         }
-        else if (collision.name == "EndPortal")
+        else if (collision.tag == "EndPortal")
         {
             FreezePosition();
             transform.position = collision.transform.position; //align player with the portal
@@ -238,7 +235,7 @@ public class Player : MonoBehaviour
             }
 
         }
-        if (IsGrounded())
+        if (IsGrounded() & collision.gameObject.tag != "MovingBlock") //dusttrail when landing - except on moving platform because going down on that creates constantly dusttrails
         {
             Instantiate(dustTrail, transform.position, Quaternion.identity);
 
@@ -254,6 +251,7 @@ public class Player : MonoBehaviour
     {
         myBodyCollider.enabled = false;
         FreezePosition();
+        FindObjectOfType<AudioManager>().PlayClip("Dying");
         myAnimator.SetTrigger("isDead");
     }
 

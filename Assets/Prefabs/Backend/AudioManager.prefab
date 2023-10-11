@@ -81,3 +81,9 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     loop: 0
+  - name: Dying
+    clip: {fileID: 8300000, guid: dff69c628f1e1d9448cc222862e71fee, type: 3}
+    volume: 0.3
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0

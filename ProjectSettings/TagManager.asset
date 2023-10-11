@@ -8,8 +8,11 @@ TagManager:
   - Enemy
   - Hazard
   - Bouncer
-  - Box
   - Button
+  - MovingBlock
+  - Secret
+  - Wall
+  - EndPortal
   layers:
   - Default
   - TransparentFX
