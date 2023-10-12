@@ -29,6 +29,7 @@ public class TitleScreen : MonoBehaviour
     }
     private void ButtonBlink(bool value)
     {
+        if (buttonToBlink == null) { return; }
         buttonToBlink.enabled = value;
     }
 }
