@@ -212,7 +212,7 @@ public class Player : MonoBehaviour
         {
             FreezePosition();
             transform.position = collision.transform.position; //align player with the portal
-
+            if (currentSceneIndex == 10) FindObjectOfType<AudioManager>().StopClip("MainTheme"); //this is quite bad but no better idea
             FindObjectOfType<AudioManager>().PlayClip("Portal");
             LevelSystem.AddToLevelList(currentSceneIndex); //this checks the level in the db
             if (hasGem) LevelSystem.AddToGemsList(currentSceneIndex); //this checks the gem in the db - if it was collected

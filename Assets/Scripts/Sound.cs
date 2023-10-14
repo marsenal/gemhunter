@@ -18,6 +18,11 @@ public class Sound
     {
         return volume;
     }
+    public void SetVolume(float volumeNew)
+    {
+        volume = volumeNew;
+    }
+
 
     public float GetPitch()
     {

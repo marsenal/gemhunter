@@ -8,12 +8,25 @@ public class BossTrigger : MonoBehaviour
 {
     [SerializeField] ContraptionBoss boss;
     [SerializeField] GameObject endPortal;
+    [SerializeField] AudioManager audioManager;
 
     bool portalSpawned = false;
+
+    private void Awake()
+    {
+        
+    }
+
+    private void Start()
+    {
+        audioManager.StopClipWithoutFade("MainTheme");
+    }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         boss.Activate();
+        //audioManager.PlayClip("BossIntro");
+        audioManager.PlayClip("MainTheme");
     }
 
     private void Update()

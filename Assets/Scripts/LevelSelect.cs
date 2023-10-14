@@ -2,13 +2,16 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.UI;
-
+/// <summary>
+/// Level Select scene.
+/// </summary>
 public class LevelSelect : MonoBehaviour
 {
     [SerializeField] Button leftArrow;
     [SerializeField] Button rightArrow;
     [SerializeField] Canvas canvas1;
     [SerializeField] Canvas canvas2;
+    [SerializeField] AudioManager audioManager;
 
     private int shownScreen = 1;
 
@@ -17,7 +20,7 @@ public class LevelSelect : MonoBehaviour
     float canvas2Height;
     float canvas2Width;
     void Start()
-    {
+    {    
         canvas1Height = canvas1.GetComponent<RectTransform>().rect.height;
         canvas2Height = canvas2.GetComponent<RectTransform>().rect.height;
 
@@ -48,6 +51,7 @@ public class LevelSelect : MonoBehaviour
 
     public void ChangeToScreen(int screen) //call this when pressing arrows
     {
+        audioManager.PlayClip("CrankActivate");
         switch (screen)
         {
             case 1:

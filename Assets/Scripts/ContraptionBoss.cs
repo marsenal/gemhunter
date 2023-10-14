@@ -8,6 +8,7 @@ public class ContraptionBoss : MonoBehaviour
     Rigidbody2D myRigidbody;
     Player playerToAttack;
     Animator myAnimator;
+    BoxCollider2D myCollider;
     public bool isCharging;
     public bool isActive = false;
     [SerializeField] float chargeTimer;
@@ -18,11 +19,14 @@ public class ContraptionBoss : MonoBehaviour
     [SerializeField] [Tooltip("The extra distance boss covers with charge.")] float overChargeDistance;
     [SerializeField] GameObject dustTrailRight;
     [SerializeField] GameObject dustTrailLeft;
+    [SerializeField] GameObject indicator;
+    GameObject indicator1;
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
         playerToAttack = FindObjectOfType<Player>();
         myAnimator = GetComponent<Animator>();
+        myCollider = GetComponent<BoxCollider2D>();
         timer = chargeTimer;
     }
 
@@ -51,12 +55,16 @@ public class ContraptionBoss : MonoBehaviour
             float sign = Mathf.Sign(transform.position.x - playerToAttack.transform.position.x);
             chargeDestination = new Vector2(playerToAttack.transform.position.x - sign * overChargeDistance, transform.position.y);
 
+            Vector2 indicatorPos = new Vector2(playerToAttack.transform.position.x, transform.position.y - transform.localScale.y / 2);
+           // indicator1 = Instantiate(indicator, indicatorPos, Quaternion.identity); TODO: think about this - isthis needed?
+
             Debug.Log("Charge destination modified to: " + chargeDestination.x);
             direction = playerToAttack.transform.position.x - transform.position.x;
             timer = chargeTimer;
         }
         else if (!isCharging)
         {
+            Destroy(indicator1);
             timer = timer - Time.deltaTime;
         }
     }
@@ -94,8 +102,13 @@ public class ContraptionBoss : MonoBehaviour
             if (lives<0)
             {
                 Destroy(gameObject);
+                StartCoroutine(Dying());
             }
         }
+    }
+    IEnumerator Dying() //TODO: finish this and delete above destroy
+    {
+        yield return null;
     }
 
     private void PlayParticle()
@@ -116,4 +129,5 @@ public class ContraptionBoss : MonoBehaviour
             dustTrailRight.SetActive(false);
         }
     }
+
 }

@@ -87,3 +87,9 @@ MonoBehaviour:
     pitch: 1
     source: {fileID: 0}
     loop: 0
+  - name: BossIntro
+    clip: {fileID: 8300000, guid: 8eb638c108556b045a109aab2d8bfe83, type: 3}
+    volume: 0.3
+    pitch: 1
+    source: {fileID: 0}
+    loop: 0

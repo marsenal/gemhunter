@@ -54,7 +54,12 @@ public class LevelChanger : MonoBehaviour
     }
     IEnumerator LoadSceneWithDelay(int sceneToLoad) //this is needed for delaying scene load by 1 second for the fadeout to finish. - maybe use async operation? - or rework/rename at least
     {
-        yield return new WaitForSeconds(1f);
+        yield return new WaitForSeconds(1.5f);
         SceneManager.LoadScene(sceneToLoad);
+    }
+
+    public void FadeOutMusic(string name)
+    {
+        FindObjectOfType<AudioManager>().StopClip(name);
     }
 }
