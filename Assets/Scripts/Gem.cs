@@ -11,16 +11,12 @@ public class Gem : MonoBehaviour
         myAnimator = GetComponent<Animator>();
     }
 
-    void Update()
-    {
-        
-    }
-
     private void OnTriggerEnter2D(Collider2D collision)
     {
         if (collision.tag =="Player" && !isPickedUp)
         {
             isPickedUp = true;
+            AudioManager.instance.PlayClip("GemPickup");
             myAnimator.SetTrigger("isPickedUp");
             collision.GetComponent<Player>().PickedUpGem();
             Debug.Log("Gem is picked up");

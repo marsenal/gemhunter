@@ -6,7 +6,6 @@ public class DoorButton : MonoBehaviour
 {
     [SerializeField] Door door;
     [SerializeField] GameObject bounceBlock;
-    [SerializeField] AudioClip activateSound;
 
     enum Type
     {
@@ -17,11 +16,11 @@ public class DoorButton : MonoBehaviour
     [SerializeField] Type myType;
     bool isPressed;
     Animator myAnimator;
-    BoxCollider2D myCollider;
+    //BoxCollider2D myCollider;
     void Start()
     {
         myAnimator = GetComponent<Animator>();
-        myCollider = GetComponent<BoxCollider2D>();
+        //myCollider = GetComponent<BoxCollider2D>();
     }
 
     private void Update()
@@ -43,11 +42,12 @@ public class DoorButton : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision) //collision detection in case this is a crank - one time activation
     {
+        
         if (myType == Type.Button) return;
         else
         {
+            if (!isPressed) AudioManager.instance.PlayClip("CrankActivate");
             Activate();
-            FindObjectOfType<AudioManager>().PlayClip("CrankActivate");
         }
     }
 
@@ -73,9 +73,8 @@ public class DoorButton : MonoBehaviour
 
     bool IsSomethingOnIt()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, 1f);
-        FindObjectOfType<AudioManager>().PlayClip("CrankActivate");
+        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, 0.5f);
         //Debug.Log(hit.collider.gameObject.name);
-        return hit.collider != null;
+        return hit.collider;// != null;
     }
 }

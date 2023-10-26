@@ -27,7 +27,7 @@ public class EscapeMenu : MonoBehaviour
     public void MainMenu()
     {
         Time.timeScale = 1;
-        FindObjectOfType<LevelChanger>().LoadScene(0);
-        FindObjectOfType<AudioManager>().StopAllClips();
+        FindObjectOfType<SceneChanger>().LoadScene(0);
+        AudioManager.instance.StopAllClips();
     }
 }

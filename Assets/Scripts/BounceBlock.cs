@@ -11,17 +11,11 @@ public class BounceBlock : MonoBehaviour
     {
         myAnimator = GetComponent<Animator>();
     }
-    private void OnTriggerEnter2D(Collider2D collision)
-    {
-        if (collision.tag =="Player")
-        {
-            
-        }
-    }
-
+    
     public void Bounce() //call this in Player when colliding from below to bounce the block
     {
         myAnimator.SetTrigger("isBouncing");
+        AudioManager.instance.PlayClip("Boing");
     }
 
     public float GetForce() //call this in Player when colliding to get the force to apply on player

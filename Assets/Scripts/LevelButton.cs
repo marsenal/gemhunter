@@ -32,9 +32,6 @@ public class LevelButton : MonoBehaviour
     }
     private void CheckLevelAccessible()
     {
-
-       GetComponent<Button>().interactable = isLevelAccessible;
-        
+       GetComponent<Button>().interactable = isLevelAccessible;        
     }
-
 }

@@ -127,6 +127,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10395929aad8b5f47a57253087e42e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+  isPlatform: 1
   pointALeftLowest: {fileID: 3234756467786682952}
   pointBRightHighest: {fileID: 3234756467499602364}
   moveSpeed: 2

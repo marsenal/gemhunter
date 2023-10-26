@@ -8,33 +8,17 @@ public class BossTrigger : MonoBehaviour
 {
     [SerializeField] ContraptionBoss boss;
     [SerializeField] GameObject endPortal;
-    [SerializeField] AudioManager audioManager;
-
-    bool portalSpawned = false;
-
-    private void Awake()
-    {
-        
-    }
+          
 
     private void Start()
     {
-        audioManager.StopClipWithoutFade("MainTheme");
+        AudioManager.instance.StopClipWithoutFade("MainTheme"); //if the level is started from level select scene
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
         boss.Activate();
-        //audioManager.PlayClip("BossIntro");
-        audioManager.PlayClip("MainTheme");
+        if (!AudioManager.instance.IsMusicPlaying("BossTheme")) AudioManager.instance.PlayClip("BossTheme", true);
     }
 
-    private void Update()
-    {
-        if (FindObjectOfType<ContraptionBoss>() == null && !portalSpawned)
-        {
-            Instantiate(endPortal, new Vector2(13.5f, -20f), Quaternion.identity);
-            portalSpawned = true;
-        }
-    }
 }

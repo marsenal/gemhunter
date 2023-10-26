@@ -111,7 +111,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.87305355, y: 0.23324728}
+  m_Size: {x: 0.62357426, y: 0.23324728}
   m_EdgeRadius: 0
 --- !u!95 &1554351243724737649
 Animator:
@@ -146,4 +146,5 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   door: {fileID: 0}
+  bounceBlock: {fileID: 0}
   myType: 0

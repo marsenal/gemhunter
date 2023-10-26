@@ -4,6 +4,7 @@ using UnityEngine;
 
 public class Box : MonoBehaviour
 {
+    [SerializeField][Tooltip("Set this to true if you want it to carry the player")] bool isPlatform;
     [SerializeField] Transform pointALeftLowest;
     [SerializeField] Transform pointBRightHighest;
     [SerializeField] float moveSpeed;
@@ -40,8 +41,10 @@ public class Box : MonoBehaviour
     {
 
         //StateMachine();
-        Move();
-        //MoveWithPhysics();
+        if (isPlatform) MoveWithPhysics();
+        else Move();
+
+
     }
 
     private void FixedUpdate()
@@ -139,30 +142,34 @@ public class Box : MonoBehaviour
             }
         }
     }
-   /* private void StateMachine() //control the current movement direction 
-    {
-        if (moveDirection == Direction.Vertical)
-        {
-            if (transform.position.y <= pointAVector.y)
-            {
-                boxState = State.FromAtoB;
-            }
-            else if (transform.position.y >= pointBVector.y)
-            {
-                boxState = State.FromBtoA;
-            }
-        }
-        else
-        {
-            if (transform.position.x <= pointAVector.x)
-            {
-                boxState = State.FromAtoB;
-            }
-            else if (transform.position.x >= pointBVector.x)
-            {
-                boxState = State.FromBtoA;
-            }
-        }
-    }*/
+    /* private void StateMachine() //control the current movement direction 
+     {
+         if (moveDirection == Direction.Vertical)
+         {
+             if (transform.position.y <= pointAVector.y)
+             {
+                 boxState = State.FromAtoB;
+             }
+             else if (transform.position.y >= pointBVector.y)
+             {
+                 boxState = State.FromBtoA;
+             }
+         }
+         else
+         {
+             if (transform.position.x <= pointAVector.x)
+             {
+                 boxState = State.FromAtoB;
+             }
+             else if (transform.position.x >= pointBVector.x)
+             {
+                 boxState = State.FromBtoA;
+             }
+         }
+     }*/
 
+    private void OnCollisionStay2D(Collision2D collision)
+    {
+        //frictionJoint.connectedBody = collision.gameObject.GetComponent<Rigidbody2D>();
+    }
 }

@@ -51,7 +51,6 @@ public class LevelSelect : MonoBehaviour
 
     public void ChangeToScreen(int screen) //call this when pressing arrows
     {
-        audioManager.PlayClip("CrankActivate");
         switch (screen)
         {
             case 1:
@@ -61,6 +60,8 @@ public class LevelSelect : MonoBehaviour
                 shownScreen = 2;
                 break;
         }
+        FindObjectOfType<AudioManager>().PlayClip("CrankActivate");
+       // audioManager.;
     }
 
     private void SwipeCanvas(int canvas)
