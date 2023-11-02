@@ -40,14 +40,19 @@ public class Box : MonoBehaviour
     void Update()
     {
 
-        //StateMachine();
-        if (isPlatform) MoveWithPhysics();
-        else Move();
+        StateMachine();
+        //if (isPlatform) MoveWithPhysics();
+        // else Move();
 
-
+        if (!isPlatform) Move();
     }
 
     private void FixedUpdate()
+    {
+       if(isPlatform) MoveWithPhysics();
+    }
+
+    private void StateMachine()
     {
         if (moveDirection == Direction.Vertical)
         {
@@ -99,6 +104,7 @@ public class Box : MonoBehaviour
                 }
             }
         }
+
     }
 
     private void Move() //control movement based on the current move direction and wether the box waiting time is over (canMove)
@@ -142,34 +148,5 @@ public class Box : MonoBehaviour
             }
         }
     }
-    /* private void StateMachine() //control the current movement direction 
-     {
-         if (moveDirection == Direction.Vertical)
-         {
-             if (transform.position.y <= pointAVector.y)
-             {
-                 boxState = State.FromAtoB;
-             }
-             else if (transform.position.y >= pointBVector.y)
-             {
-                 boxState = State.FromBtoA;
-             }
-         }
-         else
-         {
-             if (transform.position.x <= pointAVector.x)
-             {
-                 boxState = State.FromAtoB;
-             }
-             else if (transform.position.x >= pointBVector.x)
-             {
-                 boxState = State.FromBtoA;
-             }
-         }
-     }*/
-
-    private void OnCollisionStay2D(Collision2D collision)
-    {
-        //frictionJoint.connectedBody = collision.gameObject.GetComponent<Rigidbody2D>();
-    }
+    
 }

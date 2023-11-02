@@ -144,15 +144,15 @@ MonoBehaviour:
       m_Calls: []
   m_text: 1
   m_isRightToLeft: 0
-  m_fontAsset: {fileID: 11400000, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
-  m_sharedMaterial: {fileID: 2180264, guid: 8f586378b4e144a9851e7b34d9b748ee, type: 2}
+  m_fontAsset: {fileID: 11400000, guid: 8c7bf0e4c0b07164b9cba2bec441fec5, type: 2}
+  m_sharedMaterial: {fileID: 4715499716957339702, guid: 8c7bf0e4c0b07164b9cba2bec441fec5, type: 2}
   m_fontSharedMaterials: []
   m_fontMaterial: {fileID: 0}
   m_fontMaterials: []
   m_fontColor32:
     serializedVersion: 2
-    rgba: 4283739618
-  m_fontColor: {r: 0.8867924, g: 0.67947274, b: 0.33045566, a: 1}
+    rgba: 2295279136
+  m_fontColor: {r: 0.12629052, g: 0.1792238, b: 0.8113208, a: 1}
   m_enableVertexGradient: 0
   m_colorMode: 3
   m_fontColorGradient:
@@ -169,8 +169,8 @@ MonoBehaviour:
   m_faceColor:
     serializedVersion: 2
     rgba: 4294967295
-  m_fontSize: 40
-  m_fontSizeBase: 40
+  m_fontSize: 50
+  m_fontSizeBase: 50
   m_fontWeight: 400
   m_enableAutoSizing: 0
   m_fontSizeMin: 18
@@ -300,6 +300,7 @@ GameObject:
   - component: {fileID: 6679998721553405576}
   - component: {fileID: 6679998721553405577}
   - component: {fileID: 6679998721553405582}
+  - component: {fileID: 7900959664420919556}
   m_Layer: 5
   m_Name: Level 1
   m_TagString: Untagged
@@ -358,8 +359,8 @@ MonoBehaviour:
   m_OnCullStateChanged:
     m_PersistentCalls:
       m_Calls: []
-  m_Sprite: {fileID: 10905, guid: 0000000000000000f000000000000000, type: 0}
-  m_Type: 1
+  m_Sprite: {fileID: 1820336579, guid: 7ea43c8d475b1804288d42111ba2c201, type: 3}
+  m_Type: 0
   m_PreserveAspect: 0
   m_FillCenter: 1
   m_FillMethod: 4
@@ -387,7 +388,7 @@ MonoBehaviour:
     m_SelectOnDown: {fileID: 0}
     m_SelectOnLeft: {fileID: 0}
     m_SelectOnRight: {fileID: 0}
-  m_Transition: 1
+  m_Transition: 3
   m_Colors:
     m_NormalColor: {r: 0.3280082, g: 0.37300426, b: 0.8584906, a: 1}
     m_HighlightedColor: {r: 0.07929869, g: 0.09182402, b: 0.509434, a: 1}
@@ -404,7 +405,7 @@ MonoBehaviour:
   m_AnimationTriggers:
     m_NormalTrigger: Normal
     m_HighlightedTrigger: Highlighted
-    m_PressedTrigger: Pressed
+    m_PressedTrigger: isTouched
     m_SelectedTrigger: Selected
     m_DisabledTrigger: Disabled
   m_Interactable: 1
@@ -436,6 +437,18 @@ MonoBehaviour:
           m_StringArgument: 
           m_BoolArgument: 0
         m_CallState: 2
+      - m_Target: {fileID: 4935605157957814553, guid: 64a461e95c6c5df4d97e36363d5a1fef, type: 3}
+        m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
+        m_MethodName: ButtonSound
+        m_Mode: 1
+        m_Arguments:
+          m_ObjectArgument: {fileID: 0}
+          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+          m_IntArgument: 0
+          m_FloatArgument: 0
+          m_StringArgument: 
+          m_BoolArgument: 0
+        m_CallState: 2
 --- !u!114 &6679998721553405582
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -453,3 +466,23 @@ MonoBehaviour:
   checkMark: {fileID: 6679998721143886975}
   isLevelCompleted: 0
   isLevelAccessible: 1
+--- !u!95 &7900959664420919556
+Animator:
+  serializedVersion: 5
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 6679998721553405579}
+  m_Enabled: 1
+  m_Avatar: {fileID: 0}
+  m_Controller: {fileID: 9100000, guid: 1b0043cbb1602c9418e66712bc1e65b6, type: 2}
+  m_CullingMode: 0
+  m_UpdateMode: 0
+  m_ApplyRootMotion: 0
+  m_LinearVelocityBlending: 0
+  m_StabilizeFeet: 0
+  m_WarningMessage: 
+  m_HasTransformHierarchy: 1
+  m_AllowConstantClipSamplingOptimization: 1
+  m_KeepAnimatorStateOnDisable: 0

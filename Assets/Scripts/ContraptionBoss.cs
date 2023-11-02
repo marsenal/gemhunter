@@ -3,7 +3,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
-
+using TMPro;
 public class ContraptionBoss : MonoBehaviour
 {
     Rigidbody2D myRigidbody;
@@ -11,22 +11,28 @@ public class ContraptionBoss : MonoBehaviour
     Animator myAnimator;
     BoxCollider2D myCollider;
     bool isCharging;
-    bool isActive = false;
+    public bool isActive = false;
+    public bool cutscene;
     bool portalSpawned = false;
-    [SerializeField] float chargeTimer;
     Vector2 chargeDestination;
     float direction;
     float timer;
+
+    [Header("Main attributes")]
     [SerializeField] int lives;
+    [SerializeField] float dyingTimer = 5f;
+
+    [Header("Charge attributes")]
     [SerializeField] [Tooltip("The extra distance boss covers with charge.")] float overChargeDistance;
+    [SerializeField] float chargeTimer;
+
+    [Header("Miscellaneous objects")]
     [SerializeField] GameObject dustTrailRight;
     [SerializeField] GameObject dustTrailLeft;
-    [SerializeField] GameObject indicator;
     [SerializeField] GameObject endPortal;
     [SerializeField] GameObject portalPosition;
-    GameObject indicator1;
+    [SerializeField] TextMeshPro bossText;
 
-    [SerializeField] float dyingTimer = 3f;
 
     CinemachineImpulseSource impulseSource;
     void Start()
@@ -50,6 +56,9 @@ public class ContraptionBoss : MonoBehaviour
     public void Activate()
     {
         isActive = true;
+        if (!AudioManager.instance.IsMusicPlaying("BossTheme"))  AudioManager.instance.PlayClip("BossTheme", true);
+        playerToAttack.CutsceneMode(false);
+        bossText.text = "";
     }
 
     private void ChargerCountDown()
@@ -61,7 +70,6 @@ public class ContraptionBoss : MonoBehaviour
             chargeDestination = new Vector2(playerToAttack.transform.position.x - sign * overChargeDistance, transform.position.y);
 
             Vector2 indicatorPos = new Vector2(playerToAttack.transform.position.x, transform.position.y - transform.localScale.y / 2);
-           // indicator1 = Instantiate(indicator, indicatorPos, Quaternion.identity); TODO: think about this - isthis needed?
 
             Debug.Log("Charge destination modified to: " + chargeDestination.x);
             direction = playerToAttack.transform.position.x - transform.position.x;
@@ -69,7 +77,6 @@ public class ContraptionBoss : MonoBehaviour
         }
         else if (!isCharging)
         {
-            Destroy(indicator1);
             timer = timer - Time.deltaTime;
         }
     }
@@ -112,7 +119,7 @@ public class ContraptionBoss : MonoBehaviour
             }
         }
     }
-    IEnumerator Dying() //TODO: finish this and delete above destroy
+    IEnumerator Dying()
     {
         myCollider.enabled = false; //so cannot kill player any more
         float timer = 0f;
@@ -127,6 +134,7 @@ public class ContraptionBoss : MonoBehaviour
         }
         isActive = false; //so it stops charging
         AudioManager.instance.StopClipWithoutFade("BossThud");
+        Destroy(FindObjectOfType<BossTrigger>());
         if (!portalSpawned) Instantiate(endPortal, portalPosition.transform.position, Quaternion.identity);
         portalSpawned = true;
     }

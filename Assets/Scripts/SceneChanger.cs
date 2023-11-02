@@ -21,17 +21,6 @@ public class SceneChanger : MonoBehaviour
         if (settingsCanvas != null) settingsCanvas.enabled = false;
     }
 
-    public void QuitGame()
-    {
-        FadeOut();
-        StartCoroutine(QuitWithDelay());
-    }
-
-    IEnumerator QuitWithDelay()
-    {
-        yield return new WaitForSeconds(1.5f);
-        Application.Quit();
-    }
 
     public void FadeOut()
     {
@@ -54,6 +43,11 @@ public class SceneChanger : MonoBehaviour
         
     }
 
+    public void CutSceneFade() //this makes a quick fade e.g when skipping cutscene
+    {
+        myAnimator.SetTrigger("Refresh");
+    }
+
     public void EnableEscapeButton() //enable escape button after fade in
     {
         if (escapeButton) escapeButton.enabled = true;
@@ -74,6 +68,7 @@ public class SceneChanger : MonoBehaviour
         SceneManager.LoadScene(sceneToLoad);
     }
 
+    
     public void BackButton()
     {
         int currentScene = SceneManager.GetActiveScene().buildIndex;
@@ -89,6 +84,17 @@ public class SceneChanger : MonoBehaviour
     public void YesToQuit() //This is redundant but might make the code more readable
     {
         QuitGame();
+    }
+    public void QuitGame()
+    {
+        FadeOut();
+        StartCoroutine(QuitWithDelay());
+    }
+
+    IEnumerator QuitWithDelay()
+    {
+        yield return new WaitForSeconds(1.5f);
+        Application.Quit();
     }
     public void NoToQuit()
     {

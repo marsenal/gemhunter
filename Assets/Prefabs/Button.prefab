@@ -10,10 +10,9 @@ GameObject:
   m_Component:
   - component: {fileID: 1554351243724737646}
   - component: {fileID: 1554351243724737647}
-  - component: {fileID: 1554351243724737648}
   - component: {fileID: 1554351243724737649}
   - component: {fileID: 1554351243724737645}
-  m_Layer: 0
+  m_Layer: 9
   m_Name: Button
   m_TagString: Button
   m_Icon: {fileID: 0}
@@ -28,7 +27,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1554351243724737650}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 11.5, y: -7.5, z: 0}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -74,9 +73,9 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 313780167
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
-  m_Sprite: {fileID: 811444172, guid: 2bfc3b2052c08ff439a954d79d0a0a1e, type: 3}
+  m_Sprite: {fileID: 1094274982, guid: 4395976393be00041b2b9ba1b476c29d, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
   m_FlipX: 0
   m_FlipY: 0
@@ -87,32 +86,6 @@ SpriteRenderer:
   m_WasSpriteAssigned: 1
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
---- !u!61 &1554351243724737648
-BoxCollider2D:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 1554351243724737650}
-  m_Enabled: 0
-  m_Density: 1
-  m_Material: {fileID: 0}
-  m_IsTrigger: 0
-  m_UsedByEffector: 0
-  m_UsedByComposite: 0
-  m_Offset: {x: 0.0025391579, y: -0.31736445}
-  m_SpriteTilingProperty:
-    border: {x: 0, y: 0, z: 0, w: 0}
-    pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 1, y: 1}
-    newSize: {x: 1, y: 1}
-    adaptiveTilingThreshold: 0.5
-    drawMode: 0
-    adaptiveTiling: 0
-  m_AutoTiling: 0
-  serializedVersion: 2
-  m_Size: {x: 0.62357426, y: 0.23324728}
-  m_EdgeRadius: 0
 --- !u!95 &1554351243724737649
 Animator:
   serializedVersion: 5

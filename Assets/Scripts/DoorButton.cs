@@ -6,12 +6,14 @@ public class DoorButton : MonoBehaviour
 {
     [SerializeField] Door door;
     [SerializeField] GameObject bounceBlock;
+    [SerializeField] Animator spike;
 
     enum Type
     {
         Button,
         Crank
     }
+
 
     [SerializeField] Type myType;
     bool isPressed;
@@ -41,24 +43,21 @@ public class DoorButton : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision) //collision detection in case this is a crank - one time activation
-    {
-        
-        if (myType == Type.Button) return;
-        else
-        {
+    {     
             if (!isPressed) AudioManager.instance.PlayClip("CrankActivate");
-            Activate();
-        }
+            Activate();        
     }
 
     public void Activate() //activation in case of button - continuous detection
     {
         if (isPressed) { return; }
+        AudioManager.instance.PlayClip("CrankActivate");
         isPressed = true;
         myAnimator.SetBool("isPressed", isPressed);
         if (door) door.Open();
         //myCollider.enabled = false;
         if (bounceBlock) bounceBlock.SetActive(true);
+        if (spike) ;
     }
 
     private void DeActivate()

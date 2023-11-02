@@ -1,8 +1,10 @@
 using System.Collections;
 using System.Collections.Generic;
+using UnityEngine.UI;
 using UnityEngine;
 using UnityEngine.InputSystem;
 using UnityEngine.SceneManagement;
+using Cinemachine;
 
 public class Player : MonoBehaviour
 {
@@ -10,10 +12,10 @@ public class Player : MonoBehaviour
     Vector2 moveInput;
     Animator myAnimator;
     BoxCollider2D myBodyCollider;
+    CinemachineImpulseSource impulseSource;
 
     [Header("Set these for Jumping")]
     [SerializeField] LayerMask groundLayerMask;
-    [SerializeField] Transform feetPosition;
 
     [Header("Movement Values")]
     [SerializeField] float moveSpeed;
@@ -23,16 +25,27 @@ public class Player : MonoBehaviour
     [Range(0f,0.5f)] float coyoteSeconds;
     bool canJump;
     float coyoteTimer = 0f;
+    [SerializeField] float dashSpeed;
 
     [Header("Visual things")]
     [SerializeField] DustTrail dustTrail;
     [SerializeField] DustTrail dustTrailLanding;
+
+    [Header("Control")]
+    [SerializeField] Canvas controlCanvas;
+    [SerializeField] Button dashButton;
 
     bool isMovingLeft = false;
     bool isMovingRight = false;
 
     bool isAlive = true;
     bool hasGem = false;
+
+    bool isDashing;
+    bool canDash = true;
+    float dashCooldown = 0.5f;
+    float dashingTime = 0.3f;
+    float originalGravity;
 
     int currentSceneIndex;
 
@@ -42,6 +55,7 @@ public class Player : MonoBehaviour
         Running,
         Jumping,
         Falling,
+        Dashing,
     }
 
     [SerializeField] State myState;
@@ -50,7 +64,12 @@ public class Player : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody2D>();
         myAnimator = GetComponent<Animator>();
         myBodyCollider = GetComponent<BoxCollider2D>();
+        impulseSource = GetComponent<CinemachineImpulseSource>();
         currentSceneIndex = SceneManager.GetActiveScene().buildIndex;
+
+        originalGravity = myRigidbody.gravityScale;
+
+        isAlive = false;
     }
 
     void Update()
@@ -61,6 +80,14 @@ public class Player : MonoBehaviour
         StateMachine();
         EnumMachine();
         CoyoteBuffer();
+        //if (isDashing && canDash) { Dash(); }
+        //DashTimer();
+        DashCooldown();
+    }
+
+    private void FixedUpdate()
+    {
+        
     }
     public void OnBack(InputAction.CallbackContext context) //for pushing back button - this doesn't work currently
     {
@@ -83,17 +110,20 @@ public class Player : MonoBehaviour
 
     private void Move()
     {
-        if (isMovingLeft)
+        if (!isDashing)
         {
-            myRigidbody.velocity = new Vector2(-moveSpeed * Time.deltaTime, myRigidbody.velocity.y);
-        }
-        else if (isMovingRight)
-        {
-            myRigidbody.velocity = new Vector2(moveSpeed * Time.deltaTime, myRigidbody.velocity.y);
-        }
-        else
-        {
-            myRigidbody.velocity = new Vector2(0f, myRigidbody.velocity.y);
+            if (isMovingLeft)
+            {
+                myRigidbody.velocity = new Vector2(-moveSpeed * Time.deltaTime, myRigidbody.velocity.y);
+            }
+            else if (isMovingRight)
+            {
+                myRigidbody.velocity = new Vector2(moveSpeed * Time.deltaTime, myRigidbody.velocity.y);
+            }
+            else
+            {
+                myRigidbody.velocity = new Vector2(0f, myRigidbody.velocity.y);
+            }
         }
     }
 
@@ -107,7 +137,7 @@ public class Player : MonoBehaviour
 
     private void StateMachine()
     {
-        if (Mathf.Abs(myRigidbody.velocity.x) > 0f && IsGrounded())
+        if (Mathf.Abs(myRigidbody.velocity.x) > 0f && IsGrounded() && !isDashing)
         {
             myState = State.Running;
         }
@@ -118,6 +148,10 @@ public class Player : MonoBehaviour
         else if (myRigidbody.velocity.y < 0f && !IsGrounded())
         {
             myState = State.Falling;
+        }
+        else if (isDashing)
+        {
+            myState = State.Dashing;
         }
         else
         { myState = State.Idle; }
@@ -131,25 +165,110 @@ public class Player : MonoBehaviour
                 myAnimator.SetBool("isRunning", true);
                 myAnimator.SetBool("isFalling", false);
                 myAnimator.SetBool("isJumping", false);
+                myAnimator.SetBool("isDashing", false);
                 break;
             case State.Jumping:
                 myAnimator.SetBool("isJumping", true);
                 myAnimator.SetBool("isRunning", false);
                 myAnimator.SetBool("isFalling", false);
+                myAnimator.SetBool("isDashing", false);
                 break;
             case State.Falling:
                 myAnimator.SetBool("isFalling", true);
                 myAnimator.SetBool("isRunning", false);
+                myAnimator.SetBool("isDashing", false);
                 myAnimator.SetBool("isJumping", false);
                 break;
             case State.Idle:
                 myAnimator.SetBool("isRunning", false);
                 myAnimator.SetBool("isJumping", false);
-                myAnimator.SetBool("isFalling", false);                
+                myAnimator.SetBool("isDashing", false);
+                myAnimator.SetBool("isFalling", false);
+                break;
+            case State.Dashing:
+                myAnimator.SetBool("isDashing", true);
+                myAnimator.SetBool("isRunning", false);
+                myAnimator.SetBool("isJumping", false);
+                myAnimator.SetBool("isFalling", false);
                 break;
         }
             
         
+    }
+
+    public void OnDash(InputAction.CallbackContext context) //for keyboard control
+    {
+        Debug.Log("Dashing");
+        //myRigidbody.velocity = new Vector2(Mathf.Sign(transform.localScale.x) * moveSpeed, 0f);
+        if (isAlive) Dash(true);
+
+    }
+
+    public void Dash(bool value) //for touch input
+    {
+        if (canDash & value && isAlive)
+        {
+            AudioManager.instance.PlayClip("Dash");
+            myRigidbody.velocity = new Vector2(Mathf.Sign(transform.localScale.x) * dashSpeed, 0f);
+            myBodyCollider.sharedMaterial = null;
+            myRigidbody.gravityScale = 0f;
+            isDashing = true;
+        }
+        else if (isAlive)
+        {
+            isDashing = false;
+            myBodyCollider.sharedMaterial = highFrictMat;
+            myRigidbody.gravityScale = originalGravity;
+        }
+    }
+
+   /* private void DashTimer() //it's working, but could be simplified FOR SURE
+    {
+        dashButton.interactable = canDash;
+        if (!isDashing & dashCooldown == 0.4f)
+        {
+            canDash = true;
+        }
+        else if (isDashing)
+        {
+            canDash = false;
+            dashingTime -= Time.deltaTime;
+            if (dashingTime < 0f)
+            {
+                Dash(canDash);
+                dashingTime = 0.2f;
+                dashCooldown -= Time.deltaTime;
+            }
+        }
+        else if (dashCooldown < 0.4f)
+        {
+            dashCooldown -= Time.deltaTime;
+            canDash = false;
+            if (dashCooldown  < 0f & IsGrounded())
+            {
+                dashCooldown = 0.4f;
+            }
+        }
+    }*/
+
+    private void DashCooldown() 
+    {
+        if (dashButton == null) return;
+        dashButton.interactable = canDash;
+        if (IsGrounded() && !isDashing)
+        {
+            canDash = true;
+        }
+        if (isDashing)
+        {
+            canDash = false;
+            dashingTime -= Time.deltaTime;
+            if (dashingTime < 0f)
+            {
+                Dash(canDash);
+                dashingTime = 0.3f;
+            }
+        }
     }
 
     public void OnJump(InputAction.CallbackContext context) //for using keyboard
@@ -164,7 +283,7 @@ public class Player : MonoBehaviour
 
     public void Jump(bool value) //for using touch input
     {
-        if ((IsGrounded() || canJump) &&  value && isAlive )
+        if ((IsGrounded() || canJump) &&  value && isAlive)
         {
             myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, jumpSpeed);
             Instantiate(dustTrail, transform.position, Quaternion.identity);
@@ -224,24 +343,27 @@ public class Player : MonoBehaviour
         {
             Die();
         }
-        else if ((collision.tag == "Enemy" || collision.tag == "Bouncer") && collision.GetComponent<BoxCollider2D>() != null)
+        else if ((collision.tag == "Enemy" /*|| collision.tag == "Bouncer"*/) && collision.GetComponent<BoxCollider2D>() != null)
         {
             //float playerColPosDown = transform.position.y - myBodyCollider.bounds.size.y / 2; this didn't work - collision detection unreliability
-            /*float colliderPosUp = collision.transform.position.y + collision.GetComponent<BoxCollider2D>().bounds.size.y / 2;
+            float colliderPosUp = collision.transform.position.y + collision.GetComponent<BoxCollider2D>().bounds.size.y / 2;
             if (transform.position.y - colliderPosUp > 0f )
             {
-                Bounce();
-                collision.GetComponent<BounceBlock>().Bounce(); //this also bounces the bounceblock (bounce animation)
+                Bounce(1000f);
+                collision.GetComponent<Enemy>().Die();
+                //collision.GetComponent<BounceBlock>().Bounce(); //this also bounces the bounceblock (bounce animation)
             }
-            else if (collision.tag == "Enemy")
+            else
             {
                 Die();
-            }*/ 
+            }
         }
         else if (collision.tag == "EndPortal")
         {
+            if (FindObjectOfType<CutScene>() != null) FindObjectOfType<CutScene>().DestroyMe(); //destroy the dontdestroyonload cutscene
             FreezePosition();
             transform.position = collision.transform.position; //align player with the portal
+            impulseSource.GenerateImpulse();
             AudioManager.instance.PlayClip("Portal");
             LevelSystem.AddToLevelList(currentSceneIndex); //this checks out the level in the db
             if (hasGem) LevelSystem.AddToGemsList(currentSceneIndex); //this checks out the gem in the db - if it was collected
@@ -291,6 +413,16 @@ public class Player : MonoBehaviour
     }
 
     /// <summary>
+    /// If true, in a cutscene hence player cant act - disable control canvas.
+    /// </summary>
+    /// <param name="value"></param>
+    public void CutsceneMode(bool value) //for the boss (or any) cutscene
+    {
+        if (controlCanvas == null) return;
+        controlCanvas.enabled = !value;
+    }
+
+    /// <summary>
     /// This is used in the PlayerDeath animation last keyframe to destroy the player object. 
     /// </summary>
     public void DestroyGameobject()
@@ -307,5 +439,11 @@ public class Player : MonoBehaviour
         Destroy(gameObject);
         FindObjectOfType<SceneChanger>().LoadScene(currentSceneIndex + 1);
     }
-
+    /// <summary>
+    /// This is used in the PlayerSpawn animation last keyframe to give control to player.
+    /// </summary>
+    private void Alive()
+    {
+        isAlive = true;
+    }
 }

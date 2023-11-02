@@ -285,7 +285,7 @@ GameObject:
   - component: {fileID: 4978795765320626647}
   - component: {fileID: 1422675760}
   m_Layer: 5
-  m_Name: BackButton
+  m_Name: EscapeMenu
   m_TagString: Untagged
   m_Icon: {fileID: 0}
   m_NavMeshLayer: 0

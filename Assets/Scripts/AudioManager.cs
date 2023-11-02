@@ -9,8 +9,7 @@ public class AudioManager : MonoBehaviour
     [SerializeField] Sound[] sounds;
 
     public static AudioManager instance;
-
-    bool isChangingVolume;
+        
     private void Awake()
     {
         if (instance == null)  //singleton pattern

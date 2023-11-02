@@ -47,14 +47,21 @@ MonoBehaviour:
   sounds:
   - name: MainTheme
     clip: {fileID: 8300000, guid: 6979d52fda0579441a2122b95abaf337, type: 3}
-    volume: 0.4
+    volume: 0.3
     pitch: 1
     playOnAwake: 1
     source: {fileID: 0}
     loop: 1
   - name: JumpSound
-    clip: {fileID: 8300000, guid: 147e44e3b9a400947b9609acfa405875, type: 3}
-    volume: 0.7
+    clip: {fileID: 8300000, guid: 0e92b1b86ae1f5f4a93984c4ff473f9d, type: 3}
+    volume: 1
+    pitch: 1
+    playOnAwake: 0
+    source: {fileID: 0}
+    loop: 0
+  - name: Dash
+    clip: {fileID: 8300000, guid: 1154fedd475089b49a4d2d8671c81328, type: 3}
+    volume: 1
     pitch: 1
     playOnAwake: 0
     source: {fileID: 0}
@@ -88,7 +95,7 @@ MonoBehaviour:
     source: {fileID: 0}
     loop: 0
   - name: Dying
-    clip: {fileID: 8300000, guid: dff69c628f1e1d9448cc222862e71fee, type: 3}
+    clip: {fileID: 8300000, guid: bcc1ab93f4f3a9d4f9a19181d434e73f, type: 3}
     volume: 0.3
     pitch: 1
     playOnAwake: 0

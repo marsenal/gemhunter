@@ -8,7 +8,7 @@ public class ScrollingBackground : MonoBehaviour
     float startPosY;
     [SerializeField] float scrollSpeedX;
     [SerializeField] float scrollSpeedY;
-    [SerializeField] bool isAlwaysScrolling;
+    [SerializeField][Tooltip("If not enabled, only scrolls if the camera moves.")] bool isAlwaysScrolling;
     Material myMaterial;
     Vector2 offset;
 

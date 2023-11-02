@@ -19,7 +19,6 @@ public class Gem : MonoBehaviour
             AudioManager.instance.PlayClip("GemPickup");
             myAnimator.SetTrigger("isPickedUp");
             collision.GetComponent<Player>().PickedUpGem();
-            Debug.Log("Gem is picked up");
         }
     }
 

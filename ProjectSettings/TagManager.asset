@@ -53,11 +53,11 @@ TagManager:
   - name: Background
     uniqueID: 3291874621
     locked: 0
-  - name: Ground
-    uniqueID: 948401519
-    locked: 0
   - name: Environment
     uniqueID: 313780167
+    locked: 0
+  - name: Ground
+    uniqueID: 948401519
     locked: 0
   - name: Pickup
     uniqueID: 2483958165
