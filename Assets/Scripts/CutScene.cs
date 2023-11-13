@@ -28,8 +28,10 @@ public class CutScene : MonoBehaviour
     }*/
     void Start()
     {
+        
         skipButtonCanvas = GetComponentInChildren<Canvas>();
-        skipButtonCanvas.enabled = false;
+        if (skipButtonCanvas != null) skipButtonCanvas.enabled = false;
+        
         playableDirector = GetComponent<PlayableDirector>();
         /*if (hasPlayed)
         {
@@ -45,7 +47,7 @@ public class CutScene : MonoBehaviour
     {
         if (!hasPlayed)
         {
-            skipButtonCanvas.enabled = true;
+            if (skipButtonCanvas != null) skipButtonCanvas.enabled = true;
             playableDirector.Play();
             collision.GetComponent<Player>().CutsceneMode(true);
             hasPlayed = true;

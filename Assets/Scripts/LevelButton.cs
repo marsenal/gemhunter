@@ -14,12 +14,8 @@ public class LevelButton : MonoBehaviour
     private bool isGemCollected;
     void Start()
     {
-        isGemCollected = LevelSystem.IsOnTheGemList(levelIndex);
-        isLevelCompleted = LevelSystem.IsOnTheLevelList(levelIndex);
-        if (!isLevelAccessible) isLevelAccessible = LevelSystem.IsOnTheLevelList(levelIndex - 1);
-        CheckLevelAccessible();
-        CheckLevelCompleted();
-        CheckGemCollected();
+        RefreshData();
+        if (!isLevelAccessible) isLevelAccessible = LevelSystem.IsOnTheLevelList(levelIndex - 1); //this needs to be checked only in Start
     }
 
     private void CheckLevelCompleted()
@@ -33,5 +29,15 @@ public class LevelButton : MonoBehaviour
     private void CheckLevelAccessible()
     {
        GetComponent<Button>().interactable = isLevelAccessible;        
+    }
+
+    public void RefreshData()
+    {
+        isGemCollected = LevelSystem.IsOnTheGemList(levelIndex);
+        isLevelCompleted = LevelSystem.IsOnTheLevelList(levelIndex);
+        isLevelAccessible = LevelSystem.IsOnTheLevelList(levelIndex - 1); //this is not checked here, because 
+        CheckLevelAccessible();
+        CheckLevelCompleted();
+        CheckGemCollected();
     }
 }

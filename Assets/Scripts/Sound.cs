@@ -6,6 +6,7 @@ using UnityEngine;
 
 public class Sound
 {
+    [SerializeField] public bool isMusic;
     [SerializeField] private string name;
     [SerializeField] private AudioClip clip;
     [SerializeField] [Range(0f, 1f)] private float volume;

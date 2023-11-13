@@ -5,8 +5,9 @@ using UnityEngine;
 public class DoorButton : MonoBehaviour
 {
     [SerializeField] Door door;
-    [SerializeField] GameObject bounceBlock;
-    [SerializeField] Animator spike;
+    [SerializeField] BounceBlock bounceBlock;
+    [SerializeField] Animator[] spikes;
+    [SerializeField] Box platform;
 
     enum Type
     {
@@ -18,10 +19,12 @@ public class DoorButton : MonoBehaviour
     [SerializeField] Type myType;
     bool isPressed;
     Animator myAnimator;
+    SpriteRenderer mySprite;
     //BoxCollider2D myCollider;
     void Start()
     {
         myAnimator = GetComponent<Animator>();
+        mySprite = GetComponent<SpriteRenderer>();
         //myCollider = GetComponent<BoxCollider2D>();
     }
 
@@ -56,8 +59,16 @@ public class DoorButton : MonoBehaviour
         myAnimator.SetBool("isPressed", isPressed);
         if (door) door.Open();
         //myCollider.enabled = false;
-        if (bounceBlock) bounceBlock.SetActive(true);
-        if (spike) ;
+        if (bounceBlock)
+        { bounceBlock.Reveal(); }
+        if (spikes != null)
+        {
+            foreach (Animator a in spikes)
+            {
+                a.enabled = false;
+            }
+        }
+        if (platform) platform.Activate();
     }
 
     private void DeActivate()
@@ -72,7 +83,11 @@ public class DoorButton : MonoBehaviour
 
     bool IsSomethingOnIt()
     {
-        RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, 0.5f);
+        float boxWidth = mySprite.bounds.size.x; 
+        Vector2 boxSize = new Vector2(boxWidth, transform.localScale.y / 2);
+        Vector2 boxOrigin = new Vector2(transform.position.x, transform.position.y);
+        RaycastHit2D hit = Physics2D.BoxCast(boxOrigin, boxSize, 0f, Vector2.down, 0.1f);
+        //RaycastHit2D hit = Physics2D.Raycast(transform.position, Vector2.up, 0.5f);
         //Debug.Log(hit.collider.gameObject.name);
         return hit.collider;// != null;
     }

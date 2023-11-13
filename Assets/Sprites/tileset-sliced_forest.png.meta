@@ -47,7 +47,7 @@ TextureImporter:
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 15
+  spritePixelsToUnits: 16
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -1236,12 +1236,12 @@ TextureImporter:
       name: tileset-sliced_forest_50
       rect:
         serializedVersion: 2
-        x: 240
-        y: 128
+        x: 350
+        y: 112
         width: 16
         height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 6.50914, y: -1.6884012}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1257,8 +1257,8 @@ TextureImporter:
       name: tileset-sliced_forest_51
       rect:
         serializedVersion: 2
-        x: 272
-        y: 128
+        x: 319
+        y: 147
         width: 16
         height: 16
       alignment: 0
@@ -1278,8 +1278,8 @@ TextureImporter:
       name: tileset-sliced_forest_52
       rect:
         serializedVersion: 2
-        x: 304
-        y: 128
+        x: 328
+        y: 96
         width: 16
         height: 16
       alignment: 0
@@ -1303,8 +1303,8 @@ TextureImporter:
         y: 64
         width: 32
         height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.75, y: 0.625}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1321,11 +1321,11 @@ TextureImporter:
       rect:
         serializedVersion: 2
         x: 64
-        y: 64
+        y: 65
         width: 32
         height: 64
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.6}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -1362,10 +1362,10 @@ TextureImporter:
       name: tileset-sliced_forest_56
       rect:
         serializedVersion: 2
-        x: 224
-        y: 64
-        width: 32
-        height: 48
+        x: 227
+        y: 100
+        width: 79
+        height: 58
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1383,10 +1383,10 @@ TextureImporter:
       name: tileset-sliced_forest_57
       rect:
         serializedVersion: 2
-        x: 272
-        y: 96
-        width: 48
-        height: 16
+        x: 335
+        y: 135
+        width: 32
+        height: 7
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1404,8 +1404,8 @@ TextureImporter:
       name: tileset-sliced_forest_58
       rect:
         serializedVersion: 2
-        x: 272
-        y: 64
+        x: 326
+        y: 27
         width: 16
         height: 16
       alignment: 0
@@ -1425,8 +1425,8 @@ TextureImporter:
       name: tileset-sliced_forest_59
       rect:
         serializedVersion: 2
-        x: 304
-        y: 64
+        x: 343
+        y: 48
         width: 16
         height: 16
       alignment: 0
@@ -1538,10 +1538,10 @@ TextureImporter:
       name: tileset-sliced_forest_64
       rect:
         serializedVersion: 2
-        x: 208
-        y: 16
-        width: 48
-        height: 32
+        x: 244
+        y: 33
+        width: 45
+        height: 58
       alignment: 0
       pivot: {x: 0.5, y: 0.5}
       border: {x: 0, y: 0, z: 0, w: 0}
@@ -1559,8 +1559,8 @@ TextureImporter:
       name: tileset-sliced_forest_65
       rect:
         serializedVersion: 2
-        x: 272
-        y: 32
+        x: 322
+        y: 33
         width: 16
         height: 16
       alignment: 0

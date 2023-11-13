@@ -138,10 +138,58 @@ public class AudioManager : MonoBehaviour
         return s.GetVolume();
     }
 
-    public void SetMusicVolume(string name, float volume) //set the given music's to the given volume
+    public void SetMusicVolume(float volume) //set the given music's to the given volume
     {
-        Sound s = Array.Find(sounds, sound => sound.GetName() == name);
-        s.GetSource().volume = volume;
-        s.SetVolume(volume); //<- this only sets the Sound's volume - which makes this a permanent change (inside, but not outside sessions)
+        //Sound s = Array.Find(sounds, sound => sound.GetName() == name);
+        foreach (Sound sound in sounds)
+        {
+            if (sound.isMusic)
+            {
+                sound.GetSource().volume = volume;
+                sound.SetVolume(volume);//<- this only sets the Sound's volume - which makes this a permanent change (inside, but not outside sessions)
+            }
+        }
     }
+
+    public void SetMusic(bool value, float volume) //this is used in the Settings script, on the Settings Canvas to switch ALL music on/off
+    {
+        foreach (Sound sound in sounds)
+        {
+            if (sound.isMusic)
+            {
+                switch (value)
+                {
+                    case true:
+                        sound.GetSource().volume = volume;
+                        sound.SetVolume(volume);
+                        break;
+                    case false:
+                        sound.GetSource().volume = 0f;
+                        sound.SetVolume(0f);
+                        break;
+                }
+            }
+        }
+    }
+    public void SetSound(bool value) //this is used in the Settings script, on the Settings Canvas to switch ALL sound on/off
+    {
+        foreach (Sound sound in sounds)
+        {
+            if (!sound.isMusic)
+            {
+                switch (value)
+                {
+                    case true:
+                        sound.GetSource().volume = 100f;
+                        sound.SetVolume(100f);
+                        break;
+                    case false:
+                        sound.GetSource().volume = 0f;
+                        sound.SetVolume(0f);
+                        break;
+                }
+            }
+        }
+    }
+
 }

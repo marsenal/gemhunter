@@ -40,4 +40,19 @@ public static class SaveSystem
             return null;
         }
     }
+
+    public static void EraseData() //write an empty file into the save file - this is used in conjuction with the levelsystem's erase data
+    {   
+            BinaryFormatter formatter = new BinaryFormatter();
+
+            string path = Application.persistentDataPath + "/save.snld";
+
+            FileStream stream = new FileStream(path, FileMode.Create);
+
+            LevelData data = new LevelData();
+
+            formatter.Serialize(stream, data);
+            stream.Close();
+        
+    }
 }

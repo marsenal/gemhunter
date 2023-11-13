@@ -26,10 +26,12 @@ public class Box : MonoBehaviour
     }
 
     bool canMove;
+    [SerializeField][Tooltip("Use this to alternativel start the platform not moving.")] bool isActive = true;
     [SerializeField] State boxState;
     [SerializeField] Direction moveDirection;
-    [SerializeField] int waitingTime;
-    int timerInteger = 0;
+    [SerializeField] int waitingTimeInLowerPosition;
+    [SerializeField] int waitingTimeInHigherPosition;
+    public int timerInteger = 0;
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
@@ -39,17 +41,19 @@ public class Box : MonoBehaviour
 
     void Update()
     {
+        if (isActive)
+        {
+            StateMachine();
+            //if (isPlatform) MoveWithPhysics();
+            // else Move();
 
-        StateMachine();
-        //if (isPlatform) MoveWithPhysics();
-        // else Move();
-
-        if (!isPlatform) Move();
+            if (!isPlatform) Move();
+        }
     }
 
     private void FixedUpdate()
     {
-       if(isPlatform) MoveWithPhysics();
+       if(isPlatform && isActive) MoveWithPhysics();
     }
 
     private void StateMachine()
@@ -61,7 +65,7 @@ public class Box : MonoBehaviour
                 boxState = State.FromAtoB;
                 canMove = false;
                 timerInteger++;
-                if (timerInteger >= waitingTime)
+                if (timerInteger >= waitingTimeInLowerPosition)
                 {
                     canMove = true;
                     timerInteger = 0;
@@ -72,7 +76,7 @@ public class Box : MonoBehaviour
                 boxState = State.FromBtoA;
                 canMove = false;
                 timerInteger++;
-                if (timerInteger >= waitingTime)
+                if (timerInteger >= waitingTimeInHigherPosition)
                 {
                     canMove = true;
                     timerInteger = 0;
@@ -86,7 +90,7 @@ public class Box : MonoBehaviour
                 boxState = State.FromAtoB;
                 canMove = false;
                 timerInteger++;
-                if (timerInteger >= waitingTime)
+                if (timerInteger >= waitingTimeInLowerPosition)
                 {
                     canMove = true;
                     timerInteger = 0;
@@ -97,7 +101,7 @@ public class Box : MonoBehaviour
                 boxState = State.FromBtoA;
                 canMove = false;
                 timerInteger++;
-                if (timerInteger >= waitingTime)
+                if (timerInteger >= waitingTimeInHigherPosition)
                 {
                     canMove = true;
                     timerInteger = 0;
@@ -148,5 +152,18 @@ public class Box : MonoBehaviour
             }
         }
     }
-    
+
+    public void Activate()
+    {
+        isActive = true;
+    }
+
+    private void OnTriggerEnter2D(Collider2D collision)
+    {
+        if (collision.gameObject.tag == "Wall")
+        {
+            isActive = false;
+            myRigidbody.velocity = new Vector2(0f, 0f);
+        }
+    }
 }

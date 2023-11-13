@@ -45,105 +45,120 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   sounds:
-  - name: MainTheme
+  - isMusic: 1
+    name: MainTheme
     clip: {fileID: 8300000, guid: 6979d52fda0579441a2122b95abaf337, type: 3}
     volume: 0.3
     pitch: 1
     playOnAwake: 1
     source: {fileID: 0}
     loop: 1
-  - name: JumpSound
+  - isMusic: 0
+    name: JumpSound
     clip: {fileID: 8300000, guid: 0e92b1b86ae1f5f4a93984c4ff473f9d, type: 3}
     volume: 1
     pitch: 1
     playOnAwake: 0
     source: {fileID: 0}
     loop: 0
-  - name: Dash
+  - isMusic: 0
+    name: Dash
     clip: {fileID: 8300000, guid: 1154fedd475089b49a4d2d8671c81328, type: 3}
     volume: 1
     pitch: 1
     playOnAwake: 0
     source: {fileID: 0}
     loop: 0
-  - name: CrankActivate
+  - isMusic: 0
+    name: CrankActivate
     clip: {fileID: 8300000, guid: 37f60f223cbdc464cbd8493b95232438, type: 3}
     volume: 0.8
     pitch: 1
     playOnAwake: 0
     source: {fileID: 0}
     loop: 0
-  - name: FadeIn
+  - isMusic: 0
+    name: FadeIn
     clip: {fileID: 8300000, guid: 2f073ff2204e1644c9157dcc0dd47b11, type: 3}
     volume: 0.8
     pitch: 1
     playOnAwake: 0
     source: {fileID: 0}
     loop: 0
-  - name: FadeOut
+  - isMusic: 0
+    name: FadeOut
     clip: {fileID: 8300000, guid: c6a78870dfe6b7c439795158dd7ccbd2, type: 3}
     volume: 0.8
     pitch: 1
     playOnAwake: 0
     source: {fileID: 0}
     loop: 0
-  - name: Portal
+  - isMusic: 0
+    name: Portal
     clip: {fileID: 8300000, guid: 4035e8893bd4f28469da86aa49cddc3d, type: 3}
     volume: 0.8
     pitch: 1
     playOnAwake: 0
     source: {fileID: 0}
     loop: 0
-  - name: Dying
+  - isMusic: 0
+    name: Dying
     clip: {fileID: 8300000, guid: bcc1ab93f4f3a9d4f9a19181d434e73f, type: 3}
     volume: 0.3
     pitch: 1
     playOnAwake: 0
     source: {fileID: 0}
     loop: 0
-  - name: BossIntro
+  - isMusic: 1
+    name: BossIntro
     clip: {fileID: 8300000, guid: 8eb638c108556b045a109aab2d8bfe83, type: 3}
     volume: 0.3
     pitch: 1
     playOnAwake: 0
     source: {fileID: 0}
     loop: 0
-  - name: BossTheme
+  - isMusic: 1
+    name: BossTheme
     clip: {fileID: 8300000, guid: 1c7904062ae88e6428c58bab51694568, type: 3}
     volume: 0.3
     pitch: 1
     playOnAwake: 1
     source: {fileID: 0}
     loop: 0
-  - name: BossThud
+  - isMusic: 0
+    name: BossThud
     clip: {fileID: 8300000, guid: c1b5325c0311b7247a43d644caf1e2de, type: 3}
     volume: 0.5
     pitch: 1
     playOnAwake: 0
     source: {fileID: 0}
     loop: 0
-  - name: GemPickup
+  - isMusic: 0
+    name: GemPickup
     clip: {fileID: 8300000, guid: 603d554861d621240b1545aa5332fd34, type: 3}
     volume: 1
     pitch: 1
     playOnAwake: 0
     source: {fileID: 0}
     loop: 0
-  - name: Boing
+  - isMusic: 0
+    name: Boing
     clip: {fileID: 8300000, guid: dfae6cf2a82988f4784d8370b3541e34, type: 3}
     volume: 1
     pitch: 1
     playOnAwake: 0
     source: {fileID: 0}
     loop: 0
-  - name: Menu
+  - isMusic: 0
+    name: Menu
     clip: {fileID: 8300000, guid: b3fe4a717cfba614a9c01353e098692b, type: 3}
     volume: 1
     pitch: 1
     playOnAwake: 0
     source: {fileID: 0}
     loop: 0
-  - name: SetValue
+  - isMusic: 0
+    name: SetValue
     clip: {fileID: 8300000, guid: 4fac4cd5e66485243a768c295a09a916, type: 3}
     volume: 1
     pitch: 1

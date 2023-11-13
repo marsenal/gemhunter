@@ -26,7 +26,6 @@ public class Door : MonoBehaviour
             }
             else
             {
-                Debug.Log("Closing");
                 transform.position = Vector2.MoveTowards(transform.position, closedPosition, speed * Time.deltaTime);
             }
         

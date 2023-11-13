@@ -64,7 +64,7 @@ public class SceneChanger : MonoBehaviour
     }
     IEnumerator LoadSceneWithDelay(int sceneToLoad) //this is needed for delaying scene load by 1.5 seconds for the fadeout to finish. - maybe use async operation? - or rework/rename at least
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         SceneManager.LoadScene(sceneToLoad);
     }
 
@@ -93,12 +93,12 @@ public class SceneChanger : MonoBehaviour
 
     IEnumerator QuitWithDelay()
     {
-        yield return new WaitForSeconds(1.5f);
+        yield return new WaitForSeconds(1f);
         Application.Quit();
     }
     public void NoToQuit()
     {
-        quitCanvas.enabled = false;
+        
     }
 
     public void Settings()

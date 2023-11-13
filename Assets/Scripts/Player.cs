@@ -77,8 +77,8 @@ public class Player : MonoBehaviour
         if (!isAlive) { return; }
         Move();
         FlipSprite();
-        StateMachine();
         EnumMachine();
+        StateMachine();
         CoyoteBuffer();
         //if (isDashing && canDash) { Dash(); }
         //DashTimer();
@@ -135,7 +135,7 @@ public class Player : MonoBehaviour
         }
     }
 
-    private void StateMachine()
+    private void EnumMachine()
     {
         if (Mathf.Abs(myRigidbody.velocity.x) > 0f && IsGrounded() && !isDashing)
         {
@@ -157,7 +157,7 @@ public class Player : MonoBehaviour
         { myState = State.Idle; }
     }
 
-    private void EnumMachine()
+    private void StateMachine()
     {
         switch (myState)
         {
@@ -334,6 +334,7 @@ public class Player : MonoBehaviour
     private void Bounce(float force)
     { 
         myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, force*Time.deltaTime);
+        canDash = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

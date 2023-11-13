@@ -22,4 +22,9 @@ public class BounceBlock : MonoBehaviour
     {
         return bounceForce;
     }
+
+    public void Reveal() // use this with crank / button to reveal a bounce block
+    {
+        myAnimator.SetTrigger("isRevealed");
+    }
 }
