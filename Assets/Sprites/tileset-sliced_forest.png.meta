@@ -1257,8 +1257,8 @@ TextureImporter:
       name: tileset-sliced_forest_51
       rect:
         serializedVersion: 2
-        x: 319
-        y: 147
+        x: 303
+        y: 152
         width: 16
         height: 16
       alignment: 0

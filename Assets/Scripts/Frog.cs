@@ -10,10 +10,11 @@ public class Frog : MonoBehaviour
     Rigidbody2D myRigidbody;
     Animator myAnimator;
     Vector2 jumpVector;
-    public bool isCharging;
+    bool isCharging;
     [SerializeField] LayerMask playerLayer;
     [SerializeField] LayerMask groundLayer;
     [SerializeField] float timer;
+    bool isAlive = true;
 
     enum State
     {
@@ -30,10 +31,6 @@ public class Frog : MonoBehaviour
         myRigidbody = GetComponent<Rigidbody2D>();
     }
 
-    void Update()
-    {
-    }
-
     private void FixedUpdate()
     {
         IsPlayerNear();
@@ -42,6 +39,11 @@ public class Frog : MonoBehaviour
             isCharging = false;
         }
         EnumMachine();
+        StateMachine();
+    }
+    private void StateMachine()
+    {
+        if (!isAlive) return;
         if (isCharging)
         {
             myState = State.Jumping;
@@ -68,9 +70,7 @@ public class Frog : MonoBehaviour
         {
             myState = State.Idle;
         }
-
     }
-
 
     private void EnumMachine()
     {
@@ -79,6 +79,7 @@ public class Frog : MonoBehaviour
             case State.Idle:
                 myAnimator.SetBool("isIdle", true);
                 myAnimator.SetBool("isJumping", false);
+                myAnimator.SetBool("isFalling", false);
                 break;
             case State.Jumping:
                 myAnimator.SetBool("isJumping", true);
@@ -129,12 +130,19 @@ public class Frog : MonoBehaviour
         return hit.collider;
     }
 
-    /*private void OnCollisionEnter2D(Collision2D collision)
+    private void OnTriggerEnter2D(Collider2D collision)
     {
-        if(collision.gameObject.tag == "Ground")
+        if (collision.tag  == "Hazard")
         {
-            myState = State.Idle;
+            isAlive = false;
+            myRigidbody.velocity = new Vector2(0f, 0f);
+            myRigidbody.gravityScale = 0f;
+            myAnimator.SetTrigger("isDead");
         }
-    }*/
+    }
 
+    public void DestroyGO()
+    {
+        Destroy(gameObject);
+    }
 }

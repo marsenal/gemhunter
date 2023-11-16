@@ -12,7 +12,7 @@ public class ContraptionBoss : MonoBehaviour
     BoxCollider2D myCollider;
     bool isCharging;
     public bool isActive = false;
-    public bool cutscene;
+    [SerializeField] bool isSecondWorldVersion;
     bool portalSpawned = false;
     Vector2 chargeDestination;
     float direction;
@@ -33,8 +33,22 @@ public class ContraptionBoss : MonoBehaviour
     [SerializeField] GameObject portalPosition;
     [SerializeField] TextMeshPro bossText;
 
-
     CinemachineImpulseSource impulseSource;
+    private void Awake()
+    {
+        if (isSecondWorldVersion)
+        {
+            int numberOfBosses = FindObjectsOfType<ContraptionBoss>().Length;
+            if (numberOfBosses > 1)
+            {
+                Destroy(gameObject);
+            }
+            else
+            {
+                DontDestroyOnLoad(gameObject);
+            }
+        }
+    }
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();
@@ -69,9 +83,7 @@ public class ContraptionBoss : MonoBehaviour
             float sign = Mathf.Sign(transform.position.x - playerToAttack.transform.position.x);
             chargeDestination = new Vector2(playerToAttack.transform.position.x - sign * overChargeDistance, transform.position.y);
 
-            Vector2 indicatorPos = new Vector2(playerToAttack.transform.position.x, transform.position.y - transform.localScale.y / 2);
 
-            Debug.Log("Charge destination modified to: " + chargeDestination.x);
             direction = playerToAttack.transform.position.x - transform.position.x;
             timer = chargeTimer;
         }
@@ -88,7 +100,6 @@ public class ContraptionBoss : MonoBehaviour
             myRigidbody.velocity = new Vector2(Math.Sign(direction) * 7f, 0f);
 
             float difference = transform.position.x - chargeDestination.x;
-            Debug.Log("Actual position: " + transform.position.x + " minus the final position: " + chargeDestination.x + " equals: " + difference);
             if (Mathf.Abs(difference) < 1f)
             {
                 isCharging = false;
@@ -108,7 +119,6 @@ public class ContraptionBoss : MonoBehaviour
         }
         if (collision.gameObject.tag == "Hazard")
         {
-            Debug.Log("Damaged");
             lives--;
             ShakeCamera();
             myAnimator.SetTrigger("isDamaged");
@@ -122,10 +132,10 @@ public class ContraptionBoss : MonoBehaviour
     IEnumerator Dying()
     {
         myCollider.enabled = false; //so cannot kill player any more
-        float timer = 0f;
         AudioManager.instance.StopClipWithoutFade("BossTheme"); //stop boss music
         myAnimator.SetTrigger("isDead"); 
         AudioManager.instance.PlayClip("BossThud", true); //play thud clip looped version
+        float timer = 0f;
         while (timer < dyingTimer)
         {
             timer += Time.deltaTime;

@@ -8,7 +8,6 @@ using UnityEngine.Playables;
 public class BossTrigger : MonoBehaviour
 {
     [SerializeField] ContraptionBoss boss;
-    [SerializeField] GameObject endPortal;
 
     public bool hasCutscenePlayed = false;
 

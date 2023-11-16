@@ -49,7 +49,7 @@ public class CutScene : MonoBehaviour
         {
             if (skipButtonCanvas != null) skipButtonCanvas.enabled = true;
             playableDirector.Play();
-            collision.GetComponent<Player>().CutsceneMode(true);
+            FindObjectOfType<Player>().CutsceneMode(true);
             hasPlayed = true;
         }
         else

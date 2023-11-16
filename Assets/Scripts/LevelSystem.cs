@@ -12,12 +12,12 @@ public static class LevelSystem
     /// </summary>
     public static void SetData()
     {
-        levels.Add(2);
-        levels.Add(13); //these need to be added so level 1 on both worlds will always be accessible TODO: make level 1 of world 2 not automatically accessible (dependant on world 1 completion)
         LevelData data = SaveSystem.LoadGame();
         if (data == null) { return; }
         levels = data.levelData;
         gems = data.gemData;
+        levels.Add(2);
+        levels.Add(13); //these need to be added so level 1 on both worlds will always be accessible TODO: make level 1 of world 2 not automatically accessible (dependant on world 1 completion)
     }
 
     public static void EraseData() //clear the lists - clear all data (this is used in the Settings canvas with the save system's erase data)

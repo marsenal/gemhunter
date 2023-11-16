@@ -17,13 +17,18 @@ public class Accid : MonoBehaviour
         //ShootUp();
     }
 
-    void Update()
+    private void Update()
     {
-            if (transform.position.y < startingPosition.y)
-            {
-                transform.position = startingPosition;
-            }
-            transform.localScale = new Vector2(transform.localScale.x, Mathf.Sign(myRigidbody.velocity.y));        
+        if (transform.position.y < startingPosition.y)
+        {
+            transform.position = startingPosition;
+        }
+        transform.localScale = new Vector2(transform.localScale.x, Mathf.Sign(myRigidbody.velocity.y));
+
+    }
+
+    void FixedUpdate()
+    {  
     }
 
 

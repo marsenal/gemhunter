@@ -43,12 +43,18 @@ public class AccidSpawner : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
+        if (collision.GetComponent<Accid>()) 
+        { 
         hasShot = false;
         myAnimator.SetTrigger("hitWater");
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        hasShot = true;
+        if (collision.GetComponent<Accid>())
+        {
+            hasShot = true;
+        }
     }
 }

@@ -15,18 +15,18 @@ public class LevelButton : MonoBehaviour
     void Start()
     {
         RefreshData();
-        if (!isLevelAccessible) isLevelAccessible = LevelSystem.IsOnTheLevelList(levelIndex - 1); //this needs to be checked only in Start
+        if (!isLevelAccessible) isLevelAccessible = LevelSystem.IsOnTheLevelList(levelIndex - 1); //this needs to be checked only in Start - checks wether the level is hardcoded accessible      
     }
 
-    private void CheckLevelCompleted()
+    private void SetLevelCompletionOnButton()
     {
         checkMark.enabled = isLevelCompleted;
     }
-    private void CheckGemCollected()
+    private void SetGemCollectionOnButton()
     {
         gem.enabled = isGemCollected;
     }
-    private void CheckLevelAccessible()
+    private void SetLevelAccessibilityOnButton()
     {
        GetComponent<Button>().interactable = isLevelAccessible;        
     }
@@ -35,9 +35,9 @@ public class LevelButton : MonoBehaviour
     {
         isGemCollected = LevelSystem.IsOnTheGemList(levelIndex);
         isLevelCompleted = LevelSystem.IsOnTheLevelList(levelIndex);
-        isLevelAccessible = LevelSystem.IsOnTheLevelList(levelIndex - 1); //this is not checked here, because 
-        CheckLevelAccessible();
-        CheckLevelCompleted();
-        CheckGemCollected();
+       if (!isLevelAccessible) isLevelAccessible = LevelSystem.IsOnTheLevelList(levelIndex - 1); //this is not checked here, because 
+        SetLevelAccessibilityOnButton();
+        SetLevelCompletionOnButton();
+        SetGemCollectionOnButton();
     }
 }
