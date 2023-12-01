@@ -18,7 +18,7 @@ public class ScrollingBackground : MonoBehaviour
         startPosX = transform.position.x;
         startPosY = transform.position.y;
         mainCamera = Camera.main;
-        myMaterial = GetComponent<Renderer>().material;
+        myMaterial = GetComponent<Renderer>().material; //for always scrolling bckgrnd
         offset = new Vector2(scrollSpeedX, 0f);
     }
 
@@ -26,7 +26,7 @@ public class ScrollingBackground : MonoBehaviour
     {
         if (isAlwaysScrolling && myMaterial != null)
         {
-            myMaterial.mainTextureOffset += offset * Time.deltaTime;
+            myMaterial.mainTextureOffset += offset * Time.deltaTime; //for always scrolling bckgrnd
         }
         else
         {

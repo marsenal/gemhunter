@@ -11,8 +11,13 @@ public class EscapeMenu : MonoBehaviour
     Animator canvasAnimator;
     void Start()
     {
-        escapeMenuCanvas.enabled = false;
-        canvasAnimator = escapeMenuCanvas.GetComponent<Animator>();
+        if (escapeMenuCanvas)
+        {
+            escapeMenuCanvas.enabled = false;
+            canvasAnimator = escapeMenuCanvas.GetComponent<Animator>();
+        }
+
+        Input.backButtonLeavesApp = true;
     }
 
     public void OpenMenu()
@@ -33,6 +38,10 @@ public class EscapeMenu : MonoBehaviour
         Time.timeScale = 1;
         FindObjectOfType<SceneChanger>().LoadScene(0);
         AudioManager.instance.StopAllClips();
+        BossTriggerSecondWorld secondlvlbosstrigger = FindObjectOfType<BossTriggerSecondWorld>();
+        BossTrigger bosstrigger = FindObjectOfType<BossTrigger>();
+        if (bosstrigger) Destroy(bosstrigger.gameObject);
+        if (secondlvlbosstrigger) Destroy(secondlvlbosstrigger.gameObject);
     }
 
     public void RestartLevel()

@@ -715,7 +715,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 3.8099904, y: -4, z: -10}
+  m_LocalPosition: {x: 3.8099902, y: -4, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -1903,10 +1903,10 @@ MonoBehaviour:
   m_OnClick:
     m_PersistentCalls:
       m_Calls:
-      - m_Target: {fileID: 2022019585}
-        m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
-        m_MethodName: LoadScene
-        m_Mode: 3
+      - m_Target: {fileID: 1625262518}
+        m_TargetAssemblyTypeName: EscapeMenu, Assembly-CSharp
+        m_MethodName: MainMenu
+        m_Mode: 1
         m_Arguments:
           m_ObjectArgument: {fileID: 0}
           m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -2167,6 +2167,7 @@ GameObject:
   - component: {fileID: 1625262514}
   - component: {fileID: 1625262513}
   - component: {fileID: 1625262517}
+  - component: {fileID: 1625262518}
   m_Layer: 5
   m_Name: EndGameCanvas
   m_TagString: Untagged
@@ -2265,13 +2266,26 @@ MonoBehaviour:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 1625262512}
-  m_Enabled: 1
+  m_Enabled: 0
   m_EditorHideFlags: 0
   m_Script: {fileID: 11500000, guid: cc5140ccd1ef2f84fba674a158c07e20, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
   buttonToBlink: {fileID: 0}
   blinkTime: 0
+--- !u!114 &1625262518
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1625262512}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 773d107d67099044899aac0ede58b827, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  escapeMenuCanvas: {fileID: 0}
 --- !u!1 &1767229876
 GameObject:
   m_ObjectHideFlags: 0

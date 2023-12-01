@@ -36,7 +36,7 @@ public class ContraptionBoss : MonoBehaviour
     CinemachineImpulseSource impulseSource;
     private void Awake()
     {
-        if (isSecondWorldVersion)
+        /*if (isSecondWorldVersion)
         {
             int numberOfBosses = FindObjectsOfType<ContraptionBoss>().Length;
             if (numberOfBosses > 1)
@@ -47,7 +47,7 @@ public class ContraptionBoss : MonoBehaviour
             {
                 DontDestroyOnLoad(gameObject);
             }
-        }
+        }*/
     }
     void Start()
     {

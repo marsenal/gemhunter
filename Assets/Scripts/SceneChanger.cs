@@ -69,7 +69,7 @@ public class SceneChanger : MonoBehaviour
     }
 
     
-    public void BackButton()
+    public void BackButton() //used on the back button events
     {
         int currentScene = SceneManager.GetActiveScene().buildIndex;
         if (currentScene == 1)
@@ -101,7 +101,7 @@ public class SceneChanger : MonoBehaviour
         
     }
 
-    public void Settings()
+    public void Settings() //used on the settings events
     {
         settingsCanvas.enabled = true;
         ButtonSound();

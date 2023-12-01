@@ -8,11 +8,9 @@ public class Accid : MonoBehaviour
     Rigidbody2D myRigidbody;
     [SerializeField] float speed;
 
-    float timer;
     void Start()
     {
         startingPosition = transform.position;
-        timer = 0f;
         myRigidbody = GetComponent<Rigidbody2D>();
         //ShootUp();
     }
@@ -22,6 +20,7 @@ public class Accid : MonoBehaviour
         if (transform.position.y < startingPosition.y)
         {
             transform.position = startingPosition;
+            myRigidbody.gravityScale = 0f;
         }
         transform.localScale = new Vector2(transform.localScale.x, Mathf.Sign(myRigidbody.velocity.y));
 
@@ -34,6 +33,7 @@ public class Accid : MonoBehaviour
 
     public void ShootUp()
     {
+        myRigidbody.gravityScale = 1f;
         myRigidbody.velocity = Vector2.up * speed;
     }
 }

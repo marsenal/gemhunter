@@ -132,8 +132,8 @@ TextureImporter:
       name: tileset-sliced_forest_0
       rect:
         serializedVersion: 2
-        x: 206
-        y: 162
+        x: 127
+        y: 167
         width: 16
         height: 16
       alignment: 0
@@ -784,10 +784,10 @@ TextureImporter:
         - {x: 8, y: 5}
         - {x: -8, y: 5}
       physicsShape:
-      - - {x: -8, y: -8}
+      - - {x: -8, y: -3}
         - {x: -8, y: 3}
         - {x: 8, y: 3}
-        - {x: 8, y: -8}
+        - {x: 8, y: -3}
       tessellationDetail: 0
       bones: []
       spriteID: 1aa7cf062432d4043af2287a796f4ed9

@@ -98,7 +98,7 @@ public class Frog : MonoBehaviour
     {
         jumpVector = new Vector2(jumpDistance * -transform.localScale.x, jumpHeight);
         myRigidbody.velocity = jumpVector; //* Time.deltaTime;
-        Debug.Log("Jumping");
+        AudioManager.instance.PlayClip("FrogJump");
     }
     bool IsPlayerNear()
     {
@@ -138,6 +138,7 @@ public class Frog : MonoBehaviour
             myRigidbody.velocity = new Vector2(0f, 0f);
             myRigidbody.gravityScale = 0f;
             myAnimator.SetTrigger("isDead");
+            AudioManager.instance.PlayClip("EnemyDead");
         }
     }
 

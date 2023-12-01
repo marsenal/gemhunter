@@ -16,6 +16,8 @@ public class BossTriggerSecondWorld : MonoBehaviour
     PlayableDirector playableDirector; //for timeline
     [SerializeField] PlayableAsset bossAlreadyAppearedCutscene;
 
+    [SerializeField] Canvas skipButtonCanvas;
+
     private void Awake()
     {
         int numberOfTriggers = FindObjectsOfType<BossTriggerSecondWorld>().Length;
@@ -32,6 +34,16 @@ public class BossTriggerSecondWorld : MonoBehaviour
     {
         AudioManager.instance.StopClipWithoutFade("MainTheme"); //if the level is started from level select scene
         playableDirector = GetComponent<PlayableDirector>();
+    }
+
+    private void Update()
+    {
+
+        if (hasCutscenePlayed)
+        { 
+            FindObjectOfType<ContraptionBoss>().transform.position = new Vector2(100f, 100f);
+            return;
+        }
     }
 
     public bool HasCutscenePlayed()
@@ -53,6 +65,7 @@ public class BossTriggerSecondWorld : MonoBehaviour
         }
         else
         {
+            if (skipButtonCanvas != null) skipButtonCanvas.enabled = true;
             collision.GetComponent<Player>().CutsceneMode(true);
             playableDirector.Play();
             hasCutscenePlayed = true;
@@ -62,5 +75,14 @@ public class BossTriggerSecondWorld : MonoBehaviour
         //boss.CutScene();
         //if (!AudioManager.instance.IsMusicPlaying("BossTheme")) AudioManager.instance.PlayClip("BossTheme", true);
 
+    }
+
+    public void Skip()
+    {
+        FindObjectOfType<SceneChanger>().CutSceneFade();
+        playableDirector.Stop();
+        skipButtonCanvas.enabled = false;
+        FindObjectOfType<Player>().CutsceneMode(false);
+        boss.Activate();
     }
 }

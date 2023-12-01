@@ -129,10 +129,12 @@ MonoBehaviour:
   moveSpeed: 350
   jumpSpeed: 22
   highFrictMat: {fileID: 6200000, guid: 347153723cf6dc64080dbaa81b501f77, type: 2}
-  coyoteSeconds: 0.1
+  coyoteSeconds: 0.15
+  dashSpeed: 0
   dustTrail: {fileID: 8831298486390030041, guid: 5c009507a58ca89428fd516367187d7a, type: 3}
   dustTrailLanding: {fileID: 8831298486390030041, guid: ec55afa870ee7c34f84b420dbb21c67f, type: 3}
   controlCanvas: {fileID: 0}
+  dashButton: {fileID: 0}
   myState: 0
 --- !u!114 &7859520775376005459
 MonoBehaviour:

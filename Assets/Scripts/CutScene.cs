@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.Playables;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class CutScene : MonoBehaviour
@@ -13,7 +14,6 @@ public class CutScene : MonoBehaviour
     Button dashButton; //not the best, TODO: think of reworking!
 
     public bool hasPlayed = false;
-    bool playItAgain = false;
 
     public static CutScene instance;
     /*private void Awake() //this is needed here to know after death wether the cutscene already played
@@ -50,7 +50,7 @@ public class CutScene : MonoBehaviour
             if (skipButtonCanvas != null) skipButtonCanvas.enabled = true;
             playableDirector.Play();
             FindObjectOfType<Player>().CutsceneMode(true);
-            hasPlayed = true;
+            //hasPlayed = true;
         }
         else
         {
@@ -76,5 +76,9 @@ public class CutScene : MonoBehaviour
         DestroyMe();
     }
 
+    public void SkipAndNextLevel()
+    {
+        FindObjectOfType<SceneChanger>().LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+    }
 
 }

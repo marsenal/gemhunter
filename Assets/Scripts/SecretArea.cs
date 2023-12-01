@@ -9,11 +9,17 @@ public class SecretArea : MonoBehaviour
 {
     private void OnTriggerStay2D(Collider2D collision)
     {
-        GetComponent<Tilemap>().color = new Color(0.5f, 0.5f, 0.5f, 0.5f);
+        if (collision.CompareTag("Player"))
+        {
+            GetComponent<Tilemap>().color = new Color(0.5f, 0.5f, 0.5f, 0.5f); 
+        }
     }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
-        GetComponent<Tilemap>().color = new Color(1f, 1f, 1f, 1f);
+        if (collision.CompareTag("Player"))
+        {
+            GetComponent<Tilemap>().color = new Color(1f, 1f, 1f, 1f);
+        }
     }
 }

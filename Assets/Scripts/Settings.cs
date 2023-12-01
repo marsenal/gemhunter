@@ -5,20 +5,27 @@ using UnityEngine.UI;
 
 public class Settings : MonoBehaviour
 {
-    [SerializeField] Slider musicSlider;
+    [SerializeField] SettingsData settingsData;
     [SerializeField] Toggle musicToggle;
     [SerializeField] Toggle soundToggle;
-    float storedMusicValue;
-    public bool isMusicOn;
-    public bool isSoundOn;
+
+    string settingsJson;
 
     void Start()
     {
-        storedMusicValue = AudioManager.instance.GetMusicVolume("MainTheme");
-        musicSlider.value = storedMusicValue;
+        settingsJson = PlayerPrefs.GetString("Settings"); //get a json string from playerpref
+        if (settingsJson != null)
+        {
+            JsonUtility.FromJsonOverwrite(settingsJson, settingsData); //is it is not empty, read it into the settingsdata
+        }
 
-        isMusicOn = musicToggle.isOn;
-        isSoundOn = soundToggle.isOn;
+        musicToggle.isOn = settingsData.isMusicEnabled;
+        soundToggle.isOn = settingsData.isSoundEnabled;
+
+
+        EnableMusic(); //I believe this is needed here to set the volume again to the default value after audiomanager is destroyed
+
+        Input.backButtonLeavesApp = true;
     }
 
     public void EraseDataButton() //erase all data - level and gem progress
@@ -33,20 +40,21 @@ public class Settings : MonoBehaviour
     }
 
 
-    public void Cancel()
+
+    public void OkSave() //set the toggle status into the settingsdata, then parse it into a json string and save the string into the playerpref as Settings
     {
-       // musicSlider.value = storedMusicValue;
-        musicToggle.isOn = isMusicOn;
-        soundToggle.isOn = isSoundOn;
         PlayMenuSFX();
-       // GetComponent<Canvas>().enabled = false;
+        settingsData.isMusicEnabled = musicToggle.isOn;
+        settingsData.isSoundEnabled = soundToggle.isOn;
+
+        settingsJson = JsonUtility.ToJson(settingsData);
+        PlayerPrefs.SetString("Settings", settingsJson);
+        PlayerPrefs.Save();
+        Debug.Log(settingsJson);
+
     }
 
-    public void OkSave()
-    {
-        //storedMusicValue = musicSlider.value;
-        PlayMenuSFX();
-    }
+
 
     public void PlayMenuSFX()
     {
@@ -55,13 +63,13 @@ public class Settings : MonoBehaviour
 
     public void PlaySliderSFX() //Play the Slider SFX sound and set the music volume to that value
     {
-        if (musicSlider.value != storedMusicValue) AudioManager.instance.PlayClip("SetValue");
-        AudioManager.instance.SetMusicVolume(musicSlider.value);
+        //if (musicSlider.value != storedMusicValue) AudioManager.instance.PlayClip("SetValue");
+        //AudioManager.instance.SetMusicVolume(musicSlider.value);
     }
 
     public void EnableMusic() //used on the Music Toggle
     {
-        AudioManager.instance.SetMusic(musicToggle.isOn, storedMusicValue);
+        AudioManager.instance.SetMusic(musicToggle.isOn, settingsData.musicVolume);
     }
 
     public void EnableSound() //used on the Sound Toggle

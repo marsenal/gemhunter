@@ -11,7 +11,8 @@ public class Enemy : MonoBehaviour
     [SerializeField] float moveSpeed;
 
     [SerializeField] bool movingEnemy;
-    bool isDead = false;
+    [SerializeField] float bounceSpeed;
+    //bool isDead = false;
 
     [SerializeField] float respawnTimer;
     float timer;
@@ -65,13 +66,13 @@ public class Enemy : MonoBehaviour
     public void Die()
     {
         myAnimator.SetTrigger("isDead");
-
+        AudioManager.instance.PlayClip("EnemyDead");
         myCollider.enabled = false;
        // mySpriteRenderer.enabled = false;
         //isDead = true;
     }
 
-    private void Respawn()
+    private void Respawn() //used in the animation keyframe (?)
     {
         myCollider.enabled = true;
        // mySpriteRenderer.enabled = true;

@@ -36,9 +36,10 @@ public class AccidSpawner : MonoBehaviour
         
     }
 
-    public void Shoot()
+    public void Shoot() //used in the animation keyframe
     {
         waterShootup.ShootUp();
+        hasShot = true;
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -54,7 +55,7 @@ public class AccidSpawner : MonoBehaviour
     {
         if (collision.GetComponent<Accid>())
         {
-            hasShot = true;
+           // hasShot = true;
         }
     }
 }

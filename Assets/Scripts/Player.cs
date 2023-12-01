@@ -43,7 +43,7 @@ public class Player : MonoBehaviour
 
     bool isDashing;
     bool canDash = true;
-    float dashCooldown = 0.5f;
+
     float dashingTime = 0.3f;
     float originalGravity;
 
@@ -80,8 +80,6 @@ public class Player : MonoBehaviour
         EnumMachine();
         StateMachine();
         CoyoteBuffer();
-        //if (isDashing && canDash) { Dash(); }
-        //DashTimer();
         DashCooldown();
     }
 
@@ -198,7 +196,6 @@ public class Player : MonoBehaviour
 
     public void OnDash(InputAction.CallbackContext context) //for keyboard control
     {
-        Debug.Log("Dashing");
         //myRigidbody.velocity = new Vector2(Mathf.Sign(transform.localScale.x) * moveSpeed, 0f);
         if (isAlive) Dash(true);
 
@@ -340,19 +337,18 @@ public class Player : MonoBehaviour
     private void OnTriggerEnter2D(Collider2D collision)
     {
 
-        if (collision.tag == "Hazard")
+        if (collision.CompareTag("Hazard"))
         {
             Die();
         }
-        else if ((collision.tag == "Enemy" /*|| collision.tag == "Bouncer"*/) && collision.GetComponent<BoxCollider2D>() != null)
+        else if (collision.CompareTag("Enemy") && collision.GetComponent<BoxCollider2D>() != null)
         {
-            //float playerColPosDown = transform.position.y - myBodyCollider.bounds.size.y / 2; this didn't work - collision detection unreliability
             float colliderPosUp = collision.transform.position.y + collision.GetComponent<BoxCollider2D>().bounds.size.y / 2;
             if (transform.position.y - colliderPosUp > 0f )
             {
-                Bounce(1000f);
+                Bounce(1200f);
                 collision.GetComponent<Enemy>().Die();
-                //collision.GetComponent<BounceBlock>().Bounce(); //this also bounces the bounceblock (bounce animation)
+                AudioManager.instance.PlayClip("JumpSound");
             }
             else
             {
@@ -361,15 +357,22 @@ public class Player : MonoBehaviour
         }
         else if (collision.tag == "EndPortal")
         {
-            if (FindObjectOfType<CutScene>() != null) FindObjectOfType<CutScene>().DestroyMe(); //destroy the dontdestroyonload cutscene
+            CutScene cutscene = FindObjectOfType<CutScene>(); //delete the dontdestroyonload objects
+            BossTrigger bosstrigger = FindObjectOfType<BossTrigger>();
+            BossTriggerSecondWorld secondlvlbosstrigger = FindObjectOfType<BossTriggerSecondWorld>(); 
+            if (bosstrigger) Destroy(bosstrigger.gameObject);
+            if (secondlvlbosstrigger) Destroy(secondlvlbosstrigger.gameObject);
+            //if (cutscene != null) cutscene.DestroyMe(); //destroy the dontdestroyonload cutscene
+
             FreezePosition();
             transform.position = collision.transform.position; //align player with the portal
+            myAnimator.SetTrigger("isEnteringPortal");
             impulseSource.GenerateImpulse();
             AudioManager.instance.PlayClip("Portal");
+
             LevelSystem.AddToLevelList(currentSceneIndex); //this checks out the level in the db
             if (hasGem) LevelSystem.AddToGemsList(currentSceneIndex); //this checks out the gem in the db - if it was collected
             SaveSystem.SaveGame();
-            myAnimator.SetTrigger("isEnteringPortal");
         }
 
     }
@@ -406,9 +409,10 @@ public class Player : MonoBehaviour
         myAnimator.SetTrigger("isDead");
     }
 
-    private void FreezePosition() //disable player movement 
+    private void FreezePosition() //disable player movement and collision
     {
         isAlive = false;
+        myBodyCollider.enabled = false;
         myRigidbody.gravityScale = 0f;
         myRigidbody.velocity = new Vector2(0f, 0f);
     }

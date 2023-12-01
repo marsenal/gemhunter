@@ -112,12 +112,17 @@ public class AudioManager : MonoBehaviour
         foreach (Sound s in sounds)
         {
             float volume = s.GetSource().volume;
-            while (s.GetSource().volume > 0f)
+            while (s.GetSource().volume >= 0f)
             {
                 s.GetSource().volume -= volume * Time.deltaTime;
                 if (s.GetSource().volume == 0f)//this is needed, else the GO is destroyed immediately
                 {
                     Destroy(gameObject);
+                    Debug.Log("Audiomanager is destroyed");
+                }
+                else
+                {
+                    Debug.Log("Audiomanager is not destroyed");
                 }
                 yield return null;
             }
@@ -138,7 +143,7 @@ public class AudioManager : MonoBehaviour
         return s.GetVolume();
     }
 
-    public void SetMusicVolume(float volume) //set the given music's to the given volume
+    /*public void SetMusicVolume(float volume) //set the given music's to the given volume
     {
         //Sound s = Array.Find(sounds, sound => sound.GetName() == name);
         foreach (Sound sound in sounds)
@@ -149,7 +154,7 @@ public class AudioManager : MonoBehaviour
                 sound.SetVolume(volume);//<- this only sets the Sound's volume - which makes this a permanent change (inside, but not outside sessions)
             }
         }
-    }
+    }*/
 
     public void SetMusic(bool value, float volume) //this is used in the Settings script, on the Settings Canvas to switch ALL music on/off
     {

@@ -1,13 +1,16 @@
 using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
-
+/// <summary>
+/// Used for controlling: doors, platforms, bounce block reveals, spikes, weapons to kill boss.
+/// </summary>
 public class DoorButton : MonoBehaviour
 {
     [SerializeField] Door door;
     [SerializeField] BounceBlock bounceBlock;
     [SerializeField] Animator[] spikes;
     [SerializeField] Box platform;
+    [SerializeField] MossBossDestroyer weaponToActivate;
 
     enum Type
     {
@@ -17,7 +20,7 @@ public class DoorButton : MonoBehaviour
 
 
     [SerializeField] Type myType;
-    bool isPressed;
+    public bool isPressed;
     Animator myAnimator;
     SpriteRenderer mySprite;
     //BoxCollider2D myCollider;
@@ -46,9 +49,12 @@ public class DoorButton : MonoBehaviour
     }
 
     private void OnTriggerEnter2D(Collider2D collision) //collision detection in case this is a crank - one time activation
-    {     
+    {    
+        if (collision.tag == "Player")
+        {
             if (!isPressed) AudioManager.instance.PlayClip("CrankActivate");
-            Activate();        
+            Activate();
+        }
     }
 
     public void Activate() //activation in case of button - continuous detection
@@ -69,15 +75,17 @@ public class DoorButton : MonoBehaviour
             }
         }
         if (platform) platform.Activate();
+        if (weaponToActivate) weaponToActivate.Activate();
     }
 
-    private void DeActivate()
+    public void DeActivate()
     {
         if (isPressed)
         {
             isPressed = false;
             myAnimator.SetBool("isPressed", isPressed);
-            door.Close();            
+            if (door) door.Close();
+            if(platform) platform.DeActivate();
         }
     }
 

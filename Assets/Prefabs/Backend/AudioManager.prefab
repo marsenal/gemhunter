@@ -165,3 +165,27 @@ MonoBehaviour:
     playOnAwake: 0
     source: {fileID: 0}
     loop: 0
+  - isMusic: 0
+    name: BossShoot
+    clip: {fileID: 8300000, guid: 4cfd7907fe6182245b52154bce197239, type: 3}
+    volume: 1
+    pitch: 1
+    playOnAwake: 0
+    source: {fileID: 0}
+    loop: 0
+  - isMusic: 0
+    name: FrogJump
+    clip: {fileID: 8300000, guid: 4d74d489ac95540429e84854ad5fd612, type: 3}
+    volume: 1
+    pitch: 1
+    playOnAwake: 0
+    source: {fileID: 0}
+    loop: 0
+  - isMusic: 0
+    name: EnemyDead
+    clip: {fileID: 8300000, guid: 7274c7847e020874f96781e50c7395f1, type: 3}
+    volume: 1
+    pitch: 1
+    playOnAwake: 0
+    source: {fileID: 0}
+    loop: 0

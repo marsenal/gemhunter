@@ -129,10 +129,12 @@ MonoBehaviour:
   moveSpeed: 350
   jumpSpeed: 22
   highFrictMat: {fileID: 6200000, guid: 347153723cf6dc64080dbaa81b501f77, type: 2}
-  coyoteSeconds: 0.1
+  coyoteSeconds: 0.15
+  dashSpeed: 0
   dustTrail: {fileID: 8831298486390030041, guid: 5c009507a58ca89428fd516367187d7a, type: 3}
   dustTrailLanding: {fileID: 8831298486390030041, guid: ec55afa870ee7c34f84b420dbb21c67f, type: 3}
   controlCanvas: {fileID: 0}
+  dashButton: {fileID: 0}
   myState: 0
 --- !u!114 &7859520775376005459
 MonoBehaviour:
@@ -267,6 +269,10 @@ MonoBehaviour:
         m_CallState: 2
     m_ActionId: d1faff7f-1d29-459d-8a97-043a85256543
     m_ActionName: UI/Back[/Keyboard/escape,/Mouse/backButton]
+  - m_PersistentCalls:
+      m_Calls: []
+    m_ActionId: fddc3020-0f5a-4f5e-ace6-aa5fc12a155a
+    m_ActionName: Player/Dash[/Keyboard/f]
   m_NeverAutoSwitchControlSchemes: 0
   m_DefaultControlScheme: 
   m_DefaultActionMap: Player
