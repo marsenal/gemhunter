@@ -41,7 +41,7 @@ public class Player : MonoBehaviour
     bool isAlive = true;
     bool hasGem = false;
 
-    bool isDashing;
+    [HideInInspector] public bool isDashing;
     bool canDash = true;
 
     float dashingTime = 0.3f;
