@@ -15,7 +15,8 @@ public class SceneChanger : MonoBehaviour
     void Start()
     {
         myAnimator = GetComponent<Animator>();
-        int currentFps = Screen.currentResolution.refreshRate; //get the refreshRate (Hz) of the screen and use that as target FPS
+        //int currentFps = Screen.currentResolution.refreshRate; //get the refreshRate (Hz) of the screen and use that as target FPS
+        int currentFps = 60;
         Application.targetFrameRate = currentFps;
         if (quitCanvas != null) quitCanvas.enabled = false;
         if (settingsCanvas != null) settingsCanvas.enabled = false;

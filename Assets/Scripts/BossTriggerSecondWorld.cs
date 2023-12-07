@@ -80,7 +80,8 @@ public class BossTriggerSecondWorld : MonoBehaviour
     public void Skip()
     {
         FindObjectOfType<SceneChanger>().CutSceneFade();
-        playableDirector.Stop();
+        //playableDirector.Stop();
+        Destroy(playableDirector);
         skipButtonCanvas.enabled = false;
         FindObjectOfType<Player>().CutsceneMode(false);
         boss.Activate();
