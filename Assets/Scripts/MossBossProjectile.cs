@@ -13,7 +13,7 @@ public class MossBossProjectile : MonoBehaviour
     void Start()
     {
         // destination = FindObjectOfType<Player>().transform.position;
-        if (FindObjectOfType<Player>()) destination = new Vector2(FindObjectOfType<Player>().transform.position.x- transform.position.x, FindObjectOfType<Player>().transform.position.y - transform.position.y);
+        if (FindObjectOfType<Player>()) destination = new Vector2(FindObjectOfType<Player>().transform.position.x - transform.position.x, FindObjectOfType<Player>().transform.position.y - transform.position.y);
         Debug.Log("The X coordinate: " + destination.x + "\n and the y coodrinate: " + destination.y);
         
         myRigidbody = GetComponent<Rigidbody2D>();

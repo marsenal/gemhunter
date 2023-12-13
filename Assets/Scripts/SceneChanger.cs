@@ -25,10 +25,10 @@ public class SceneChanger : MonoBehaviour
 
     public void FadeOut()
     {
-        if (escapeButton)
+      /*  if (escapeButton)
         {
             escapeButton.enabled = false;
-        }
+        }*/
         myAnimator.SetTrigger("FadeOut");
         //FindObjectOfType<AudioManager>().PlayClip("FadeOut"); - disabled until a better loading sound
 
@@ -49,7 +49,7 @@ public class SceneChanger : MonoBehaviour
         myAnimator.SetTrigger("Refresh");
     }
 
-    public void EnableEscapeButton() //enable escape button after fade in
+    public void EnableEscapeButton() //enable escape button after fade in - these are not used any more - instead masking is used on the button
     {
         if (escapeButton) escapeButton.enabled = true;
     } //using these in the animation keyframe - fadout/in animation, to not be able to pause while fading
@@ -111,5 +111,11 @@ public class SceneChanger : MonoBehaviour
     public void ButtonSound()
     {
         AudioManager.instance.PlayClip("Menu");
+    }
+
+    public void FadeOutThenFadeIn() //for skipping cutscenes for example
+    {
+        myAnimator.SetTrigger("FadeOutThenFadeIn");
+        //FindObjectOfType<AudioManager>().PlayClip("FadeOut"); - disabled until a better loading sound
     }
 }

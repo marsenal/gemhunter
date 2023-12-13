@@ -34,6 +34,8 @@ public class Player : MonoBehaviour
     [Header("Control")]
     [SerializeField] Canvas controlCanvas;
     [SerializeField] Button dashButton;
+    [SerializeField] Image cinematicModeTop;
+    [SerializeField] Image cinematicModeBot;
 
     bool isMovingLeft = false;
     bool isMovingRight = false;
@@ -452,7 +454,10 @@ public class Player : MonoBehaviour
     public void CutsceneMode(bool value) //for the boss (or any) cutscene
     {
         if (controlCanvas == null) return;
-        controlCanvas.enabled = !value;
+        //controlCanvas.enabled = !value;
+
+        cinematicModeBot.enabled = value;
+        cinematicModeTop.enabled = value;
     }
 
     /// <summary>
