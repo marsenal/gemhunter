@@ -34,6 +34,8 @@ public class Player : MonoBehaviour
     [Header("Control")]
     [SerializeField] Canvas controlCanvas;
     [SerializeField] Button dashButton;
+    [SerializeField] Image cinematicModeTop;
+    [SerializeField] Image cinematicModeBot;
 
     bool isMovingLeft = false;
     bool isMovingRight = false;
@@ -41,7 +43,7 @@ public class Player : MonoBehaviour
     bool isAlive = true;
     bool hasGem = false;
 
-    bool isDashing;
+    [HideInInspector] public bool isDashing;
     bool canDash = true;
 
     float dashingTime = 0.3f;
@@ -81,11 +83,24 @@ public class Player : MonoBehaviour
         StateMachine();
         CoyoteBuffer();
         DashCooldown();
+        if (CheckForWallOnLeft() && myState == State.Jumping)
+        {
+            Debug.Log("Wall hit on the left.");
+            //transform.position = new Vector2(transform.position.x + 0.2f, transform.position.y);
+            myRigidbody.velocity = new Vector2(100f * Time.deltaTime, myRigidbody.velocity.y);
+        }
+        if (CheckForWallOnRight() && myState == State.Jumping)
+        {
+            Debug.Log("Wall hit on the right.");
+            //transform.position = new Vector2(transform.position.x - 0.2f, transform.position.y);
+            myRigidbody.velocity = new Vector2(-100f * Time.deltaTime, myRigidbody.velocity.y);
+        }
+
     }
 
     private void FixedUpdate()
     {
-        
+        //Move();
     }
     public void OnBack(InputAction.CallbackContext context) //for pushing back button - this doesn't work currently
     {
@@ -299,6 +314,21 @@ public class Player : MonoBehaviour
         return hit.collider != null;
     }
 
+    private bool CheckForWallOnLeft() //for smoother jumping along a ground surface
+    {
+        Vector2 origin = new Vector2(transform.position.x - Mathf.Abs(transform.localScale.x)/2, transform.position.y);
+        RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.up, transform.localScale.y / 2, groundLayerMask);
+        Debug.DrawRay(origin, Vector2.up);
+        return hit.collider;
+    }
+    private bool CheckForWallOnRight()
+    {
+        Vector2 origin = new Vector2(transform.position.x + Mathf.Abs(transform.localScale.x) / 2, transform.position.y);
+        RaycastHit2D hit = Physics2D.Raycast(origin, Vector2.up, transform.localScale.y / 2, groundLayerMask);
+        Debug.DrawRay(origin, Vector2.up);
+        return hit.collider;
+    }
+
     private void CoyoteBuffer() //this enabled coyote timer - slight delay on the ability to jump after falling from a platform
     {
         if (!IsGrounded())
@@ -424,7 +454,10 @@ public class Player : MonoBehaviour
     public void CutsceneMode(bool value) //for the boss (or any) cutscene
     {
         if (controlCanvas == null) return;
-        controlCanvas.enabled = !value;
+        //controlCanvas.enabled = !value;
+
+        cinematicModeBot.enabled = value;
+        cinematicModeTop.enabled = value;
     }
 
     /// <summary>

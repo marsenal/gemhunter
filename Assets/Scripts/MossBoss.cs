@@ -38,6 +38,7 @@ public class MossBoss : MonoBehaviour
     public float timer;
     public float timer2;
     public float timer3;
+    private int counterFirstAttacks;
 
     enum State
     {
@@ -60,6 +61,7 @@ public class MossBoss : MonoBehaviour
     [SerializeField] AttackPhase myPhase;
     void Start()
     {
+        counterFirstAttacks = numberOfAttacksFirstPhase;
         accidSpawner.enabled = false;
         impulseSource = GetComponent<CinemachineImpulseSource>();
         playableDirector = GetComponent<PlayableDirector>();
@@ -149,17 +151,17 @@ public class MossBoss : MonoBehaviour
             myPhase = AttackPhase.SecondPhase;
         }
 
-        if (numberOfAttacksFirstPhase <= 0 && numberOfAttacksSecondPhase > 0)
+        if (counterFirstAttacks <= 0 && numberOfAttacksSecondPhase > 0)
         {
             myState = State.Vulnerable;
             if (timer2 <= 0f)
             {
                 myState = State.Attacking;
-                numberOfAttacksFirstPhase = 3;
+                counterFirstAttacks = numberOfAttacksFirstPhase;
                 timer2 = vulnerableDuration;
             }
         }
-        else if (numberOfAttacksSecondPhase <= 0 && numberOfAttacksFirstPhase == 3)
+        else if (numberOfAttacksSecondPhase <= 0 && counterFirstAttacks <= numberOfAttacksFirstPhase)
         {
             myState = State.Vulnerable;
             if (timer2 <= 0f)
@@ -261,11 +263,11 @@ public class MossBoss : MonoBehaviour
         {
             case AttackPhase.FirstPhase:
                 if (myState == State.Attacking) timer -= Time.deltaTime;
-                if (timer < 0f && numberOfAttacksFirstPhase > 0 && canAttack)
+                if (timer < 0f && counterFirstAttacks > 0 && canAttack)
                 {
                     ShootProjectile();
                     timer = timeBetweenAttacks;
-                    numberOfAttacksFirstPhase--;
+                    counterFirstAttacks--;
                 }
                 break;
             case AttackPhase.SecondPhase:
@@ -421,6 +423,8 @@ public class MossBoss : MonoBehaviour
     }
     public void Hurt()
     {
+        impulseSource.GenerateImpulseAtPositionWithVelocity(transform.position, impulseSource.m_DefaultVelocity);
+        AudioManager.instance.PlayClip("BossThud");
         lives--;
         myState = State.Hurt;
         timer2 = 1f; //timer2 keeps decreasing -> next attack phase will never trigger
@@ -431,18 +435,23 @@ public class MossBoss : MonoBehaviour
         myState = State.Dying;
         AudioManager.instance.StopClipWithoutFade("BossTheme"); //stop boss music
         myAnimator.SetTrigger("isDead");
-        AudioManager.instance.PlayClip("BossThud", true); //play thud clip looped version
-        float timer = 0f;
-        while (timer < dyingTimer)
+      //  AudioManager.instance.PlayClip("BossThud", true); //play thud clip looped version
+      //  float timer = 0f;
+       // while (timer < dyingTimer)
         {
             timer += Time.deltaTime;
-            //impulseSource.GenerateImpulseAtPositionWithVelocity(transform.position, impulseSource.m_DefaultVelocity);
+            impulseSource.GenerateImpulseAtPositionWithVelocity(transform.position, impulseSource.m_DefaultVelocity);
             yield return null;
         }
-        AudioManager.instance.StopClipWithoutFade("BossThud");
         Destroy(FindObjectOfType<BossTriggerSecondWorld>());
         endPortal.SetActive(true);
         accidSpawner.enabled = false;
+    }
+
+    public void PlayThudSound() //this is used on the dying animation in keyframes
+    {
+        AudioManager.instance.StopClipWithoutFade("BossThud");
+        impulseSource.GenerateImpulseAtPositionWithVelocity(transform.position, impulseSource.m_DefaultVelocity);
     }
 
 }

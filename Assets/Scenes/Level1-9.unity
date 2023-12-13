@@ -44620,7 +44620,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -5.2524962, y: -4.2999997, z: -10}
+  m_LocalPosition: {x: -6.247009, y: -4.2999997, z: -10}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -58807,7 +58807,7 @@ CompositeCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: 0, y: 0}
+  m_Offset: {x: 0.37, y: 0}
   m_GeometryType: 1
   m_GenerationType: 0
   m_EdgeRadius: 0
@@ -58828,12 +58828,12 @@ CompositeCollider2D:
         Y: 89666664
   m_CompositePaths:
     m_Paths:
-    - - {x: 30.033306, y: 8.966666}
-      - {x: 30.033306, y: 15.033335}
-      - {x: 23.966667, y: 15.033306}
-      - {x: 23.966639, y: 14.033335}
-      - {x: 22.966667, y: 14.033306}
-      - {x: 22.966696, y: 8.966666}
+    - - {x: 30.403307, y: 8.966666}
+      - {x: 30.403307, y: 15.033335}
+      - {x: 24.336668, y: 15.033306}
+      - {x: 24.33664, y: 14.033335}
+      - {x: 23.336668, y: 14.033306}
+      - {x: 23.336697, y: 8.966666}
   m_VertexDistance: 0.0005
   m_OffsetDistance: 0.00005
 --- !u!50 &2024718357

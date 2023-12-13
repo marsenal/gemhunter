@@ -6,7 +6,7 @@ AnimationClip:
   m_CorrespondingSourceObject: {fileID: 0}
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
-  m_Name: Vulture-Animation
+  m_Name: BatFly
   serializedVersion: 6
   m_Legacy: 0
   m_Compressed: 0
@@ -20,13 +20,11 @@ AnimationClip:
   m_PPtrCurves:
   - curve:
     - time: 0
-      value: {fileID: 21300000, guid: 2e08f6f18f774c64a8f0bd1f4c6b7ae6, type: 3}
+      value: {fileID: 21300000, guid: f7155fac0d464a04796941cd3fbbfaac, type: 3}
     - time: 0.083333336
-      value: {fileID: 21300000, guid: cea7b0258c1dd444c926d20d5e9f3807, type: 3}
+      value: {fileID: 21300000, guid: 5a464ebfa54da16439b0d2aa99592a78, type: 3}
     - time: 0.16666667
-      value: {fileID: 21300000, guid: f1fa6bb9d4c2b08498afe75e30ee0bee, type: 3}
-    - time: 0.25
-      value: {fileID: 21300000, guid: cdaf28e558b90b640ab4b6e4d3399a21, type: 3}
+      value: {fileID: 21300000, guid: 52554db975b9dc84f95713456871809a, type: 3}
     attribute: m_Sprite
     path: 
     classID: 212
@@ -46,16 +44,15 @@ AnimationClip:
       customType: 23
       isPPtrCurve: 1
     pptrCurveMapping:
-    - {fileID: 21300000, guid: 2e08f6f18f774c64a8f0bd1f4c6b7ae6, type: 3}
-    - {fileID: 21300000, guid: cea7b0258c1dd444c926d20d5e9f3807, type: 3}
-    - {fileID: 21300000, guid: f1fa6bb9d4c2b08498afe75e30ee0bee, type: 3}
-    - {fileID: 21300000, guid: cdaf28e558b90b640ab4b6e4d3399a21, type: 3}
+    - {fileID: 21300000, guid: f7155fac0d464a04796941cd3fbbfaac, type: 3}
+    - {fileID: 21300000, guid: 5a464ebfa54da16439b0d2aa99592a78, type: 3}
+    - {fileID: 21300000, guid: 52554db975b9dc84f95713456871809a, type: 3}
   m_AnimationClipSettings:
     serializedVersion: 2
     m_AdditiveReferencePoseClip: {fileID: 0}
     m_AdditiveReferencePoseTime: 0
     m_StartTime: 0
-    m_StopTime: 0.33333334
+    m_StopTime: 0.25
     m_OrientationOffsetY: 0
     m_Level: 0
     m_CycleOffset: 0

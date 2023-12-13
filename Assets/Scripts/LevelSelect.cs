@@ -29,7 +29,7 @@ public class LevelSelect : MonoBehaviour
         canvas2Width = canvas2.GetComponent<RectTransform>().rect.width;
 
         canvas1.transform.position = transform.position;
-        canvas2.transform.position = new Vector2 ( transform.position.x + canvas1Width*1.5f, transform.position.y);
+        canvas2.transform.position = new Vector2 ( transform.position.x + canvas1Width * 1.5f, transform.position.y);
     }
 
     void Update()
@@ -68,13 +68,13 @@ public class LevelSelect : MonoBehaviour
     {
         if (canvas == 1)
         {
-            canvas1.transform.position = Vector2.MoveTowards(canvas1.transform.position, transform.position, 2000f * Time.deltaTime);
-            canvas2.transform.position = Vector2.MoveTowards(canvas2.transform.position, new Vector2(transform.position.x + canvas2Width*1.5f, transform.position.y), 2000f*Time.deltaTime);
+            canvas1.transform.position = Vector2.MoveTowards(canvas1.transform.position, transform.position, 4000f * Time.deltaTime);
+            canvas2.transform.position = Vector2.MoveTowards(canvas2.transform.position, new Vector2(transform.position.x + canvas2Width * 1.5f, transform.position.y), 4000f*Time.deltaTime);
         }
         else if (canvas == 2)
         {
-            canvas1.transform.position = Vector2.MoveTowards(canvas1.transform.position, new Vector2(transform.position.x - canvas1Width*1.5f, transform.position.y), 2000f * Time.deltaTime);
-            canvas2.transform.position = Vector2.MoveTowards(canvas2.transform.position, transform.position, 2000f * Time.deltaTime);
+            canvas1.transform.position = Vector2.MoveTowards(canvas1.transform.position, new Vector2(transform.position.x - canvas1Width*1.5f, transform.position.y), 4000f * Time.deltaTime);
+            canvas2.transform.position = Vector2.MoveTowards(canvas2.transform.position, transform.position, 4000f * Time.deltaTime);
         }
     }
 }
