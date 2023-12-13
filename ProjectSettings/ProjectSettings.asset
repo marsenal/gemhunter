@@ -772,11 +772,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 2
   windowsGamepadBackendHint: 0
-  cloudProjectId: 
+  cloudProjectId: 68720ff0-723a-4217-8330-c2d5bd55bef9
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: 
-  organizationId: 
+  projectName: Rusty Adventures
+  organizationId: marsenal
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   playerDataPath: 
