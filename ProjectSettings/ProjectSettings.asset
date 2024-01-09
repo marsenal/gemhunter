@@ -12,7 +12,7 @@ PlayerSettings:
   targetDevice: 2
   useOnDemandResources: 0
   accelerometerFrequency: 60
-  companyName: My Company
+  companyName: marsenal
   productName: Rusty's Adventures
   defaultCursor: {fileID: 0}
   cursorHotspot: {x: 0, y: 0}
@@ -134,8 +134,9 @@ PlayerSettings:
     16:10: 1
     16:9: 1
     Others: 1
-  bundleVersion: 0.9.4.9
-  preloadedAssets: []
+  bundleVersion: 0.9.7.2
+  preloadedAssets:
+  - {fileID: -3901367669688173429, guid: 5eeb407a665ea8d4c84d3bd050bcc2d8, type: 2}
   metroInputSource: 0
   wsaTransparentSwapchain: 0
   m_HolographicPauseOnTrackingLoss: 1
@@ -155,7 +156,7 @@ PlayerSettings:
   androidSupportedAspectRatio: 1
   androidMaxAspectRatio: 2.1
   applicationIdentifier:
-    Android: com.DefaultCompany.com.unity.template.mobile2D
+    Android: com.marsenal.rustysadventures
     Lumin: com.DefaultCompany.com.unity.template.mobile2D
     Standalone: com.DefaultCompany.com.unity.template.mobile2D
     iPhone: com.DefaultCompany.com.unity.template.mobile2D
@@ -775,7 +776,7 @@ PlayerSettings:
   cloudProjectId: 68720ff0-723a-4217-8330-c2d5bd55bef9
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
-  projectName: Rusty Adventures
+  projectName: Rusty's Adventures
   organizationId: marsenal
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0

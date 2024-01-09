@@ -40,6 +40,8 @@ public class EscapeMenu : MonoBehaviour
         AudioManager.instance.StopAllClips();
         BossTriggerSecondWorld secondlvlbosstrigger = FindObjectOfType<BossTriggerSecondWorld>();
         BossTrigger bosstrigger = FindObjectOfType<BossTrigger>();
+        StopWatch timer = FindObjectOfType<StopWatch>();
+        if (timer) Destroy(timer.gameObject);
         if (bosstrigger) Destroy(bosstrigger.gameObject);
         if (secondlvlbosstrigger) Destroy(secondlvlbosstrigger.gameObject);
     }

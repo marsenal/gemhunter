@@ -23,7 +23,6 @@ public class Accid : MonoBehaviour
             myRigidbody.gravityScale = 0f;
         }
         transform.localScale = new Vector2(transform.localScale.x, Mathf.Sign(myRigidbody.velocity.y));
-
     }
 
     void FixedUpdate()

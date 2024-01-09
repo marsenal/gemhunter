@@ -8,6 +8,7 @@ public class Box : MonoBehaviour
     [SerializeField] Transform pointALeftLowest;
     [SerializeField] Transform pointBRightHighest;
     [SerializeField] float moveSpeed;
+
  
     Rigidbody2D myRigidbody;
 
@@ -171,4 +172,5 @@ public class Box : MonoBehaviour
             myRigidbody.velocity = new Vector2(0f, 0f);
         }
     }
+
 }

@@ -14,18 +14,15 @@ public class MossBoss : MonoBehaviour
     [Header("Attacking details and objects")]
     [SerializeField] float timeBetweenAttacks;
     [SerializeField] MossBossProjectile projectile;
+    [SerializeField] List<MossBossSecondPhase> projectileSecondPhaseLeft;
+    [SerializeField] List<MossBossSecondPhase> projectileSecondPhaseRight;
     [SerializeField] GameObject shootingPlace;
     [SerializeField] int numberOfAttacksFirstPhase;
-    [SerializeField] int numberOfAttacksSecondPhase;
-    [SerializeField] float secondAttackDuration;
-    [SerializeField] int numberOfAttacksThirdPhase;
-    [SerializeField] float thirdAttackDuration;
 
     [Header("Other Elements")]
     [SerializeField] AccidSpawner accidSpawner;
     [SerializeField] float introDuration;
     [SerializeField] CrankColumn crankColumn;
-    [SerializeField] CutScene cutSceneHandler;
     [SerializeField] GameObject endPortal;
 
     public bool isActive = false;
@@ -39,6 +36,8 @@ public class MossBoss : MonoBehaviour
     public float timer2;
     public float timer3;
     private int counterFirstAttacks;
+    public bool isSecondAttackFinished = false;
+    public bool isSecondAttackStarted = false;
 
     enum State
     {
@@ -62,6 +61,7 @@ public class MossBoss : MonoBehaviour
     void Start()
     {
         counterFirstAttacks = numberOfAttacksFirstPhase;
+
         accidSpawner.enabled = false;
         impulseSource = GetComponent<CinemachineImpulseSource>();
         playableDirector = GetComponent<PlayableDirector>();
@@ -69,7 +69,6 @@ public class MossBoss : MonoBehaviour
         myCollider.enabled = false;
         myAnimator = GetComponent<Animator>();
 
-        cutSceneHandler.GetComponent<BoxCollider2D>().enabled = false;
 
         timer = timeBetweenAttacks;
         timer2 = vulnerableDuration;
@@ -87,88 +86,40 @@ public class MossBoss : MonoBehaviour
         }
     }
 
-  /*  private void EnumMachine()
-    {
-        if (lives == 3 )
-        {
-            myPhase = AttackPhase.FirstPhase;
-        }
-        else if (lives == 2)
-        {
-            myPhase = AttackPhase.SecondPhase;
-        }
-        else if (lives == 1)
-        {
-            myPhase = AttackPhase.ThirdPhase;
-        }
-
-        if (numberOfAttacksFirstPhase <= 0 && numberOfAttacksSecondPhase > 0 && numberOfAttacksThirdPhase > 0)
-        {
-            myState = State.Vulnerable;
-            if (timer2 <= 0f)
-            {
-                myState = State.Attacking;
-                numberOfAttacksFirstPhase = 3;
-                timer2 = vulnerableDuration;
-            }
-        }
-        else if (numberOfAttacksSecondPhase<=0 && numberOfAttacksFirstPhase == 3 && numberOfAttacksThirdPhase > 0)
-        {
-            myState = State.Vulnerable;
-            if (timer2 <= 0f)
-            {
-                myState = State.Attacking;
-                numberOfAttacksSecondPhase = 3;
-                timer2 = vulnerableDuration;
-            }
-        }
-        else if (numberOfAttacksSecondPhase == 3 && numberOfAttacksFirstPhase == 3 && numberOfAttacksThirdPhase <= 0)
-        {
-            myState = State.Vulnerable;
-            if (timer2 <= 0f)
-            {
-                myState = State.Attacking;
-                numberOfAttacksThirdPhase = 3;
-                timer2 = vulnerableDuration;
-            }
-        }
-
-        if (timer3 <= 0f) //Intro handling
-        {
-            myState = State.Attacking;
-            timer3 = introDuration;
-        }
-    }*/
-
     private void EnumMachine() //this for the easier boss - 2 lives
     {
         if (lives == 2)
         {
             myPhase = AttackPhase.FirstPhase;
+
+            if (counterFirstAttacks <= 0)
+            {
+                myState = State.Vulnerable;
+                if (timer2 <= 0f)
+                {
+                    myState = State.Attacking;
+                    counterFirstAttacks = numberOfAttacksFirstPhase;
+                    timer2 = vulnerableDuration;
+                }
+            }
         }
         else if (lives == 1)
         {
             myPhase = AttackPhase.SecondPhase;
-        }
-
-        if (counterFirstAttacks <= 0 && numberOfAttacksSecondPhase > 0)
-        {
-            myState = State.Vulnerable;
-            if (timer2 <= 0f)
+            if (isSecondAttackFinished)
             {
-                myState = State.Attacking;
-                counterFirstAttacks = numberOfAttacksFirstPhase;
-                timer2 = vulnerableDuration;
+                myState = State.Vulnerable;
+                canAttack = false;
+                if (timer2 <= 0f)
+                {
+                    canAttack = true;
+                    myState = State.Attacking;
+                    timer2 = vulnerableDuration;
+                }
             }
-        }
-        else if (numberOfAttacksSecondPhase <= 0 && counterFirstAttacks <= numberOfAttacksFirstPhase)
-        {
-            myState = State.Vulnerable;
-            if (timer2 <= 0f)
+            else
             {
                 myState = State.Attacking;
-                numberOfAttacksSecondPhase = 3;
-                timer2 = vulnerableDuration;
             }
         }
 
@@ -178,84 +129,6 @@ public class MossBoss : MonoBehaviour
             timer3 = introDuration;
         }
     }
-  /*  private void StateMachine()
-    {
-        switch (myPhase)
-        {
-            case AttackPhase.FirstPhase:
-                if (myState == State.Attacking) timer -= Time.deltaTime;
-                if (timer<0f && numberOfAttacksFirstPhase>0 && canAttack)
-                {                    
-                    ShootProjectile();
-                    timer = timeBetweenAttacks;
-                    numberOfAttacksFirstPhase--;
-                }
-                break;
-            case AttackPhase.SecondPhase:
-                if (myState == State.Attacking) timer -= Time.deltaTime;
-                if (timer < 0f && numberOfAttacksSecondPhase > 0 && canAttack)
-                {
-                    StartCoroutine(SecondPhase());
-                    timer = timeBetweenAttacks;
-                }
-                break;
-            case AttackPhase.ThirdPhase:
-                if (myState == State.Attacking) timer -= Time.deltaTime;
-                if (timer < 0f && numberOfAttacksThirdPhase > 0 && canAttack)
-                {
-                    StartCoroutine(ThirdPhase());
-                    timer = timeBetweenAttacks;
-                }
-                break;
-        }
-
-        switch (myState)
-        {
-            case State.Dormant:
-                myCollider.enabled = false;
-                canAttack = false;
-                myAnimator.SetBool("isVulnerable", false);
-                myAnimator.SetBool("isAttacking", canAttack);
-                break;
-            case State.Intro:
-                myCollider.enabled = false;
-                canAttack = false;
-                timer3 -= Time.deltaTime;
-                myAnimator.SetBool("isVulnerable", false);
-                myAnimator.SetBool("isAttacking", canAttack);
-                break;
-            case State.Attacking:
-                myCollider.enabled = false;
-                canAttack = true;
-                myAnimator.SetBool("isVulnerable", false);
-                myAnimator.SetBool("isAttacking", canAttack);
-                crankColumn.DeActivate();
-                break;
-            case State.Vulnerable:
-                myCollider.enabled = true;
-                canAttack = false;
-                canBeHurt = true;
-                timer2 -= Time.deltaTime;
-                myAnimator.SetBool("isVulnerable", canBeHurt);
-                myAnimator.SetBool("isAttacking", canAttack);
-                crankColumn.Activate();
-                break;
-            case State.Hurt:
-                myCollider.enabled = false;
-                canAttack = false;
-                canBeHurt = false;
-                myAnimator.SetTrigger("isHurt");
-                myAnimator.SetBool("isVulnerable", canBeHurt);
-                myAnimator.SetBool("isAttacking", canAttack);
-                crankColumn.DeActivate();
-                break;
-            case State.Dying:
-                myCollider.enabled = false;
-                cutSceneHandler.GetComponent<BoxCollider2D>().enabled = true;
-                canAttack = false;
-                break;
-        }
-    }*/
 
     private void StateMachine() // this for the easier boss - 2 phases, 2 lives
     {
@@ -271,11 +144,10 @@ public class MossBoss : MonoBehaviour
                 }
                 break;
             case AttackPhase.SecondPhase:
-                if (myState == State.Attacking) timer -= Time.deltaTime;
-                if (timer < 0f && numberOfAttacksSecondPhase > 0 && canAttack)
+
+                if (myState == State.Attacking && !isSecondAttackStarted && canAttack)
                 {
                     StartCoroutine(SecondPhase());
-                    timer = timeBetweenAttacks;
                 }
                 break;
         }
@@ -322,7 +194,6 @@ public class MossBoss : MonoBehaviour
                 break;
             case State.Dying:
                 myCollider.enabled = false;
-                cutSceneHandler.GetComponent<BoxCollider2D>().enabled = true;
                 canAttack = false;
                 break;
         }
@@ -379,39 +250,43 @@ public class MossBoss : MonoBehaviour
     }
 
 
-    private void SecondPhaseAttack()
+    private void SecondPhaseAttack(int wave)
     {
         //Instantiate(projectile, shootingPlace.transform.position, Quaternion.Euler(Vector3.forward*135f)); - this for rotating the projectile towards the target
-        Instantiate(projectile, shootingPlace.transform.position, Quaternion.identity);
+        Instantiate(projectileSecondPhaseLeft[wave], shootingPlace.transform.position, Quaternion.identity);
+        Instantiate(projectileSecondPhaseRight[wave], shootingPlace.transform.position, Quaternion.identity);
+        //projectileSecondPhaseRight[wave].FlyWithPhysics();
+        //projectileSecondPhaseLeft[wave].FlyWithPhysics();
         AudioManager.instance.PlayClip("BossShoot");
     }
 
     IEnumerator SecondPhase()
     {
-        SecondPhaseAttack();
-        yield return new WaitForSecondsRealtime(0.5f);
-        SecondPhaseAttack();
-        yield return new WaitForSecondsRealtime(0.5f); 
-        SecondPhaseAttack();
-        yield return new WaitForSecondsRealtime(0.4f);
-        numberOfAttacksSecondPhase--;
+        isSecondAttackStarted = true;
+        isSecondAttackFinished = false;
+        SecondPhaseAttack(0);
+        yield return new WaitForSecondsRealtime(1f);
+        SecondPhaseAttack(1);
+        yield return new WaitForSecondsRealtime(1f); 
+        SecondPhaseAttack(2);
+        yield return new WaitForSecondsRealtime(1f);
+        SecondPhaseAttack(2);
+        yield return new WaitForSecondsRealtime(1f);
+        SecondPhaseAttack(1);
+        yield return new WaitForSecondsRealtime(1f);
+        SecondPhaseAttack(0);
+        yield return new WaitForSecondsRealtime(1f);
+        SecondPhaseAttack(0);
+        yield return new WaitForSecondsRealtime(1f);
+        SecondPhaseAttack(1);
+        yield return new WaitForSecondsRealtime(1f);
+        SecondPhaseAttack(2);
+        yield return new WaitForSecondsRealtime(1f);
+        isSecondAttackFinished = true;
+        canAttack = false;
+        isSecondAttackStarted = false;
     }
 
-    private void ThirdPhaseAttack()
-    {
-        Instantiate(projectile, shootingPlace.transform.position, Quaternion.identity);
-        AudioManager.instance.PlayClip("BossShoot");
-    }
-    IEnumerator ThirdPhase()
-    {
-        ThirdPhaseAttack();
-        yield return new WaitForSecondsRealtime(0.3f);
-        ThirdPhaseAttack();
-        yield return new WaitForSecondsRealtime(0.3f);
-        ThirdPhaseAttack();
-        yield return new WaitForSecondsRealtime(0.3f);
-        numberOfAttacksThirdPhase--;
-    }
 
     private void OnTriggerExit2D(Collider2D collision)
     {
@@ -427,7 +302,7 @@ public class MossBoss : MonoBehaviour
         AudioManager.instance.PlayClip("BossThud");
         lives--;
         myState = State.Hurt;
-        timer2 = 1f; //timer2 keeps decreasing -> next attack phase will never trigger
+        timer2 = vulnerableDuration; //timer2 keeps decreasing -> next attack phase will never trigger
     }
 
     IEnumerator Dying()
@@ -444,7 +319,6 @@ public class MossBoss : MonoBehaviour
             yield return null;
         }
         Destroy(FindObjectOfType<BossTriggerSecondWorld>());
-        endPortal.SetActive(true);
         accidSpawner.enabled = false;
     }
 
@@ -452,6 +326,11 @@ public class MossBoss : MonoBehaviour
     {
         AudioManager.instance.StopClipWithoutFade("BossThud");
         impulseSource.GenerateImpulseAtPositionWithVelocity(transform.position, impulseSource.m_DefaultVelocity);
+    }
+
+    public void EnableEndPortal()
+    {
+        endPortal.SetActive(true);
     }
 
 }

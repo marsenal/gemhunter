@@ -16,7 +16,7 @@ public class Settings : MonoBehaviour
         settingsJson = PlayerPrefs.GetString("Settings"); //get a json string from playerpref
         if (settingsJson != null)
         {
-            JsonUtility.FromJsonOverwrite(settingsJson, settingsData); //is it is not empty, read it into the settingsdata
+            JsonUtility.FromJsonOverwrite(settingsJson, settingsData); //if it is not empty, read it into the settingsdata
         }
 
         musicToggle.isOn = settingsData.isMusicEnabled;
@@ -32,6 +32,7 @@ public class Settings : MonoBehaviour
     {
         LevelSystem.EraseData();
         SaveSystem.SaveGame();
+        //FindObjectOfType<Authentication>().SaveProgressToCloud();
         LevelButton[] levelButtons = FindObjectsOfType<LevelButton>();
         foreach (LevelButton lvlbtn in levelButtons)
         {

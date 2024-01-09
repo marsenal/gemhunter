@@ -14,7 +14,8 @@ public class ScreamWave : MonoBehaviour
     void Start()
     {
         if (FindObjectOfType<Player>()) destination = new Vector2(FindObjectOfType<Player>().transform.position.x - transform.position.x, FindObjectOfType<Player>().transform.position.y - transform.position.y);
-
+       // transform.rotation = Quaternion.FromToRotation((Vector3)destination, (Vector3)transform.position);
+        transform.rotation = Quaternion.Euler (0f,0f, Vector2.SignedAngle(transform.position, destination));
         myRigidbody = GetComponent<Rigidbody2D>();
     }
 

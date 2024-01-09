@@ -7,25 +7,38 @@ public static class LevelSystem
 
     public static List<int> levels = new List<int>();
     public static List<int> gems = new List<int>();
+
+    private static int NUMBER_OF_LEVELS = 1; //needed to check game completion
+    private static int NUMBER_OF_GEMS = 30; //needed to check game 100% completion
     /// <summary>
     /// Loading the data with SaveSystem and assigning the values to the lists of this class.
     /// </summary>
-    public static void SetData()
+    public static void SetData(LevelData data) //set data from cloud
     {
+        //LevelData data = SaveSystem.LoadGame();
+        if (data == null) { return; }
+        levels = data.levelData;
+        gems = data.gemData;
+        /*levels.Add(2);
+        levels.Add(13); //these need to be added so level 1 on both worlds will always be accessible TODO: make level 1 of world 2 not automatically accessible (dependant on world 1 completion)
+        levels.Add(25);*/
+    }
+
+    public static void SetDataLocally() //set data from local device
+    {        
         LevelData data = SaveSystem.LoadGame();
         if (data == null) { return; }
         levels = data.levelData;
         gems = data.gemData;
-        levels.Add(2);
-        levels.Add(13); //these need to be added so level 1 on both worlds will always be accessible TODO: make level 1 of world 2 not automatically accessible (dependant on world 1 completion)
     }
 
     public static void EraseData() //clear the lists - clear all data (this is used in the Settings canvas with the save system's erase data)
     {
         levels.Clear();
         gems.Clear();
-        levels.Add(2);
+       /* levels.Add(2);
         levels.Add(13);
+        levels.Add(25);*/
     }
     public static void AddToLevelList(int level) //The level is added to the list of levels - usually when entering the end portal
     {
@@ -63,6 +76,15 @@ public static class LevelSystem
     public static List<int> GetGemList()
     {
         return gems;
+    }
+
+    public static bool IsEveryLevelCompleted() //return true if all levels are completed (on the levels list)
+    {
+        if (levels.Count >= NUMBER_OF_LEVELS)
+        {
+            return true;
+        }
+        else return false;
     }
 
 }

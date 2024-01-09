@@ -17,8 +17,7 @@ public static class SaveSystem
         LevelData data = new LevelData();
 
         formatter.Serialize(stream, data);
-        stream.Close();
-
+        stream.Close();        
     }
 
     public static LevelData LoadGame()
@@ -54,6 +53,27 @@ public static class SaveSystem
             formatter.Serialize(stream, data);
             stream.Close();
         
+    }
+
+    public static LevelData LoadDataFromCloud(Stream stream)
+    {
+       // string path = Application.persistentDataPath + "/save.snld";
+
+       // if (File.Exists(path))
+       // {
+            BinaryFormatter formatter = new BinaryFormatter();
+           // FileStream stream = new FileStream(path, FileMode.Open);
+
+            LevelData data = formatter.Deserialize(stream) as LevelData;
+            stream.Close();
+
+            return data;
+      //  }
+      //  else
+      //  {
+       //     Debug.LogWarning("Save file not found in " + path);
+      //      return null;
+      //  }
     }
 
 }

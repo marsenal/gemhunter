@@ -15,7 +15,7 @@ public class WorldThreeBoss : MonoBehaviour
     [SerializeField] float timeBetweenAttacks;
     [SerializeField] ScreamWave projectile;
     [SerializeField] GameObject shootingPlace;
-    [SerializeField] int numberOfAttacksFirstPhase;
+    [SerializeField] int numberOfAttacksScreamWave;
     [SerializeField] float secondAttackDuration;
     [SerializeField] int numberOfAttacksThirdPhase;
     [SerializeField] float thirdAttackDuration;
@@ -33,6 +33,7 @@ public class WorldThreeBoss : MonoBehaviour
     PlayableDirector playableDirector;
     BoxCollider2D myCollider;
     Animator myAnimator;
+    Player player;
     public float timer;
     public float timer2;
     public float timer3;
@@ -76,6 +77,8 @@ public class WorldThreeBoss : MonoBehaviour
 
         timer = timeBetweenAttacks;
         timer3 = introDuration;
+
+        player = FindObjectOfType<Player>();
     }
 
     void Update()
@@ -88,23 +91,13 @@ public class WorldThreeBoss : MonoBehaviour
             myState = State.Dying;
             endingScene.Play();
         }
-        Player player = FindObjectOfType<Player>();
-        if (player) transform.localScale = new Vector2(Mathf.Sign(player.transform.position.x - transform.position.x), transform.localScale.y);
+        if (player && //manage turning towards player if distance is big enough (5 units)
+            Mathf.Abs(player.transform.position.x - transform.position.x) > 5f ) transform.localScale = new Vector2(Mathf.Sign(player.transform.position.x - transform.position.x), transform.localScale.y);
     }
 
 
     private void EnumMachine() //this for the easier boss - 2 lives
     {
-        if (myState == State.Attacking)
-        {
-            timer -= Time.deltaTime;
-            if (timer<=0f)
-            {
-                ShootProjectile();
-                timer = timeBetweenAttacks;
-            }
-        }
-
         if (timer2 < 0f)
         {
             myState = State.Attacking;
@@ -116,10 +109,53 @@ public class WorldThreeBoss : MonoBehaviour
             myState = State.Attacking;
             timer3 = introDuration;
         }
+
+        switch (lives)
+        {
+            case 3:
+                myPhase = AttackPhase.FirstPhase;
+                break;
+            case 2:
+                myPhase = AttackPhase.SecondPhase;
+                break;
+            case 1:
+                myPhase = AttackPhase.ThirdPhase;
+                break;
+        }    
     }
    
     private void StateMachine() // this for the easier boss - 2 phases, 2 lives
     {
+        switch (myPhase)
+        {
+            case AttackPhase.FirstPhase:
+                timer -= Time.deltaTime;
+                if (timer <= 0f)
+                {
+                    ShootProjectile();
+                    timer = timeBetweenAttacks;
+                }
+                break;
+            case AttackPhase.SecondPhase:
+
+                if (myState == State.Attacking &&  canAttack)
+                {
+                    Debug.Log("Second Phase");
+                    if (timer <= 0f)
+                    {
+                        SecondPhaseAttack();
+                        timer = timeBetweenAttacks;
+                    }
+                }
+                break;
+            case AttackPhase.ThirdPhase:
+                if (myState == State.Attacking && canAttack)
+                {
+                    Debug.Log("Third Phase");
+                }
+                break;
+        }
+
         switch (myState)
         {
             case State.Dormant:
@@ -128,7 +164,7 @@ public class WorldThreeBoss : MonoBehaviour
                 break;
             case State.Intro:
                 myCollider.enabled = false;
-                FindObjectOfType<Player>().CutsceneMode(false);
+                if (player) player.CutsceneMode(false);
                 canAttack = false;
                 timer3 -= Time.deltaTime;
                 break;
@@ -204,6 +240,11 @@ public class WorldThreeBoss : MonoBehaviour
         AudioManager.instance.PlayClip("BossShoot");
     }
 
+    private void SecondPhaseAttack()
+    {
+
+    }
+
 
     public void RocksFalling()
     {
@@ -212,7 +253,7 @@ public class WorldThreeBoss : MonoBehaviour
         AudioManager.instance.PlayClip("BossThud");
         lives--;
         myState = State.Hurt;
-        counterFirstAttacks = numberOfAttacksFirstPhase;
+        counterFirstAttacks = numberOfAttacksScreamWave;
         timer2 = 5f; //timer2 keeps decreasing -> next attack phase will never trigger
     }
 
