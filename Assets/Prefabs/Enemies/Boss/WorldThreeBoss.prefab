@@ -16,7 +16,7 @@ GameObject:
   - component: {fileID: 4730428239037939079}
   - component: {fileID: 4730428239037939096}
   - component: {fileID: 4730428239037939097}
-  m_Layer: 10
+  m_Layer: 7
   m_Name: WorldThreeBoss
   m_TagString: Untagged
   m_Icon: {fileID: 0}
@@ -126,23 +126,27 @@ MonoBehaviour:
   lives: 2
   vulnerableDuration: 0
   dyingTimer: 0
+  numberOfAttacksThirdPhase: 3
+  thirdAttackDuration: 3
   timeBetweenAttacks: 3
   projectile: {fileID: 5128453879190497612, guid: b00f92aa66bbdd94a96682d3c65489bd, type: 3}
   shootingPlace: {fileID: 4730428240405159625}
-  numberOfAttacksFirstPhase: 3
-  numberOfAttacksSecondPhase: 3
+  numberOfAttacksScreamWave: 0
   secondAttackDuration: 3
-  numberOfAttacksThirdPhase: 3
-  thirdAttackDuration: 3
+  secondPhaseTransformOne: {fileID: 0}
+  secondPhaseTransformTwo: {fileID: 0}
+  featherAttack: {fileID: 0}
   introDuration: 3
-  endPortal: {fileID: 0}
   fallingRocks: {fileID: 1271443815100138809, guid: 57a9e1a5aff88604492be3af2b40b29c, type: 3}
+  endingScene: {fileID: 0}
   isActive: 0
   timer: 0
   timer2: 0
   timer3: 0
+  counterFirstAttacks: 0
   myState: 0
   myPhase: 0
+  myDifficulty: 0
 --- !u!320 &4730428239037939078
 PlayableDirector:
   m_ObjectHideFlags: 0
@@ -179,7 +183,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 9.75, y: 9.75}
+    oldSize: {x: 12.5, y: 12.5}
     newSize: {x: 0.39, y: 0.39}
     adaptiveTilingThreshold: 0.5
     drawMode: 0

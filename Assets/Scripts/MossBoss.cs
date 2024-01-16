@@ -252,11 +252,9 @@ public class MossBoss : MonoBehaviour
 
     private void SecondPhaseAttack(int wave)
     {
-        //Instantiate(projectile, shootingPlace.transform.position, Quaternion.Euler(Vector3.forward*135f)); - this for rotating the projectile towards the target
         Instantiate(projectileSecondPhaseLeft[wave], shootingPlace.transform.position, Quaternion.identity);
         Instantiate(projectileSecondPhaseRight[wave], shootingPlace.transform.position, Quaternion.identity);
-        //projectileSecondPhaseRight[wave].FlyWithPhysics();
-        //projectileSecondPhaseLeft[wave].FlyWithPhysics();
+        
         AudioManager.instance.PlayClip("BossShoot");
     }
 

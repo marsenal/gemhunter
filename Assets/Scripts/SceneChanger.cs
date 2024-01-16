@@ -12,6 +12,7 @@ public class SceneChanger : MonoBehaviour
     [SerializeField] Image escapeButton;
     [SerializeField] Canvas quitCanvas;
     [SerializeField] Canvas settingsCanvas;
+
     void Start()
     {
         myAnimator = GetComponent<Animator>();
@@ -44,10 +45,7 @@ public class SceneChanger : MonoBehaviour
         
     }
 
-    public void CutSceneFade() //this makes a quick fade e.g when skipping cutscene
-    {
-        myAnimator.SetTrigger("Refresh");
-    }
+
 
     public void EnableEscapeButton() //enable escape button after fade in - these are not used any more - instead masking is used on the button
     {

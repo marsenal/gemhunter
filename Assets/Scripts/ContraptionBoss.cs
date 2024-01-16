@@ -13,7 +13,7 @@ public class ContraptionBoss : MonoBehaviour
     bool isCharging;
     public bool isActive = false;
     [SerializeField] bool isSecondWorldVersion;
-    bool portalSpawned = false;
+    bool portalSpawned = false; //this is only needed if we use the spawning portal version
     Vector2 chargeDestination;
     float direction;
     float timer;
@@ -145,8 +145,10 @@ public class ContraptionBoss : MonoBehaviour
         isActive = false; //so it stops charging
         AudioManager.instance.StopClipWithoutFade("BossThud");
         Destroy(FindObjectOfType<BossTrigger>());
-        if (!portalSpawned) Instantiate(endPortal, portalPosition.transform.position, Quaternion.identity);
-        portalSpawned = true;
+        // if (!portalSpawned) Instantiate(endPortal, portalPosition.transform.position, Quaternion.identity);
+        // portalSpawned = true;
+
+        endPortal.gameObject.SetActive(true);
     }
 
     private void PlayParticle()

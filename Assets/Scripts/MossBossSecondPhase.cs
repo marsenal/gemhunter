@@ -24,7 +24,7 @@ public class MossBossSecondPhase : MonoBehaviour
 
     private void Update()
     {
-        transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(transform.position, myRigidbody.velocity));
+        //transform.rotation = Quaternion.Euler(0f, 0f, Vector2.SignedAngle(transform.position, myRigidbody.velocity));
     }
 
     public void FlyWithPhysics()

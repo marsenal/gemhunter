@@ -78,6 +78,7 @@ public class Player : MonoBehaviour
     void Update()
     {
         if (!isAlive) { return; }
+        
         Move();
         FlipSprite();
         EnumMachine();
@@ -99,7 +100,6 @@ public class Player : MonoBehaviour
     public void OnBack(InputAction.CallbackContext context) //for pushing back button - this doesn't work currently
     {
         Application.Quit();
-        Debug.Log("Quitting");
     }
     public void OnMove(InputAction.CallbackContext context) //for keyboard control
     {
@@ -292,13 +292,11 @@ public class Player : MonoBehaviour
     {
         if (CheckForWallOnLeft() && myState == State.Jumping && !CheckForWallOnRight() && !CheckForEmptinessOnLeft())
         {
-            Debug.Log("Wall hit on the left.");
             //transform.position = new Vector2(transform.position.x + 0.2f, transform.position.y);
             myRigidbody.velocity = new Vector2(300f * Time.deltaTime, myRigidbody.velocity.y);
         }
         if (CheckForWallOnRight() && myState == State.Jumping && !CheckForWallOnLeft() && !CheckForEmptinessOnRight())
         {
-            Debug.Log("Wall hit on the right.");
             //transform.position = new Vector2(transform.position.x - 0.2f, transform.position.y);
             myRigidbody.velocity = new Vector2(-300f * Time.deltaTime, myRigidbody.velocity.y);
         }
@@ -478,6 +476,8 @@ public class Player : MonoBehaviour
         FreezePosition();
         AudioManager.instance.PlayClip("Dying");
         myAnimator.SetTrigger("isDead");
+        LevelSystem.IncreaseDeathCounter();
+        SaveSystem.SaveGame();
         if (AdManager.instance) { AdManager.instance.IncreaseDeathNumbers(); }
     }
 
@@ -516,7 +516,7 @@ public class Player : MonoBehaviour
     public void EnterPortal()
     {
         Destroy(gameObject);
-        FindObjectOfType<SceneChanger>().LoadScene(currentSceneIndex + 1);
+        FindObjectOfType<SceneChanger>().LoadScene(FindObjectOfType<EndPortal>().GetSceneIndex());
     }
     /// <summary>
     /// This is used in the PlayerSpawn animation last keyframe to give control to player.

@@ -79,10 +79,9 @@ public class BossTriggerWorldThree : MonoBehaviour
 
     }
 
-    public void Skip()
+    public void Skip() //used on the Skip button in the cutscene of world 3 boss start
     {
         
-        FindObjectOfType<SceneChanger>().CutSceneFade();
         //playableDirector.Stop();
         Destroy(playableDirector);
         skipButtonCanvas.enabled = false;

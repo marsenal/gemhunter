@@ -81,9 +81,6 @@ EditorBuildSettings:
     path: Assets/Scenes/Level2to3Cutscene.unity
     guid: eaad2ea461765c344ae9daa1f2bf1719
   - enabled: 1
-    path: Assets/Scenes/LevelSelectMountain.unity
-    guid: 7d920f66b1e576b4e80efcb4f48d0590
-  - enabled: 1
     path: Assets/Scenes/Level3-1.unity
     guid: c4299db1ecc2d984497a5d74b1419883
   - enabled: 1
@@ -114,8 +111,22 @@ EditorBuildSettings:
     path: Assets/Scenes/Level3-10.unity
     guid: e838c18344e5e6347a158f635367c83f
   - enabled: 1
+    path: Assets/Scenes/LevelSelectMountain.unity
+    guid: 7d920f66b1e576b4e80efcb4f48d0590
+  - enabled: 1
+    path: Assets/Scenes/Level1Cutscene.unity
+    guid: d0c4c4fe53633364793e8ad32267a3c2
+  - enabled: 1
+    path: Assets/Scenes/Level1to2Cutscene.unity
+    guid: e6f52d1eefa1102469ec45e6823328fd
+  - enabled: 1
+    path: Assets/Scenes/Level3-10FinalCutscene.unity
+    guid: a091a9f6aa2f2f44b91783b61367fcb3
+  - enabled: 1
     path: Assets/Scenes/EndGame.unity
     guid: 73a02f5157d0d2b4b861c2ae5d10fb20
   m_configObjects:
     com.unity.adaptiveperformance.loader_settings: {fileID: 11400000, guid: 5eeb407a665ea8d4c84d3bd050bcc2d8, type: 2}
     com.unity.adaptiveperformance.simulator.provider_settings: {fileID: 11400000, guid: 1992ad8c876c8af41838a9b18c70ebee, type: 2}
+    com.unity.addressableassets: {fileID: 11400000, guid: 8a292b5d2ce766a45aef33391ab62dfa, type: 2}
+    com.unity.localization.settings: {fileID: 11400000, guid: 9fb9d86c8e00d5c43a554b4c94acea27, type: 2}

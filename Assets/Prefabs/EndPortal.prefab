@@ -12,6 +12,7 @@ GameObject:
   - component: {fileID: 1039273894703831090}
   - component: {fileID: 1039273894703831091}
   - component: {fileID: 4369464744454325573}
+  - component: {fileID: 757195538692715969}
   m_Layer: 3
   m_Name: EndPortal
   m_TagString: EndPortal
@@ -132,3 +133,16 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!114 &757195538692715969
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1039273894703831092}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f74312b24a3cac46b5f705d25cb2355, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  sceneToLoad: 0

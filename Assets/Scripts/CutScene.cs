@@ -67,18 +67,18 @@ public class CutScene : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void Skip()
+    public void Skip() //is this used anywhere...?
     {
-        FindObjectOfType<SceneChanger>().CutSceneFade();
         playableDirector.Stop();       
         skipButtonCanvas.enabled = false;
         FindObjectOfType<Player>().CutsceneMode(false);
         DestroyMe();
     }
 
-    public void SkipAndNextLevel()
+    public void SkipAndNextLevel(int index) //used on cutscenes 
     {
-        FindObjectOfType<SceneChanger>().LoadScene(SceneManager.GetActiveScene().buildIndex + 1);
+        FindObjectOfType<SceneChanger>().LoadScene(index);
+        AudioManager.instance.StopAllClips();
     }
 
 }

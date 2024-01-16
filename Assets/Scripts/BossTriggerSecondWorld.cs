@@ -77,9 +77,9 @@ public class BossTriggerSecondWorld : MonoBehaviour
 
     }
 
-    public void Skip()
+    public void Skip() //used on the skip button on level 2-10
     {
-        FindObjectOfType<SceneChanger>().CutSceneFade();
+        FindObjectOfType<SceneChanger>().FadeOutThenFadeIn();
         //playableDirector.Stop();
         Destroy(playableDirector);
         skipButtonCanvas.enabled = false;

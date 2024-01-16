@@ -13,7 +13,11 @@ public class ScreamWave : MonoBehaviour
 
     void Start()
     {
-        if (FindObjectOfType<Player>()) destination = new Vector2(FindObjectOfType<Player>().transform.position.x - transform.position.x, FindObjectOfType<Player>().transform.position.y - transform.position.y);
+        if (FindObjectOfType<Player>())
+        {
+            Player player = FindObjectOfType<Player>();
+            destination = new Vector2(player.transform.position.x - transform.position.x, player.transform.position.y - transform.position.y); 
+        }
        // transform.rotation = Quaternion.FromToRotation((Vector3)destination, (Vector3)transform.position);
         transform.rotation = Quaternion.Euler (0f,0f, Vector2.SignedAngle(transform.position, destination));
         myRigidbody = GetComponent<Rigidbody2D>();
@@ -21,18 +25,18 @@ public class ScreamWave : MonoBehaviour
 
     private void Update()
     {
-
+        if (isFlying) MoveTowardsPlayer();
     }
 
     void FixedUpdate()
     {
-        if (isFlying) MoveTowardsPlayer();
+        //if (isFlying) MoveTowardsPlayer();
     }
 
 
     public void MoveTowardsPlayer()
     {
-        if (FindObjectOfType<Player>()) myRigidbody.velocity = Vector2.MoveTowards(myRigidbody.velocity, destination, speed);
+        if (FindObjectOfType<Player>()) myRigidbody.velocity = Vector2.MoveTowards(myRigidbody.velocity, destination, speed * Time.deltaTime);
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

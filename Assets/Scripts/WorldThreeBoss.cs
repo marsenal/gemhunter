@@ -11,14 +11,26 @@ public class WorldThreeBoss : MonoBehaviour
     [SerializeField] float vulnerableDuration;
     [SerializeField] float dyingTimer;
 
-    [Header("Attacking details and objects")]
+    [Header("General attacking details and objects")]
+    [SerializeField] int numberOfAttacksThirdPhase;
+    [SerializeField] float thirdAttackDuration;
+    float startingXPosition;
+
+    [Header("First Phase")]
     [SerializeField] float timeBetweenAttacks;
     [SerializeField] ScreamWave projectile;
     [SerializeField] GameObject shootingPlace;
     [SerializeField] int numberOfAttacksScreamWave;
+
+
+    [Header("Feather Attack")]
     [SerializeField] float secondAttackDuration;
-    [SerializeField] int numberOfAttacksThirdPhase;
-    [SerializeField] float thirdAttackDuration;
+    [SerializeField] Transform secondPhaseTransformOne;
+    [SerializeField] Transform secondPhaseTransformTwo;
+    private Vector2 secondPhasePositionOne;
+    private Vector2 secondPhasePositionTwo;
+    [SerializeField] ParticleSystem featherAttack;
+    bool isMovingLeft;
 
     [Header("Other Elements")]
     [SerializeField] float introDuration;
@@ -31,13 +43,13 @@ public class WorldThreeBoss : MonoBehaviour
     bool canAttack;
     CinemachineImpulseSource impulseSource;
     PlayableDirector playableDirector;
-    BoxCollider2D myCollider;
+    BoxCollider2D featherAttackCollider;
     Animator myAnimator;
     Player player;
     public float timer;
     public float timer2;
     public float timer3;
-    public int counterFirstAttacks;
+    public int counterFirstAttacks = 0;
 
     enum State
     {
@@ -67,13 +79,18 @@ public class WorldThreeBoss : MonoBehaviour
     [SerializeField] Difficulty myDifficulty;
     void Start()
     {
+        startingXPosition = transform.position.x;
+
         impulseSource = GetComponent<CinemachineImpulseSource>();
         playableDirector = GetComponent<PlayableDirector>();
-        myCollider = GetComponent<BoxCollider2D>();
-        myCollider.enabled = false;
+        featherAttackCollider = GetComponent<BoxCollider2D>();
+        featherAttackCollider.enabled = false;
         myAnimator = GetComponent<Animator>();
 
-       // cutSceneHandler.GetComponent<BoxCollider2D>().enabled = false;
+        // cutSceneHandler.GetComponent<BoxCollider2D>().enabled = false;
+
+        secondPhasePositionOne = secondPhaseTransformOne.position;
+        secondPhasePositionTwo = secondPhaseTransformTwo.position;
 
         timer = timeBetweenAttacks;
         timer3 = introDuration;
@@ -91,17 +108,27 @@ public class WorldThreeBoss : MonoBehaviour
             myState = State.Dying;
             endingScene.Play();
         }
-        if (player && //manage turning towards player if distance is big enough (5 units)
+        if (myPhase != AttackPhase.SecondPhase && player && //manage turning towards player if distance is big enough (5 units)
             Mathf.Abs(player.transform.position.x - transform.position.x) > 5f ) transform.localScale = new Vector2(Mathf.Sign(player.transform.position.x - transform.position.x), transform.localScale.y);
     }
 
 
     private void EnumMachine() //this for the easier boss - 2 lives
     {
-        if (timer2 < 0f)
+        if (timer2 <= 0f)
         {
             myState = State.Attacking;
             timer3 = introDuration;
+            switch (myPhase) {
+                case AttackPhase.FirstPhase:
+                    timer2 = 5f;
+                    timer = timeBetweenAttacks;
+                    break;
+                case AttackPhase.SecondPhase:
+                    timer2 = 5f;
+                    timer = secondAttackDuration;
+                        break;
+            }
         }
 
         if (timer3 <= 0f) //Intro handling
@@ -112,38 +139,75 @@ public class WorldThreeBoss : MonoBehaviour
 
         switch (lives)
         {
-            case 3:
+            /*case 3:
                 myPhase = AttackPhase.FirstPhase;
-                break;
-            case 2:
+                break;*/
+           /* case 2:
                 myPhase = AttackPhase.SecondPhase;
                 break;
             case 1:
                 myPhase = AttackPhase.ThirdPhase;
-                break;
+                break;*/
         }    
     }
    
-    private void StateMachine() // this for the easier boss - 2 phases, 2 lives
+    private void StateMachine() // 
     {
         switch (myPhase)
         {
             case AttackPhase.FirstPhase:
-                timer -= Time.deltaTime;
-                if (timer <= 0f)
+                if (myState == State.Attacking)
                 {
-                    ShootProjectile();
-                    timer = timeBetweenAttacks;
+                    timer -= Time.deltaTime;
+                    if (timer <= 0f)
+                    {
+                        ShootProjectile();
+                        counterFirstAttacks++;
+                        timer = timeBetweenAttacks;
+                    }
+                    else if (counterFirstAttacks >= numberOfAttacksScreamWave)
+                    {
+                        timer = secondAttackDuration;
+                        myPhase = AttackPhase.SecondPhase;
+                        counterFirstAttacks = 0;
+                    }
                 }
                 break;
             case AttackPhase.SecondPhase:
 
                 if (myState == State.Attacking &&  canAttack)
                 {
-                    Debug.Log("Second Phase");
-                    if (timer <= 0f)
+                    timer -= Time.deltaTime;
+                    if (timer > 0f)
                     {
-                        SecondPhaseAttack();
+                        if (transform.position.x == secondPhasePositionOne.x)
+                        {
+                            isMovingLeft = false;
+
+                        }
+                        else if (transform.position.x == secondPhasePositionTwo.x)
+                        {
+                            isMovingLeft = true;
+                            featherAttackCollider.enabled = true;
+                            ShootFeathers(1);
+                        }
+
+                        if (!isMovingLeft)
+                        {
+                            transform.localScale = new Vector2(1, 1);
+                            transform.position = Vector2.MoveTowards(transform.position, secondPhasePositionTwo, 10f * Time.deltaTime);
+                        }
+                        else
+                        {
+                            transform.localScale = new Vector2(-1, 1);
+                            transform.position = Vector2.MoveTowards(transform.position, secondPhasePositionOne, 10f * Time.deltaTime);
+                        }
+                    }
+                    else
+                    {
+                        myPhase = AttackPhase.FirstPhase;
+                        featherAttackCollider.enabled = false;
+                        transform.position = Vector2.MoveTowards(transform.position, new Vector2(startingXPosition, transform.position.y), 1f);
                         timer = timeBetweenAttacks;
                     }
                 }
@@ -159,33 +223,27 @@ public class WorldThreeBoss : MonoBehaviour
         switch (myState)
         {
             case State.Dormant:
-                myCollider.enabled = false;
                 canAttack = false;
                 break;
             case State.Intro:
-                myCollider.enabled = false;
                 if (player) player.CutsceneMode(false);
                 canAttack = false;
                 timer3 -= Time.deltaTime;
                 break;
             case State.Attacking:
-                myCollider.enabled = true;
                 canAttack = true;
                 myAnimator.SetBool("isHurt", false);
                 break;
             case State.Idle:
-                myCollider.enabled = true;
                 canAttack = false;
                 myAnimator.SetBool("isHurt", false);
                 break;
             case State.Hurt:
-                myCollider.enabled = true;
                 canAttack = false;
                 myAnimator.SetBool("isHurt", true);
                 timer2 -= Time.deltaTime;
                 break;
             case State.Dying:
-                myCollider.enabled = false;
                 canAttack = false;
                 Dying();
                 break;
@@ -240,20 +298,34 @@ public class WorldThreeBoss : MonoBehaviour
         AudioManager.instance.PlayClip("BossShoot");
     }
 
-    private void SecondPhaseAttack()
+    /// <summary>
+    /// Pass either 0 or 1 as parameter. 0 means false, 1 means true
+    /// </summary>
+    /// <param name="value"></param>
+    public void ShootFeathers(int value)
     {
-
+        /*Instantiate(projectile, shootingPlace.transform.position, Quaternion.identity);
+        AudioManager.instance.PlayClip("BossShoot");*/
+       
+        if (value == 1) featherAttack.Play();
+        else featherAttack.Stop();
+ 
     }
 
+    public void GoToSecondPhase()
+    {
+        myPhase = AttackPhase.SecondPhase; //after rocks falling, phase should be the feather attack
+
+    }
 
     public void RocksFalling()
     {
         IntroCameraShake();
         fallingRocks.Play();
         AudioManager.instance.PlayClip("BossThud");
+        GoToSecondPhase();
         lives--;
         myState = State.Hurt;
-        counterFirstAttacks = numberOfAttacksScreamWave;
         timer2 = 5f; //timer2 keeps decreasing -> next attack phase will never trigger
     }
 

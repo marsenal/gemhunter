@@ -8,8 +8,12 @@ public static class LevelSystem
     public static List<int> levels = new List<int>();
     public static List<int> gems = new List<int>();
 
-    private static int NUMBER_OF_LEVELS = 1; //needed to check game completion
-    private static int NUMBER_OF_GEMS = 30; //needed to check game 100% completion
+    public static int deaths; //total number of deaths
+
+    public static float bestTime;
+
+    private const int NUMBER_OF_LEVELS = 30; //needed to check game completion
+    private const int NUMBER_OF_GEMS = 30; //needed to check game 100% completion
     /// <summary>
     /// Loading the data with SaveSystem and assigning the values to the lists of this class.
     /// </summary>
@@ -30,12 +34,15 @@ public static class LevelSystem
         if (data == null) { return; }
         levels = data.levelData;
         gems = data.gemData;
+
+        deaths = data.deathData;
     }
 
     public static void EraseData() //clear the lists - clear all data (this is used in the Settings canvas with the save system's erase data)
     {
         levels.Clear();
         gems.Clear();
+        //deaths = 0;
        /* levels.Add(2);
         levels.Add(13);
         levels.Add(25);*/
@@ -69,6 +76,16 @@ public static class LevelSystem
         return gems.Contains(level);
     }
 
+    public static void IncreaseDeathCounter()
+    {
+        deaths++;
+    }
+
+    public static void SetBestTime(float value)
+    {
+        bestTime = value;
+    }
+
     public static List<int> GetLevelList()
     {
         return levels;
@@ -78,9 +95,28 @@ public static class LevelSystem
         return gems;
     }
 
+    public static int GetDeathCount() //returns the number of deaths total. Used in the high score canvas in the world select screen
+    {
+        return deaths;
+    }
+
+    public static float GetBestTime()
+    {
+        return bestTime;
+    }
+
     public static bool IsEveryLevelCompleted() //return true if all levels are completed (on the levels list)
     {
         if (levels.Count >= NUMBER_OF_LEVELS)
+        {
+            return true;
+        }
+        else return false;
+    }
+
+    public static bool IsEveryGemCollected()
+    {
+        if (gems.Count >= NUMBER_OF_GEMS)
         {
             return true;
         }
