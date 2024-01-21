@@ -32,7 +32,7 @@ public class Box : MonoBehaviour
     [SerializeField] Direction moveDirection;
     [SerializeField] int waitingTimeInLowerPosition;
     [SerializeField] int waitingTimeInHigherPosition;
-    public int timerInteger = 0;
+    private int timerInteger = 0;
     void Start()
     {
         myRigidbody = GetComponent<Rigidbody2D>();

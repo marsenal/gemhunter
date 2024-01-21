@@ -189,3 +189,35 @@ MonoBehaviour:
     playOnAwake: 0
     source: {fileID: 0}
     loop: 0
+  - isMusic: 0
+    name: ScreamWave
+    clip: {fileID: 8300000, guid: a0b34dc9090e43043b5cf1b3e0d73e57, type: 3}
+    volume: 1
+    pitch: 1
+    playOnAwake: 0
+    source: {fileID: 0}
+    loop: 0
+  - isMusic: 0
+    name: FlapWing
+    clip: {fileID: 8300000, guid: b2be4e8b2c0e4e545bf9e44d3e70cf8d, type: 3}
+    volume: 1
+    pitch: 1
+    playOnAwake: 0
+    source: {fileID: 0}
+    loop: 0
+  - isMusic: 0
+    name: MenuStart
+    clip: {fileID: 8300000, guid: ed1368a12c2780d4084675242d2e8146, type: 3}
+    volume: 1
+    pitch: 1
+    playOnAwake: 0
+    source: {fileID: 0}
+    loop: 0
+  - isMusic: 0
+    name: TitleScreen
+    clip: {fileID: 8300000, guid: dbe862e248d45284bad97b4300e0d734, type: 3}
+    volume: 1
+    pitch: 1
+    playOnAwake: 0
+    source: {fileID: 0}
+    loop: 0

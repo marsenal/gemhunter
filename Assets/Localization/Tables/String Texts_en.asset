@@ -60,11 +60,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 49472074457088
-    m_Localized: 'Best time:'
+    m_Localized: Best time
     m_Metadata:
       m_Items: []
   - m_Id: 49521911177216
-    m_Localized: 'Total deaths:'
+    m_Localized: Total deaths
     m_Metadata:
       m_Items: []
   - m_Id: 49618464055296
@@ -112,10 +112,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 60788134682624
-    m_Localized: 'You have now unlocked speedrun mode!
-
-      Test your speed in
-      the World Select screen.'
+    m_Localized: Try to set a new record with the speedrun mode in the World Select
+      screen.
     m_Metadata:
       m_Items: []
   - m_Id: 61098278297600
@@ -196,6 +194,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 1459385984131072
     m_Localized: What took you so long??
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2520965085700096
+    m_Localized: Gems found
     m_Metadata:
       m_Items: []
   references:

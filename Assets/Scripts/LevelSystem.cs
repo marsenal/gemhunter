@@ -36,6 +36,7 @@ public static class LevelSystem
         gems = data.gemData;
 
         deaths = data.deathData;
+        bestTime = data.bestTime;
     }
 
     public static void EraseData() //clear the lists - clear all data (this is used in the Settings canvas with the save system's erase data)

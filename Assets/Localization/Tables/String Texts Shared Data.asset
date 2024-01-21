@@ -115,10 +115,6 @@ MonoBehaviour:
     m_Key: quitGameButton
     m_Metadata:
       m_Items: []
-  - m_Id: 61805286957056
-    m_Key: world1level1Text
-    m_Metadata:
-      m_Items: []
   - m_Id: 61840502333440
     m_Key: constructionBossText1
     m_Metadata:
@@ -193,6 +189,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 1459385984131072
     m_Key: trowelGiven2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2520965085700096
+    m_Key: gemsTitle
     m_Metadata:
       m_Items: []
   m_Metadata:

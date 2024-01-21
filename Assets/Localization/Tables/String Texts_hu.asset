@@ -60,11 +60,11 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 49472074457088
-    m_Localized: "Legjobb id\u0151:"
+    m_Localized: "Legjobb id\u0151"
     m_Metadata:
       m_Items: []
   - m_Id: 49521911177216
-    m_Localized: "Hal\xE1lok sz\xE1ma:"
+    m_Localized: "Hal\xE1lok sz\xE1ma"
     m_Metadata:
       m_Items: []
   - m_Id: 49618464055296
@@ -112,8 +112,8 @@ MonoBehaviour:
     m_Metadata:
       m_Items: []
   - m_Id: 60788134682624
-    m_Localized: "Ezennel feloldottad a speedrun m\xF3dot!\nTeszteld milyen gyorsan
-      tudsz v\xE9gigmenni az \xF6sszes p\xE1ly\xE1n a Vil\xE1g Kiv\xE1laszt\xF3 k\xE9perny\u0151n."
+    m_Localized: "Teszteld, milyen gyorsan tudsz v\xE9gigmenni az \xF6sszes p\xE1ly\xE1n
+      a Vil\xE1g Kiv\xE1laszt\xF3 k\xE9perny\u0151n."
     m_Metadata:
       m_Items: []
   - m_Id: 61098278297600
@@ -195,6 +195,10 @@ MonoBehaviour:
       m_Items: []
   - m_Id: 1459385984131072
     m_Localized: Mi tartott ennyi ideig??
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2520965085700096
+    m_Localized: "Megtal\xE1lt krist\xE1lyok"
     m_Metadata:
       m_Items: []
   references:

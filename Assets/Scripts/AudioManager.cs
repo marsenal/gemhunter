@@ -58,7 +58,6 @@ public class AudioManager : MonoBehaviour
         }       
     }
 
-
     public void StopClip(string name) //stop a clip by fading the volume down - then destroy audiomanager
     {
         Sound s = Array.Find(sounds, sound => sound.GetName() == name);
@@ -142,19 +141,6 @@ public class AudioManager : MonoBehaviour
         Sound s = Array.Find(sounds, sound => sound.GetName() == name);
         return s.GetVolume();
     }
-
-    /*public void SetMusicVolume(float volume) //set the given music's to the given volume
-    {
-        //Sound s = Array.Find(sounds, sound => sound.GetName() == name);
-        foreach (Sound sound in sounds)
-        {
-            if (sound.isMusic)
-            {
-                sound.GetSource().volume = volume;
-                sound.SetVolume(volume);//<- this only sets the Sound's volume - which makes this a permanent change (inside, but not outside sessions)
-            }
-        }
-    }*/
 
     public void SetMusic(bool value, float volume) //this is used in the Settings script, on the Settings Canvas to switch ALL music on/off
     {

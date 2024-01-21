@@ -45,13 +45,12 @@ public class BossTrigger : MonoBehaviour
             playableDirector.Play();
             hasCutscenePlayed = true;
         }
-        //boss.Activate();
-        //boss.cutscene = true;
-        //boss.CutScene();
-        //if (!AudioManager.instance.IsMusicPlaying("BossTheme")) AudioManager.instance.PlayClip("BossTheme", true);
         
     }
+    public void PlaySound(string soundName)
+    {
+        AudioManager.instance.PlayClip(soundName);
+    }
 
-    
 
 }

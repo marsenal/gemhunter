@@ -32,4 +32,9 @@ public class TitleScreen : MonoBehaviour
         if (buttonToBlink == null) { return; }
         buttonToBlink.enabled = value;
     }
+
+    public void PlaySound(string soundName)
+    {
+        AudioManager.instance.PlayClip(soundName);
+    }
 }

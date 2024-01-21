@@ -85,6 +85,7 @@ public class Player : MonoBehaviour
         StateMachine();
         CoyoteBuffer();
         DashCooldown();
+        CapYSpeed();
         //SmootherJumpThroughGaps();
 
         //CorrectHeight();
@@ -400,6 +401,11 @@ public class Player : MonoBehaviour
     { 
         myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, force*Time.deltaTime);
         canDash = true;
+    }
+
+    private void CapYSpeed() //Cap -Y speed, so player doesn't fall too quickly
+    {
+        myRigidbody.velocity = new Vector2(myRigidbody.velocity.x, Mathf.Clamp(myRigidbody.velocity.y,-15f,100f));
     }
 
     private void OnTriggerEnter2D(Collider2D collision)

@@ -20,13 +20,13 @@ public class EndScreenSpeedrun : MonoBehaviour
             float currentTime = stopWatch.GetTimer();
             float bestTime = LevelSystem.GetBestTime();
             currentTimeText.text = TimeSpan.FromSeconds(currentTime).ToString(@"m\:ss");
-            if (bestTime <= currentTime)
+            if (currentTime <= bestTime || bestTime==0f)
             {
                 bestTimeText.text = TimeSpan.FromSeconds(currentTime).ToString(@"m\:ss");
                 LevelSystem.SetBestTime(currentTime);
                 SaveSystem.SaveGame();
             }
-            else
+            else if(bestTime != 0f)
             {
                 bestTimeText.text = TimeSpan.FromSeconds(bestTime).ToString(@"m\:ss");
             }
