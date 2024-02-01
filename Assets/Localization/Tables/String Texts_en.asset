@@ -200,6 +200,34 @@ MonoBehaviour:
     m_Localized: Gems found
     m_Metadata:
       m_Items: []
+  - m_Id: 6511377320288256
+    m_Localized: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6534046749073408
+    m_Localized: Select Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6534102252298240
+    m_Localized: English
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6534133374033920
+    m_Localized: Hungarian
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6537263532777472
+    m_Localized: Change
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6926785596661760
+    m_Localized: Start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6926824742100992
+    m_Localized: Leaderboard
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

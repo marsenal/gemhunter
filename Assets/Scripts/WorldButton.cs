@@ -8,7 +8,7 @@ public class WorldButton : MonoBehaviour
     Animator myAnimator;
     [SerializeField] private bool isWorldAccessible;
 
-    [SerializeField][Tooltip("Set this to be equal to the world's first level's build index")] int levelIndex;
+    [SerializeField][Tooltip("Set this to be equal to the previous world's last level")] int levelIndex;
 
     void Start()
     {

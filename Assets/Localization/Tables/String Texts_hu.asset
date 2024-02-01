@@ -201,6 +201,34 @@ MonoBehaviour:
     m_Localized: "Megtal\xE1lt krist\xE1lyok"
     m_Metadata:
       m_Items: []
+  - m_Id: 6511377320288256
+    m_Localized: Nyelv
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6534046749073408
+    m_Localized: "V\xE1lassz nyelvet"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6534102252298240
+    m_Localized: Angol
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6534133374033920
+    m_Localized: Magyar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6537263532777472
+    m_Localized: "M\xF3dos\xEDt\xE1s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6926785596661760
+    m_Localized: "Ind\xEDt\xE1s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6926824742100992
+    m_Localized: "Legjobb id\u0151k"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

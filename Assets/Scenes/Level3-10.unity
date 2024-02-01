@@ -1784,7 +1784,11 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 757195538692715969, guid: 8896b6ee41558c846885c5c98b72780c, type: 3}
       propertyPath: sceneToLoad
-      value: 38
+      value: 39
+      objectReference: {fileID: 0}
+    - target: {fileID: 757195538692715969, guid: 8896b6ee41558c846885c5c98b72780c, type: 3}
+      propertyPath: achievementToUnlock
+      value: CgkI967U96ofEAIQCQ
       objectReference: {fileID: 0}
     - target: {fileID: 757195538692715969, guid: 8896b6ee41558c846885c5c98b72780c, type: 3}
       propertyPath: shouldAudiomanagerReset
@@ -1800,7 +1804,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 1039273894703831089, guid: 8896b6ee41558c846885c5c98b72780c, type: 3}
       propertyPath: m_LocalPosition.y
-      value: 6
+      value: 8.68
       objectReference: {fileID: 0}
     - target: {fileID: 1039273894703831089, guid: 8896b6ee41558c846885c5c98b72780c, type: 3}
       propertyPath: m_LocalPosition.z
@@ -30618,14 +30622,18 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 228685688512055456, guid: 3ac023f3cb7a1ee478582231cca96b92, type: 3}
       propertyPath: m_XDamping
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 228685688512055456, guid: 3ac023f3cb7a1ee478582231cca96b92, type: 3}
       propertyPath: m_YDamping
-      value: 0
+      value: 1
       objectReference: {fileID: 0}
     - target: {fileID: 228685688512055456, guid: 3ac023f3cb7a1ee478582231cca96b92, type: 3}
       propertyPath: m_ZDamping
+      value: 1
+      objectReference: {fileID: 0}
+    - target: {fileID: 228685688512055456, guid: 3ac023f3cb7a1ee478582231cca96b92, type: 3}
+      propertyPath: m_LookaheadTime
       value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 228685689414450256, guid: 3ac023f3cb7a1ee478582231cca96b92, type: 3}

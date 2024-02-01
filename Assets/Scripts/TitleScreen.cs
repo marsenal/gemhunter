@@ -14,7 +14,6 @@ public class TitleScreen : MonoBehaviour
     void Start()
     {
         timer = blinkTime;
-        LevelSystem.SetDataLocally();
     }
 
     void Update() //set timer to the blink time and make the text disappear if the timer reaches zero

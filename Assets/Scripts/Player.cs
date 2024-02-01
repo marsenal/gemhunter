@@ -446,7 +446,8 @@ public class Player : MonoBehaviour
 
             LevelSystem.AddToLevelList(currentSceneIndex); //this checks out the level in the db
             if (hasGem) LevelSystem.AddToGemsList(currentSceneIndex); //this checks out the gem in the db - if it was collected
-            SaveSystem.SaveGame();
+            SaveSystem.SaveGame();  //save locally
+            if (FindObjectOfType<Authentication>()) FindObjectOfType<Authentication>().OpenSavedGame(true);  //save to cloud
             //FindObjectOfType<Authentication>().SaveProgressToCloud();
         }
 
@@ -483,7 +484,8 @@ public class Player : MonoBehaviour
         AudioManager.instance.PlayClip("Dying");
         myAnimator.SetTrigger("isDead");
         LevelSystem.IncreaseDeathCounter();
-        SaveSystem.SaveGame();
+        SaveSystem.SaveGame();  //save locally
+        if (FindObjectOfType<Authentication>()) FindObjectOfType<Authentication>().OpenSavedGame(true);  //save to cloud
         if (AdManager.instance) { AdManager.instance.IncreaseDeathNumbers(); }
     }
 

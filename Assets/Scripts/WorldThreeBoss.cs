@@ -295,7 +295,6 @@ public class WorldThreeBoss : MonoBehaviour
         AudioManager.instance.PlayClip("BossThud");
         lives--;
         myState = State.Hurt;
-        timer = idleDuration;
         counterFirstAttacks = 0;
     }
 

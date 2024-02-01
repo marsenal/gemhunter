@@ -17,6 +17,7 @@ public class BossTriggerSecondWorld : MonoBehaviour
     [SerializeField] PlayableAsset bossAlreadyAppearedCutscene;
 
     [SerializeField] Canvas skipButtonCanvas;
+    [SerializeField] GameObject speechBubble;
 
     private void Awake()
     {
@@ -74,6 +75,7 @@ public class BossTriggerSecondWorld : MonoBehaviour
     public void Skip() //used on the skip button on level 2-10
     {
         FindObjectOfType<SceneChanger>().FadeOutThenFadeIn();
+        Destroy(speechBubble);
         Destroy(playableDirector);
         skipButtonCanvas.enabled = false;
         FindObjectOfType<Player>().CutsceneMode(false);

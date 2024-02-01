@@ -1813,7 +1813,7 @@ MonoBehaviour:
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 1
+            m_IntArgument: 2
             m_FloatArgument: 0
             m_StringArgument: 
             m_BoolArgument: 0
@@ -1822,6 +1822,18 @@ MonoBehaviour:
           m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
           m_MethodName: ButtonSound
           m_Mode: 1
+          m_Arguments:
+            m_ObjectArgument: {fileID: 0}
+            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
+            m_IntArgument: 0
+            m_FloatArgument: 0
+            m_StringArgument: 
+            m_BoolArgument: 0
+          m_CallState: 2
+        - m_Target: {fileID: 6757874766633245468}
+          m_TargetAssemblyTypeName: Authentication, Assembly-CSharp
+          m_MethodName: OpenSavedGame
+          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5641,3 +5653,14 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 181a9e3d4503bc743a2b5765515a7bb8, type: 3}
+--- !u!114 &6757874766633245468 stripped
+MonoBehaviour:
+  m_CorrespondingSourceObject: {fileID: 6757874766284729874, guid: 181a9e3d4503bc743a2b5765515a7bb8, type: 3}
+  m_PrefabInstance: {fileID: 6757874766633245467}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 47a0ceef5e591124b8dedddddea2002f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 

@@ -9,28 +9,46 @@ public class UpdateText : MonoBehaviour
 {
     int localeId;
 
-    IEnumerator Start()
+    void Start()
+    {
+        StartCoroutine(InitializeLanguage());
+
+    }
+
+    IEnumerator InitializeLanguage()
     {
         yield return LocalizationSettings.InitializationOperation;
-        SystemLanguage language = Application.systemLanguage;
-        switch (language.ToString())
+        Debug.Log(LevelSystem.setLanguageID);
+        if (LevelSystem.setLanguageID == -1)
         {
-            case "English":
-                localeId = 0;
-                break;
-            case "Hungarian":
-                localeId = 1;
-                break;
-            default:
-                localeId = 0;
-                break;
+            SystemLanguage language = Application.systemLanguage;
+            switch (language.ToString())
+            {
+                case "English":
+                    localeId = 0;
+                    break;
+                case "Hungarian":
+                    localeId = 1;
+                    break;
+                default:
+                    localeId = 0;
+                    break;
+            }
+        }
+        else
+        {
+            localeId = LevelSystem.setLanguageID;
         }
         LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[localeId];
 
     }
 
-    public void UpdateTextField(string stringKey)
+    public void ChangeLanguage(int localeid) //used on the language canvas buttons
     {
-        
+        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[localeid];
+        LevelSystem.setLanguageID = localeid; 
+        SaveSystem.SaveGame();  //save locally
+        FindObjectOfType<Authentication>().OpenSavedGame(true); //save to cloud
     }
+
 }

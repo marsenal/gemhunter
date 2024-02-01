@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using TMPro;
+using UnityEngine.Playables;
 public class ContraptionBoss : MonoBehaviour
 {
     Rigidbody2D myRigidbody;
@@ -73,6 +74,7 @@ public class ContraptionBoss : MonoBehaviour
         if (!AudioManager.instance.IsMusicPlaying("BossTheme"))  AudioManager.instance.PlayClip("BossTheme", true);
         playerToAttack.CutsceneMode(false);
         bossText.text = "";
+        GetComponent<PlayableDirector>().Play();
     }
 
     private void ChargerCountDown()
@@ -174,5 +176,4 @@ public class ContraptionBoss : MonoBehaviour
     {
         impulseSource.GenerateImpulseAtPositionWithVelocity(transform.position, impulseSource.m_DefaultVelocity);
     }
-
 }

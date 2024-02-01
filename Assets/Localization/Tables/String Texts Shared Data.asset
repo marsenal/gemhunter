@@ -195,6 +195,34 @@ MonoBehaviour:
     m_Key: gemsTitle
     m_Metadata:
       m_Items: []
+  - m_Id: 6511377320288256
+    m_Key: languageText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6534046749073408
+    m_Key: selectLanguageText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6534102252298240
+    m_Key: englishText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6534133374033920
+    m_Key: magyarText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6537263532777472
+    m_Key: selectText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6926785596661760
+    m_Key: startText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6926824742100992
+    m_Key: leaderboardText
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

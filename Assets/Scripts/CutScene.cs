@@ -67,7 +67,7 @@ public class CutScene : MonoBehaviour
         Destroy(gameObject);
     }
 
-    public void Skip() //is this used anywhere...?
+    public void Skip() //used on level 2-1 first cutscene skip button
     {
         playableDirector.Stop();       
         skipButtonCanvas.enabled = false;

@@ -4,14 +4,72 @@ using Unity.Services.Authentication;
 using Unity.Services.CloudSave;
 using Unity.Services.CloudSave.Models;
 using Unity.Services.Core;
+using GooglePlayGames;
+using GooglePlayGames.BasicApi;
+using GooglePlayGames.BasicApi.SavedGame;
 using UnityEngine;
+using System;
 /// <summary>
 /// Authenticate to the cloud. Methods for saving the level progress to cloud and loading it
 /// </summary>
 public class Authentication : MonoBehaviour
 {
+    public  string Token;
+    public  string Error;
 
-    private async void Awake()
+    void Awake()
+    {
+        int numberOfInstances = FindObjectsOfType<Authentication>().Length;
+        if (numberOfInstances > 1)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+            //Initialize PlayGamesPlatform
+        PlayGamesPlatform.Activate();
+        LoginGooglePlayGames();
+        OpenSavedGame(false);
+    }
+
+    public void LoginGooglePlayGames()
+    {
+        PlayGamesPlatform.Instance.Authenticate((success) =>
+        {
+            if (success == SignInStatus.Success)
+            {
+                Debug.Log("Login with Google Play games successful.");
+
+                PlayGamesPlatform.Instance.RequestServerSideAccess(true, code =>
+                {
+                    Debug.Log("Authorization code: " + code);
+                    Token = code;
+                    // This token serves as an example to be used for SignInWithGooglePlayGames
+                });
+            }
+            else
+            {
+                Error = "Failed to retrieve Google play games authorization code";
+                Debug.Log("Login Unsuccessful");
+                
+                PlayGamesPlatform.Instance.ManuallyAuthenticate((success) =>
+                {
+                    if (success == SignInStatus.Success)
+                    {
+                        Debug.Log("Manual login with Google Play games successful.");
+                    }
+                    else
+                    {
+                        Debug.Log("Manual login with Google Play games failed.");
+                    }
+                });
+
+            }
+        });
+    }
+    /*private async void Awake()
     {
         int numberOfInstances = FindObjectsOfType<Authentication>().Length;
         if (numberOfInstances > 1)
@@ -25,9 +83,9 @@ public class Authentication : MonoBehaviour
         await UnityServices.InitializeAsync(); //Authenticate initialization
         await AuthenticationService.Instance.SignInAnonymouslyAsync();
         LoadProgressFromCloud(); //when done, load progress > and save it locally ?
-    }
+    }*/
 
-    public async void SaveProgressToCloud() //save progress to the cloud in file named "save"
+    /*public async void SaveProgressToCloud() //save progress to the cloud in file named "save"
     {
         string path = Application.persistentDataPath + "/save.snld";
         byte[] file = File.ReadAllBytes(path);
@@ -43,6 +101,72 @@ public class Authentication : MonoBehaviour
         else
         {
             LevelSystem.SetData(SaveSystem.LoadDataFromCloud(file));
+        }
+    }*/
+
+    private bool isSaving;
+
+    /// <summary>
+    /// Open a saved game from cloud - parameter determines wether to save it or load it.
+    /// </summary>
+    /// <param name="saving"></param>
+    public void OpenSavedGame(bool saving)
+    {
+        if (Social.localUser.authenticated)
+        {
+            isSaving = saving;
+            ISavedGameClient savedGameClient = PlayGamesPlatform.Instance.SavedGame;
+            savedGameClient.OpenWithAutomaticConflictResolution("save.snld", DataSource.ReadCacheOrNetwork,
+                ConflictResolutionStrategy.UseLongestPlaytime, OnSavedGameOpened);
+        }
+    }
+
+    public void OnSavedGameOpened(SavedGameRequestStatus status, ISavedGameMetadata meta) //callback method on opening save from cloud - if true, successful, else failed
+    {
+        if (status == SavedGameRequestStatus.Success)
+        {
+            if (isSaving) //saving to the cloud
+            {
+                string path = Application.persistentDataPath + "/save.snld";
+                byte[] binaryData = File.ReadAllBytes(path);
+
+                SavedGameMetadataUpdate updateForMetadata = new SavedGameMetadataUpdate.Builder().WithUpdatedDescription("Metadata was updated at: " + System.DateTime.Now.ToString()).Build();
+
+                PlayGamesPlatform.Instance.SavedGame.CommitUpdate(meta, updateForMetadata, binaryData, SaveCallback);
+            }
+            else //loading from the cloud
+            {
+                PlayGamesPlatform.Instance.SavedGame.ReadBinaryData(meta, LoadCallBack);
+            }
+        }
+        else
+        {
+            Debug.Log("Opening save file failed \n Opening Save File from locally");
+
+            LevelSystem.SetDataLocally();
+
+        }
+    }
+
+    private void LoadCallBack(SavedGameRequestStatus status, byte[] data)
+    {
+        if (status == SavedGameRequestStatus.Success)
+        {
+            Stream file = new MemoryStream(data);
+            LevelSystem.SetData(SaveSystem.LoadDataFromCloud(file));
+            Debug.Log("Successfully loaded data from cloud");
+        }
+    }
+
+    private void SaveCallback(SavedGameRequestStatus status, ISavedGameMetadata meta) //callback method with response wether save was successful
+    {
+        if (status == SavedGameRequestStatus.Success)
+        {
+            Debug.Log("Game saved successfully to the cloud");
+        }
+        else
+        {
+            Debug.Log("Game save failed");
         }
     }
 }

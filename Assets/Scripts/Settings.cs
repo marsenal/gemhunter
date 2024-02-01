@@ -38,7 +38,8 @@ public class Settings : MonoBehaviour
     public void EraseDataButton() //erase all data - level and gem progress
     {
         LevelSystem.EraseData();
-        SaveSystem.SaveGame();
+        SaveSystem.SaveGame(); //save locally
+        FindObjectOfType<Authentication>().OpenSavedGame(true);   //save to cloud
         //FindObjectOfType<Authentication>().SaveProgressToCloud();
         LevelButton[] levelButtons = FindObjectsOfType<LevelButton>();
         foreach (LevelButton lvlbtn in levelButtons)
@@ -68,11 +69,6 @@ public class Settings : MonoBehaviour
         AudioManager.instance.PlayClip("Menu");
     }
 
-    public void PlaySliderSFX() //Play the Slider SFX sound and set the music volume to that value
-    {
-        //if (musicSlider.value != storedMusicValue) AudioManager.instance.PlayClip("SetValue");
-        //AudioManager.instance.SetMusicVolume(musicSlider.value);
-    }
 
     public void EnableMusic() //used on the Music Toggle
     {

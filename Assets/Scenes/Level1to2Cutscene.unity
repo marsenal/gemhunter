@@ -6988,7 +6988,7 @@ Transform:
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 519420028}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -12, y: 10, z: -1}
+  m_LocalPosition: {x: -13.111112, y: 10, z: -1}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
   m_Children: []
@@ -7110,7 +7110,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 757195538692715969, guid: 8896b6ee41558c846885c5c98b72780c, type: 3}
       propertyPath: sceneToLoad
-      value: 14
+      value: 15
       objectReference: {fileID: 0}
     - target: {fileID: 1039273894703831089, guid: 8896b6ee41558c846885c5c98b72780c, type: 3}
       propertyPath: m_RootOrder
@@ -19710,7 +19710,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 228685688512055456, guid: 3ac023f3cb7a1ee478582231cca96b92, type: 3}
       propertyPath: m_YDamping
-      value: 2
+      value: 0
       objectReference: {fileID: 0}
     - target: {fileID: 228685688512055456, guid: 3ac023f3cb7a1ee478582231cca96b92, type: 3}
       propertyPath: m_DeadZoneWidth
@@ -19718,7 +19718,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 228685688512055456, guid: 3ac023f3cb7a1ee478582231cca96b92, type: 3}
       propertyPath: m_LookaheadTime
-      value: 0
+      value: 0.2
       objectReference: {fileID: 0}
     - target: {fileID: 228685688512055456, guid: 3ac023f3cb7a1ee478582231cca96b92, type: 3}
       propertyPath: m_SoftZoneWidth

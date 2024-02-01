@@ -2408,7 +2408,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 757195538692715969, guid: 8896b6ee41558c846885c5c98b72780c, type: 3}
       propertyPath: sceneToLoad
-      value: 23
+      value: 24
       objectReference: {fileID: 0}
     - target: {fileID: 1039273894703831089, guid: 8896b6ee41558c846885c5c98b72780c, type: 3}
       propertyPath: m_RootOrder
@@ -3840,6 +3840,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3234756465911450560, guid: 6796daeeeac66ea4cb1326fcd0cc2375, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3234756465911450562, guid: 6796daeeeac66ea4cb1326fcd0cc2375, type: 3}
       propertyPath: waitingTimeInLowerPosition
       value: 60
@@ -4036,6 +4040,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3234756465911450560, guid: 6796daeeeac66ea4cb1326fcd0cc2375, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3234756465911450562, guid: 6796daeeeac66ea4cb1326fcd0cc2375, type: 3}
       propertyPath: waitingTimeInLowerPosition
       value: 60
@@ -4803,6 +4811,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3234756465911450560, guid: 665b975270882db47a094362a09f55c3, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3234756465911450562, guid: 665b975270882db47a094362a09f55c3, type: 3}
       propertyPath: waitingTimeInLowerPosition
       value: 60
@@ -5996,6 +6008,10 @@ PrefabInstance:
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications:
+    - target: {fileID: 3234756465911450560, guid: 665b975270882db47a094362a09f55c3, type: 3}
+      propertyPath: m_SortingOrder
+      value: 1
+      objectReference: {fileID: 0}
     - target: {fileID: 3234756465911450562, guid: 665b975270882db47a094362a09f55c3, type: 3}
       propertyPath: waitingTimeInLowerPosition
       value: 60

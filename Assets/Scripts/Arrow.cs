@@ -6,7 +6,7 @@ public class Arrow : MonoBehaviour
 {
     [SerializeField] float speed;
     Animator myAnimator;
-    bool canBeDestroyed;
+    public bool canBeDestroyed;
     bool isDestroyed;
 
     void Start()
