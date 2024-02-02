@@ -136,11 +136,19 @@ TextureImporter:
         y: 0
         width: 16
         height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.7}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
+      outline:
+      - - {x: -7, y: -4}
+        - {x: -7, y: 8}
+        - {x: 8, y: 8}
+        - {x: 8, y: -4}
+      physicsShape:
+      - - {x: -4, y: -2}
+        - {x: -4, y: 5}
+        - {x: 5, y: 5}
+        - {x: 5, y: -2}
       tessellationDetail: 0
       bones: []
       spriteID: d2dd280921c597c49b02a4869bdd4ad3
@@ -157,11 +165,19 @@ TextureImporter:
         y: 0
         width: 16
         height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.7}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
+      outline:
+      - - {x: -7, y: -2}
+        - {x: -7, y: 8}
+        - {x: 8, y: 8}
+        - {x: 8, y: -2}
+      physicsShape:
+      - - {x: -4, y: 0}
+        - {x: -4, y: 6}
+        - {x: 5, y: 6}
+        - {x: 5, y: 0}
       tessellationDetail: 0
       bones: []
       spriteID: 8ae1b2021538dca4d95903f192f06f5a
@@ -178,11 +194,19 @@ TextureImporter:
         y: 0
         width: 16
         height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.7}
       border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape: []
+      outline:
+      - - {x: -6, y: 4}
+        - {x: -6, y: 8}
+        - {x: 7, y: 8}
+        - {x: 7, y: 4}
+      physicsShape:
+      - - {x: -5, y: 4}
+        - {x: -5, y: 7}
+        - {x: 6, y: 7}
+        - {x: 6, y: 4}
       tessellationDetail: 0
       bones: []
       spriteID: 3571eb2912e6cfe40b7941248eab1b5d
@@ -199,8 +223,8 @@ TextureImporter:
         y: 0
         width: 16
         height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.7}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -220,8 +244,8 @@ TextureImporter:
         y: 0
         width: 16
         height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.7}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []
@@ -241,8 +265,8 @@ TextureImporter:
         y: 0
         width: 16
         height: 16
-      alignment: 0
-      pivot: {x: 0, y: 0}
+      alignment: 9
+      pivot: {x: 0.5, y: 0.7}
       border: {x: 0, y: 0, z: 0, w: 0}
       outline: []
       physicsShape: []

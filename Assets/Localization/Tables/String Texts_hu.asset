@@ -1,0 +1,234 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: String Texts_hu
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: hu
+  m_SharedData: {fileID: 11400000, guid: 8b881180c2bfdc84eb693c2263da2cf4, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 10534821888
+    m_Localized: "Koppints a kezd\xE9shez"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1479208116224
+    m_Localized: "V\xE1lassz vil\xE1got"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48151233601536
+    m_Localized: "Be\xE1ll\xEDt\xE1sok"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48208708149248
+    m_Localized: Zene
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48250546331648
+    m_Localized: Hangok
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48292376125440
+    m_Localized: "Adatok t\xF6rl\xE9se"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48482956910592
+    m_Localized: "T\xF6rl\xE9s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48523004125184
+    m_Localized: "BIZTOSAN t\xF6r\xF6lni akarod az adatokat? (Teljes\xEDtett p\xE1ly\xE1k
+      \xE9s krist\xE1lyok elvesznek)"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49322014842880
+    m_Localized: "M\xE9gsem"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49382773530624
+    m_Localized: "Meger\u0151s\xEDtem"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49472074457088
+    m_Localized: "Legjobb id\u0151"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49521911177216
+    m_Localized: "Hal\xE1lok sz\xE1ma"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49618464055296
+    m_Localized: "\u0150si Dzsungel"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49687296778240
+    m_Localized: Zavaros Rengeteg
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50029363240960
+    m_Localized: Roppant Hegyek
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51925348032512
+    m_Localized: "S Z \xDC N E T E L V E"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 52080562446336
+    m_Localized: "F\u0151k\xE9perny\u0151"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 52350356856832
+    m_Localized: "P\xE1lya \xFAjrakezd\xE9se"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 52411258150912
+    m_Localized: "Folytat\xE1s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 52485568634880
+    m_Localized: "Kil\xE9psz a j\xE1t\xE9kb\xF3l ?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57265888206848
+    m_Localized: Igen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57323115290624
+    m_Localized: Nem
+    m_Metadata:
+      m_Items: []
+  - m_Id: 60111878660096
+    m_Localized: "K\xF6sz\xF6n\xF6m, hogy j\xE1tszott\xE1l!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 60788134682624
+    m_Localized: "Teszteld, milyen gyorsan tudsz v\xE9gigmenni az \xF6sszes p\xE1ly\xE1n
+      a Vil\xE1g Kiv\xE1laszt\xF3 k\xE9perny\u0151n."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 61098278297600
+    m_Localized: "Kil\xE9p\xE9s a j\xE1t\xE9kb\xF3l"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 61840502333440
+    m_Localized: "BEHATOL\xD3 \xC9SZLELVE"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 61950367932416
+    m_Localized: "BEHATOL\xD3 SEMLEGES\xCDT\xC9SE ..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62067607117824
+    m_Localized: "T\xFAl messze van..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62135848443904
+    m_Localized: "Hm ... suhan\xE1s ?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 70549425135616
+    m_Localized: "\xDAj k\xE9pess\xE9get szerezt\xE9l!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 70670208507904
+    m_Localized: "Haszn\xE1ld a Suhan\xE1st, hogy el\u0151rel\xF6kd magad."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 70833429848064
+    m_Localized: "Komolyan? M\xE1r megint?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82353505214464
+    m_Localized: "BEHATOL\xD3 ..."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82392466104320
+    m_Localized: "BAR\xC1T \xC9SZLELVE"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 797477316632576
+    m_Localized: "Az id\u0151d:"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 798073318842368
+    m_Localized: "Sz\xE9p volt!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 888339866361856
+    m_Localized: "Speedrun M\xF3d"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 888428210987008
+    m_Localized: "Menj v\xE9gig az \xF6sszes p\xE1ly\xE1n a legr\xF6videbb id\u0151
+      alatt!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1112646022373376
+    m_Localized: "Rusty, seg\xEDts k\xE9rlek."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1112678737944576
+    m_Localized: "Meg tudn\xE1d keresni a kis \xE1s\xF3m?"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1433292296200192
+    m_Localized: "Hiszen ez a kis \xE1s\xF3!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1433431719059456
+    m_Localized: Jobb, ha sietek vele haza...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1459341797138432
+    m_Localized: "Tess\xE9k!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1459385984131072
+    m_Localized: Mi tartott ennyi ideig??
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2520965085700096
+    m_Localized: "Megtal\xE1lt krist\xE1lyok"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6511377320288256
+    m_Localized: Nyelv
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6534046749073408
+    m_Localized: "V\xE1lassz nyelvet"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6534102252298240
+    m_Localized: Angol
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6534133374033920
+    m_Localized: Magyar
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6537263532777472
+    m_Localized: "M\xF3dos\xEDt\xE1s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6926785596661760
+    m_Localized: "Ind\xEDt\xE1s"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6926824742100992
+    m_Localized: "Legjobb id\u0151k"
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

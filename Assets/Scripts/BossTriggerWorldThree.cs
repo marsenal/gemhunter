@@ -13,16 +13,13 @@ public class BossTriggerWorldThree : MonoBehaviour
 
     [SerializeField] bool hasCutscenePlayed = false;
 
-    [SerializeField] GameObject smallBoss;
-
     PlayableDirector playableDirector; //for timeline
-    [SerializeField] PlayableAsset bossAlreadyAppearedCutscene;
 
     [SerializeField] Canvas skipButtonCanvas;
 
     [SerializeField] SceneChanger sceneChanger;
 
-    private void Awake()
+    private void Awake() //singleton pattern
     {
         int numberOfTriggers = FindObjectsOfType<BossTriggerWorldThree>().Length;
         if (numberOfTriggers > 1)
@@ -40,24 +37,14 @@ public class BossTriggerWorldThree : MonoBehaviour
         playableDirector = GetComponent<PlayableDirector>();
     }
 
-    private void Update()
-    {
-        if (hasCutscenePlayed)
-        {
-            
-        }
-    }
-
     public bool HasCutscenePlayed()
     {
         return hasCutscenePlayed;
     }
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (hasCutscenePlayed)
+        if (hasCutscenePlayed) //skip the cutscene if it's already played
         {
-            //playableDirector.playableAsset = bossAlreadyAppearedCutscene;
-            // playableDirector.Play();
             if (boss == null)
             {
                 boss = FindObjectOfType<WorldThreeBoss>(); //on re-load trigger loses the boss serialization (maybe rework the whole trigger)
@@ -65,29 +52,27 @@ public class BossTriggerWorldThree : MonoBehaviour
             if (!boss.isActive) boss.Activate();
 
         }
-        else
+        else //is this is the first time of trigger, show the cutscene
         {
             if (skipButtonCanvas != null) skipButtonCanvas.enabled = true;
             collision.GetComponent<Player>().CutsceneMode(true);
             playableDirector.Play();
             hasCutscenePlayed = true;
         }
-        //boss.Activate();
-        //boss.cutscene = true;
-        //boss.CutScene();
-        //if (!AudioManager.instance.IsMusicPlaying("BossTheme")) AudioManager.instance.PlayClip("BossTheme", true);
 
     }
 
-    public void Skip()
+    public void Skip() //used on the Skip button in the cutscene of world 3 boss start
     {
-        
-        FindObjectOfType<SceneChanger>().CutSceneFade();
-        //playableDirector.Stop();
         Destroy(playableDirector);
         skipButtonCanvas.enabled = false;
         FindObjectOfType<Player>().CutsceneMode(false);
         boss.Activate();
         sceneChanger.FadeOutThenFadeIn();
+    }
+
+    public void PlaySound(string soundName)
+    {
+        AudioManager.instance.PlayClip(soundName);
     }
 }

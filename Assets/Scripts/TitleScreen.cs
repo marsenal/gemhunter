@@ -14,7 +14,6 @@ public class TitleScreen : MonoBehaviour
     void Start()
     {
         timer = blinkTime;
-        LevelSystem.SetData();
     }
 
     void Update() //set timer to the blink time and make the text disappear if the timer reaches zero
@@ -31,5 +30,10 @@ public class TitleScreen : MonoBehaviour
     {
         if (buttonToBlink == null) { return; }
         buttonToBlink.enabled = value;
+    }
+
+    public void PlaySound(string soundName)
+    {
+        AudioManager.instance.PlayClip(soundName);
     }
 }

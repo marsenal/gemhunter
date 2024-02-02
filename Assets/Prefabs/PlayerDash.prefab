@@ -135,6 +135,7 @@ MonoBehaviour:
   dustTrailLanding: {fileID: 8831298486390030041, guid: ec55afa870ee7c34f84b420dbb21c67f, type: 3}
   controlCanvas: {fileID: 0}
   dashButton: {fileID: 0}
+  cutSceneModeCanvas: {fileID: 0}
   isDashing: 0
   myState: 0
 --- !u!114 &7859520775376005459
@@ -315,7 +316,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 0.7576752, y: 1.0056114}
+  m_Size: {x: 0.75, y: 1}
   m_EdgeRadius: 0
 --- !u!95 &1562454269
 Animator:

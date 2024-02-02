@@ -13,25 +13,34 @@ public class Settings : MonoBehaviour
 
     void Start()
     {
-        settingsJson = PlayerPrefs.GetString("Settings"); //get a json string from playerpref
-        if (settingsJson != null)
+        if (GetComponent<Canvas>())
         {
-            JsonUtility.FromJsonOverwrite(settingsJson, settingsData); //is it is not empty, read it into the settingsdata
+            settingsJson = PlayerPrefs.GetString("Settings"); //get a json string from playerpref
+            if (settingsJson != null)
+            {
+                JsonUtility.FromJsonOverwrite(settingsJson, settingsData); //if it is not empty, read it into the settingsdata
+            }
+
+            musicToggle.isOn = settingsData.isMusicEnabled;
+            soundToggle.isOn = settingsData.isSoundEnabled;
+
+
+            EnableMusic(); //I believe this is needed here to set the volume again to the default value after audiomanager is destroyed
         }
-
-        musicToggle.isOn = settingsData.isMusicEnabled;
-        soundToggle.isOn = settingsData.isSoundEnabled;
-
-
-        EnableMusic(); //I believe this is needed here to set the volume again to the default value after audiomanager is destroyed
-
+        else
+        {
+            AudioManager.instance.SetMusic(settingsData.isMusicEnabled, settingsData.musicVolume);
+            AudioManager.instance.SetSound(settingsData.isSoundEnabled);
+        }
         Input.backButtonLeavesApp = true;
     }
 
     public void EraseDataButton() //erase all data - level and gem progress
     {
         LevelSystem.EraseData();
-        SaveSystem.SaveGame();
+        SaveSystem.SaveGame(); //save locally
+        FindObjectOfType<Authentication>().OpenSavedGame(true);   //save to cloud
+        //FindObjectOfType<Authentication>().SaveProgressToCloud();
         LevelButton[] levelButtons = FindObjectsOfType<LevelButton>();
         foreach (LevelButton lvlbtn in levelButtons)
         {
@@ -50,7 +59,6 @@ public class Settings : MonoBehaviour
         settingsJson = JsonUtility.ToJson(settingsData);
         PlayerPrefs.SetString("Settings", settingsJson);
         PlayerPrefs.Save();
-        Debug.Log(settingsJson);
 
     }
 
@@ -61,11 +69,6 @@ public class Settings : MonoBehaviour
         AudioManager.instance.PlayClip("Menu");
     }
 
-    public void PlaySliderSFX() //Play the Slider SFX sound and set the music volume to that value
-    {
-        //if (musicSlider.value != storedMusicValue) AudioManager.instance.PlayClip("SetValue");
-        //AudioManager.instance.SetMusicVolume(musicSlider.value);
-    }
 
     public void EnableMusic() //used on the Music Toggle
     {

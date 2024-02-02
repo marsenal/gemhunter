@@ -8,6 +8,8 @@ using UnityEngine.Playables;
 public class BossTrigger : MonoBehaviour
 {
     [SerializeField] ContraptionBoss boss;
+    [SerializeField] Canvas skipButtonCanvas;
+
 
     public bool hasCutscenePlayed = false;
 
@@ -33,25 +35,33 @@ public class BossTrigger : MonoBehaviour
 
     private void OnTriggerEnter2D(Collider2D collision)
     {
-        if (hasCutscenePlayed) {
+        if (hasCutscenePlayed)
+        {
             if (boss == null)
             {
                 boss = FindObjectOfType<ContraptionBoss>(); //on re-load trigger loses the boss serialization (maybe rework the whole trigger)
             }
-        boss.Activate(); }
+            boss.Activate();
+        }
         else
         {
             collision.GetComponent<Player>().CutsceneMode(true);
             playableDirector.Play();
             hasCutscenePlayed = true;
         }
-        //boss.Activate();
-        //boss.cutscene = true;
-        //boss.CutScene();
-        //if (!AudioManager.instance.IsMusicPlaying("BossTheme")) AudioManager.instance.PlayClip("BossTheme", true);
         
     }
+    public void PlaySound(string soundName)
+    {
+        AudioManager.instance.PlayClip(soundName);
+    }
 
-    
-
+    public void Skip() //used on the skip button on level 2-10
+    {
+        FindObjectOfType<SceneChanger>().FadeOutThenFadeIn();
+        Destroy(playableDirector);
+        skipButtonCanvas.enabled = false;
+        FindObjectOfType<Player>().CutsceneMode(false);
+        boss.Activate();
+    }
 }

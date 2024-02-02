@@ -107,7 +107,7 @@ BoxCollider2D:
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
-    oldSize: {x: 2.1333334, y: 0.46666667}
+    oldSize: {x: 2, y: 0.4375}
     newSize: {x: 2, y: 2}
     adaptiveTilingThreshold: 0.5
     drawMode: 0
@@ -132,10 +132,13 @@ MonoBehaviour:
   pointALeftLowest: {fileID: 3234756467786682952}
   pointBRightHighest: {fileID: 3234756467499602364}
   moveSpeed: 2
+  highFrictionMaterial: {fileID: 6200000, guid: 347153723cf6dc64080dbaa81b501f77, type: 2}
   isActive: 1
   boxState: 1
   moveDirection: 0
-  waitingTime: 30
+  waitingTimeInLowerPosition: 0
+  waitingTimeInHigherPosition: 0
+  timerInteger: 0
 --- !u!50 &830021858
 Rigidbody2D:
   serializedVersion: 4

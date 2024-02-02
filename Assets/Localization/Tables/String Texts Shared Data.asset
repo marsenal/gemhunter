@@ -1,0 +1,236 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5b11a58205ec3474ca216360e9fa74a8, type: 3}
+  m_Name: String Texts Shared Data
+  m_EditorClassIdentifier: 
+  m_TableCollectionName: String Texts
+  m_TableCollectionNameGuidString: 8b881180c2bfdc84eb693c2263da2cf4
+  m_Entries:
+  - m_Id: 10534821888
+    m_Key: tapToStart
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1479208116224
+    m_Key: selectWorld
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48151233601536
+    m_Key: settingsTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48208708149248
+    m_Key: musicText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48250546331648
+    m_Key: soundText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48292376125440
+    m_Key: resetText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48482956910592
+    m_Key: resetButton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48523004125184
+    m_Key: confirmText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49322014842880
+    m_Key: cancelButton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49382773530624
+    m_Key: confirmButton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49472074457088
+    m_Key: bestTimeText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49521911177216
+    m_Key: deathCountText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49618464055296
+    m_Key: jungleWorldTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49687296778240
+    m_Key: woodsWorldTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50029363240960
+    m_Key: mountainsWorldTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51925348032512
+    m_Key: pauseMenuTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 52080562446336
+    m_Key: titleScreenButton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 52350356856832
+    m_Key: restartLevelButton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 52411258150912
+    m_Key: continueButton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 52485568634880
+    m_Key: quitGameTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57265888206848
+    m_Key: yesButton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57323115290624
+    m_Key: noButton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 60111878660096
+    m_Key: endScreenThankyou
+    m_Metadata:
+      m_Items: []
+  - m_Id: 60788134682624
+    m_Key: endScreenSpeedrun
+    m_Metadata:
+      m_Items: []
+  - m_Id: 61098278297600
+    m_Key: quitGameButton
+    m_Metadata:
+      m_Items: []
+  - m_Id: 61840502333440
+    m_Key: constructionBossText1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 61950367932416
+    m_Key: constructionBossText2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62067607117824
+    m_Key: world2level1Text1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62135848443904
+    m_Key: world2level1Text2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 70549425135616
+    m_Key: newAbilityText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 70670208507904
+    m_Key: dashText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 70833429848064
+    m_Key: world2level10PlayerText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82353505214464
+    m_Key: constructionBossText3
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82392466104320
+    m_Key: constructionBossText4
+    m_Metadata:
+      m_Items: []
+  - m_Id: 797477316632576
+    m_Key: yourTimeText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 798073318842368
+    m_Key: niceRunText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 888339866361856
+    m_Key: speedrunCanvasTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 888428210987008
+    m_Key: speedrunCanvasInfo
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1112646022373376
+    m_Key: loveText1
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1112678737944576
+    m_Key: loveText2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1433292296200192
+    m_Key: trowelFound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1433431719059456
+    m_Key: trowelFound2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1459341797138432
+    m_Key: trowelGiven
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1459385984131072
+    m_Key: trowelGiven2
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2520965085700096
+    m_Key: gemsTitle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6511377320288256
+    m_Key: languageText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6534046749073408
+    m_Key: selectLanguageText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6534102252298240
+    m_Key: englishText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6534133374033920
+    m_Key: magyarText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6537263532777472
+    m_Key: selectText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6926785596661760
+    m_Key: startText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6926824742100992
+    m_Key: leaderboardText
+    m_Metadata:
+      m_Items: []
+  m_Metadata:
+    m_Items: []
+  m_KeyGenerator:
+    rid: 1436924518826770456
+  references:
+    version: 2
+    RefIds:
+    - rid: 1436924518826770456
+      type: {class: DistributedUIDGenerator, ns: UnityEngine.Localization.Tables, asm: Unity.Localization}
+      data:
+        m_CustomEpoch: 1704973732759

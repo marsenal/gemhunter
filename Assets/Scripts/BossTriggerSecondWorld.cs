@@ -17,6 +17,7 @@ public class BossTriggerSecondWorld : MonoBehaviour
     [SerializeField] PlayableAsset bossAlreadyAppearedCutscene;
 
     [SerializeField] Canvas skipButtonCanvas;
+    [SerializeField] GameObject speechBubble;
 
     private void Awake()
     {
@@ -54,8 +55,6 @@ public class BossTriggerSecondWorld : MonoBehaviour
     {
         if (hasCutscenePlayed)
         {
-            //playableDirector.playableAsset = bossAlreadyAppearedCutscene;
-           // playableDirector.Play();
             if (boss == null)
             {
                 boss = FindObjectOfType<MossBoss>(); //on re-load trigger loses the boss serialization (maybe rework the whole trigger)
@@ -70,20 +69,21 @@ public class BossTriggerSecondWorld : MonoBehaviour
             playableDirector.Play();
             hasCutscenePlayed = true;
         }
-        //boss.Activate();
-        //boss.cutscene = true;
-        //boss.CutScene();
-        //if (!AudioManager.instance.IsMusicPlaying("BossTheme")) AudioManager.instance.PlayClip("BossTheme", true);
 
     }
 
-    public void Skip()
+    public void Skip() //used on the skip button on level 2-10
     {
-        FindObjectOfType<SceneChanger>().CutSceneFade();
-        //playableDirector.Stop();
+        FindObjectOfType<SceneChanger>().FadeOutThenFadeIn();
+        Destroy(speechBubble);
         Destroy(playableDirector);
         skipButtonCanvas.enabled = false;
         FindObjectOfType<Player>().CutsceneMode(false);
         boss.Activate();
+    }
+
+    public void PlaySound(string soundName)
+    {
+        AudioManager.instance.PlayClip(soundName);
     }
 }

@@ -1,0 +1,233 @@
+%YAML 1.1
+%TAG !u! tag:unity3d.com,2011:
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 0}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e9620f8c34305754d8cc9a7e49e852d9, type: 3}
+  m_Name: String Texts_en
+  m_EditorClassIdentifier: 
+  m_LocaleId:
+    m_Code: en
+  m_SharedData: {fileID: 11400000, guid: 8b881180c2bfdc84eb693c2263da2cf4, type: 2}
+  m_Metadata:
+    m_Items: []
+  m_TableData:
+  - m_Id: 10534821888
+    m_Localized: Tap to Start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1479208116224
+    m_Localized: Select a World
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48151233601536
+    m_Localized: Settings
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48208708149248
+    m_Localized: Music
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48250546331648
+    m_Localized: Sound
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48292376125440
+    m_Localized: Reset game progress
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48482956910592
+    m_Localized: Reset
+    m_Metadata:
+      m_Items: []
+  - m_Id: 48523004125184
+    m_Localized: Are you SURE you want to reset your progress? (Level and gem progress
+      will be lost)
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49322014842880
+    m_Localized: Cancel
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49382773530624
+    m_Localized: Confirm
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49472074457088
+    m_Localized: Best time
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49521911177216
+    m_Localized: Total deaths
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49618464055296
+    m_Localized: Ancient Jungle
+    m_Metadata:
+      m_Items: []
+  - m_Id: 49687296778240
+    m_Localized: Murky Woods
+    m_Metadata:
+      m_Items: []
+  - m_Id: 50029363240960
+    m_Localized: High Mountains
+    m_Metadata:
+      m_Items: []
+  - m_Id: 51925348032512
+    m_Localized: P A U S E D
+    m_Metadata:
+      m_Items: []
+  - m_Id: 52080562446336
+    m_Localized: Title Screen
+    m_Metadata:
+      m_Items: []
+  - m_Id: 52350356856832
+    m_Localized: Restart Level
+    m_Metadata:
+      m_Items: []
+  - m_Id: 52411258150912
+    m_Localized: Continue
+    m_Metadata:
+      m_Items: []
+  - m_Id: 52485568634880
+    m_Localized: Quit Game ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57265888206848
+    m_Localized: Yes
+    m_Metadata:
+      m_Items: []
+  - m_Id: 57323115290624
+    m_Localized: No
+    m_Metadata:
+      m_Items: []
+  - m_Id: 60111878660096
+    m_Localized: Thank you for playing!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 60788134682624
+    m_Localized: Try to set a new record with the speedrun mode in the World Select
+      screen.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 61098278297600
+    m_Localized: Quit Game
+    m_Metadata:
+      m_Items: []
+  - m_Id: 61840502333440
+    m_Localized: INTRUDER DETECTED
+    m_Metadata:
+      m_Items: []
+  - m_Id: 61950367932416
+    m_Localized: NEUTRALIZING INTRUDER ...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62067607117824
+    m_Localized: It's too far ...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 62135848443904
+    m_Localized: Hm ... dashing ?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 70549425135616
+    m_Localized: You have acquired a new ability!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 70670208507904
+    m_Localized: Press Dash to launch yourself forward.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 70833429848064
+    m_Localized: Really? Again?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82353505214464
+    m_Localized: INTRUDER ...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 82392466104320
+    m_Localized: FRIEND DETECTED
+    m_Metadata:
+      m_Items: []
+  - m_Id: 797477316632576
+    m_Localized: 'Your time:'
+    m_Metadata:
+      m_Items: []
+  - m_Id: 798073318842368
+    m_Localized: Nice run!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 888339866361856
+    m_Localized: Speedrun Mode
+    m_Metadata:
+      m_Items: []
+  - m_Id: 888428210987008
+    m_Localized: Beat the whole game and record your time!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1112646022373376
+    m_Localized: Dear Rusty, please help me.
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1112678737944576
+    m_Localized: Could you find my trowel for me?
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1433292296200192
+    m_Localized: Hey, it's the trowel!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1433431719059456
+    m_Localized: Better hurry to bring it back...
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1459341797138432
+    m_Localized: Here you go!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 1459385984131072
+    m_Localized: What took you so long??
+    m_Metadata:
+      m_Items: []
+  - m_Id: 2520965085700096
+    m_Localized: Gems found
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6511377320288256
+    m_Localized: Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6534046749073408
+    m_Localized: Select Language
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6534102252298240
+    m_Localized: English
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6534133374033920
+    m_Localized: Hungarian
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6537263532777472
+    m_Localized: Change
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6926785596661760
+    m_Localized: Start
+    m_Metadata:
+      m_Items: []
+  - m_Id: 6926824742100992
+    m_Localized: Leaderboard
+    m_Metadata:
+      m_Items: []
+  references:
+    version: 2
+    RefIds: []

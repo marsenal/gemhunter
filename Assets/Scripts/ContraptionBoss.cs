@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using Cinemachine;
 using TMPro;
+using UnityEngine.Playables;
 public class ContraptionBoss : MonoBehaviour
 {
     Rigidbody2D myRigidbody;
@@ -13,7 +14,7 @@ public class ContraptionBoss : MonoBehaviour
     bool isCharging;
     public bool isActive = false;
     [SerializeField] bool isSecondWorldVersion;
-    bool portalSpawned = false;
+    bool portalSpawned = false; //this is only needed if we use the spawning portal version
     Vector2 chargeDestination;
     float direction;
     float timer;
@@ -73,6 +74,7 @@ public class ContraptionBoss : MonoBehaviour
         if (!AudioManager.instance.IsMusicPlaying("BossTheme"))  AudioManager.instance.PlayClip("BossTheme", true);
         playerToAttack.CutsceneMode(false);
         bossText.text = "";
+        GetComponent<PlayableDirector>().Play();
     }
 
     private void ChargerCountDown()
@@ -145,8 +147,10 @@ public class ContraptionBoss : MonoBehaviour
         isActive = false; //so it stops charging
         AudioManager.instance.StopClipWithoutFade("BossThud");
         Destroy(FindObjectOfType<BossTrigger>());
-        if (!portalSpawned) Instantiate(endPortal, portalPosition.transform.position, Quaternion.identity);
-        portalSpawned = true;
+        // if (!portalSpawned) Instantiate(endPortal, portalPosition.transform.position, Quaternion.identity);
+        // portalSpawned = true;
+
+        endPortal.gameObject.SetActive(true);
     }
 
     private void PlayParticle()
@@ -172,5 +176,4 @@ public class ContraptionBoss : MonoBehaviour
     {
         impulseSource.GenerateImpulseAtPositionWithVelocity(transform.position, impulseSource.m_DefaultVelocity);
     }
-
 }

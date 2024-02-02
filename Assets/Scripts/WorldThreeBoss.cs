@@ -8,163 +8,164 @@ public class WorldThreeBoss : MonoBehaviour
 {
     [Header("Health")]
     [SerializeField] int lives;
-    [SerializeField] float vulnerableDuration;
     [SerializeField] float dyingTimer;
 
-    [Header("Attacking details and objects")]
+    [Header("General attacking details and objects")]
+    [SerializeField] int numberOfAttacksThirdPhase;
+    [SerializeField] float thirdAttackDuration;
+    float startingXPosition;
+
+    [Header("First Phase")]
     [SerializeField] float timeBetweenAttacks;
     [SerializeField] ScreamWave projectile;
     [SerializeField] GameObject shootingPlace;
-    [SerializeField] int numberOfAttacksFirstPhase;
+    [SerializeField] int numberOfAttacksScreamWave;
+
+
+    [Header("Feather Attack")]
     [SerializeField] float secondAttackDuration;
-    [SerializeField] int numberOfAttacksThirdPhase;
-    [SerializeField] float thirdAttackDuration;
+    [SerializeField] Transform secondPhaseTransformOne;
+    [SerializeField] Transform secondPhaseTransformTwo;
+    private Vector2 secondPhasePositionOne;
+    private Vector2 secondPhasePositionTwo;
+    [SerializeField] ParticleSystem featherAttack;
+    BoxCollider2D featherAttackCollider;
+    bool isMovingLeft;
 
     [Header("Other Elements")]
     [SerializeField] float introDuration;
-   // [SerializeField] CutScene cutSceneHandler;
-   // [SerializeField] GameObject endPortal;
+    [SerializeField] float idleDuration;
     [SerializeField] ParticleSystem fallingRocks;
     [SerializeField] PlayableDirector endingScene;
 
     public bool isActive = false;
-    bool canAttack;
     CinemachineImpulseSource impulseSource;
     PlayableDirector playableDirector;
-    BoxCollider2D myCollider;
     Animator myAnimator;
+    Player player;
     public float timer;
-    public float timer2;
     public float timer3;
-    public int counterFirstAttacks;
+    public int counterFirstAttacks = 0;
 
     enum State
     {
         Dormant,
         Intro,
-        Attacking,
+        ScreamWave,
+        FeatherAttack,
         Idle,
         Hurt,
         Dying
     }
 
-    enum AttackPhase
-    {
-        FirstPhase,
-        SecondPhase,
-        ThirdPhase
-    }
 
-    enum Difficulty
+    enum Difficulty //for a possible harder difficulty
     {
         Normal,
         Hard
     }
 
     [SerializeField] State myState;
-    [SerializeField] AttackPhase myPhase;
     [SerializeField] Difficulty myDifficulty;
     void Start()
     {
+        startingXPosition = transform.position.x;
+
         impulseSource = GetComponent<CinemachineImpulseSource>();
         playableDirector = GetComponent<PlayableDirector>();
-        myCollider = GetComponent<BoxCollider2D>();
-        myCollider.enabled = false;
+        featherAttackCollider = GetComponent<BoxCollider2D>();
+        featherAttackCollider.enabled = false;
         myAnimator = GetComponent<Animator>();
 
-       // cutSceneHandler.GetComponent<BoxCollider2D>().enabled = false;
+        secondPhasePositionOne = secondPhaseTransformOne.position;
+        secondPhasePositionTwo = secondPhaseTransformTwo.position;
 
-        timer = timeBetweenAttacks;
+        timer = idleDuration;
         timer3 = introDuration;
+
+        player = FindObjectOfType<Player>();
     }
 
     void Update()
     {
         if (!isActive) return;
         StateMachine();
-        EnumMachine();
         if (lives <= 0) //TODO: Improve this!
         {
             myState = State.Dying;
             endingScene.Play();
         }
-        Player player = FindObjectOfType<Player>();
-        if (player) transform.localScale = new Vector2(Mathf.Sign(player.transform.position.x - transform.position.x), transform.localScale.y);
+        if (myState != State.FeatherAttack && player && //manage turning towards player if distance is big enough (5 units)
+            Mathf.Abs(player.transform.position.x - transform.position.x) > 5f ) transform.localScale = new Vector2(Mathf.Sign(player.transform.position.x - transform.position.x), transform.localScale.y);
     }
 
-
-    private void EnumMachine() //this for the easier boss - 2 lives
-    {
-        if (myState == State.Attacking)
-        {
-            timer -= Time.deltaTime;
-            if (timer<=0f)
-            {
-                ShootProjectile();
-                timer = timeBetweenAttacks;
-            }
-        }
-
-        if (timer2 < 0f)
-        {
-            myState = State.Attacking;
-            timer3 = introDuration;
-        }
-
-        if (timer3 <= 0f) //Intro handling
-        {
-            myState = State.Attacking;
-            timer3 = introDuration;
-        }
-    }
-   
-    private void StateMachine() // this for the easier boss - 2 phases, 2 lives
+    private void StateMachine()
     {
         switch (myState)
         {
             case State.Dormant:
-                myCollider.enabled = false;
-                canAttack = false;
+                isActive = false;
                 break;
             case State.Intro:
-                myCollider.enabled = false;
-                FindObjectOfType<Player>().CutsceneMode(false);
-                canAttack = false;
-                timer3 -= Time.deltaTime;
-                break;
-            case State.Attacking:
-                myCollider.enabled = true;
-                canAttack = true;
-                myAnimator.SetBool("isHurt", false);
+                if (player) player.CutsceneMode(false);
+                timer3 -= Time.deltaTime; 
+                if (timer3 <= 0f) //Intro handling
+                {
+                    myState = State.Idle;
+                    timer3 = introDuration;
+                    timer = idleDuration;
+                }
                 break;
             case State.Idle:
-                myCollider.enabled = true;
-                canAttack = false;
+                timer -= Time.deltaTime;
+                if (timer <= 0f)
+                {
+                    myState = State.FeatherAttack;
+                    timer = secondAttackDuration;
+                }
                 myAnimator.SetBool("isHurt", false);
+                myAnimator.SetBool("featherAttack", false);
+                myAnimator.SetBool("isIdle", true);
+                myAnimator.SetBool("isAttacking", false);
+                break;
+            case State.FeatherAttack:
+                myAnimator.SetBool("featherAttack", true);
+                myAnimator.SetBool("isHurt", false);
+                myAnimator.SetBool("isAttacking", false);
+                myAnimator.SetBool("isIdle", false);
+                FeatherAttack();
+                break;
+            case State.ScreamWave:
+                featherAttackCollider.enabled = false;
+                myAnimator.SetBool("isHurt", false);
+                myAnimator.SetBool("isAttacking", true);
+                myAnimator.SetBool("isIdle", false);
+                myAnimator.SetBool("featherAttack", false);
+                ScreamWave();
                 break;
             case State.Hurt:
-                myCollider.enabled = true;
-                canAttack = false;
                 myAnimator.SetBool("isHurt", true);
-                timer2 -= Time.deltaTime;
+                myAnimator.SetBool("isAttacking", false);
+                myAnimator.SetBool("isIdle", false);
+                myAnimator.SetBool("featherAttack", false);
+                timer = idleDuration;
                 break;
             case State.Dying:
-                myCollider.enabled = false;
-                canAttack = false;
                 Dying();
                 break;
         }
-        myAnimator.SetBool("isAttacking", canAttack);
-    }
 
-    public void Intro()
+
+    }   
+   
+    public void Intro() //activate boss. Used on the Timeline
     {
         AudioManager.instance.PlayClip("BossTheme", true);
-        isActive = true;
         myState = State.Intro;
+        isActive = true;
     }
 
-    public void BossMusic(bool isMusicPlaying)
+    public void BossMusic(bool isMusicPlaying) //play the boss theme, if it is not already playing. Used on the Timeline
     {
         if (isMusicPlaying) AudioManager.instance.PlayClip("BossTheme", true);
         else AudioManager.instance.StopClipWithoutFade("BossTheme");
@@ -201,19 +202,100 @@ public class WorldThreeBoss : MonoBehaviour
     private void ShootProjectile()
     {
         Instantiate(projectile, shootingPlace.transform.position, Quaternion.identity);
-        AudioManager.instance.PlayClip("BossShoot");
+        AudioManager.instance.PlayClip("ScreamWave");
     }
 
+    private void ScreamWave()
+    {
+            ShootFeathers(0);
 
-    public void RocksFalling()
+            timer -= Time.deltaTime;
+            if (timer <= 0f)
+            {
+                ShootProjectile();
+                counterFirstAttacks++;
+                timer = timeBetweenAttacks;
+            }
+            else if (counterFirstAttacks >= numberOfAttacksScreamWave)
+            {
+                timer = idleDuration;
+                myState = State.Idle;
+                counterFirstAttacks = 0;
+            }
+        
+    }
+
+    /// <summary>
+    /// Pass either 0 or 1 as parameter. 0 means false, 1 means true
+    /// </summary>
+    /// <param name="value"></param>
+    public void ShootFeathers(int value)
+    {
+        if (value == 1)
+        {
+            featherAttack.Play();
+
+            AudioManager.instance.PlayClip("FlapWing", true);
+        }
+        else
+        {
+            featherAttack.Stop();
+
+            AudioManager.instance.StopClipWithoutFade("FlapWing");
+        }
+        }
+
+    private void FeatherAttack()
+    {
+
+        timer -= Time.deltaTime;
+        if (timer > 0f)
+        {
+            if (transform.position.x == secondPhasePositionOne.x)
+            {
+                isMovingLeft = false;
+
+            }
+            else if (transform.position.x == secondPhasePositionTwo.x)
+            {
+                isMovingLeft = true;
+                featherAttackCollider.enabled = true;
+                ShootFeathers(1);
+            }
+
+            if (!isMovingLeft)
+            {
+                transform.localScale = new Vector2(1, 1);
+                transform.position = Vector2.MoveTowards(transform.position, secondPhasePositionTwo, 10f * Time.deltaTime);
+            }
+            else
+            {
+                transform.localScale = new Vector2(-1, 1);
+                transform.position = Vector2.MoveTowards(transform.position, secondPhasePositionOne, 10f * Time.deltaTime);
+            }
+        }
+        else
+        {
+            myState = State.ScreamWave;
+            transform.position = Vector2.MoveTowards(transform.position, new Vector2(startingXPosition, transform.position.y), 3f); //go back to the middle of the arena
+            timer = timeBetweenAttacks;
+        }
+    }
+
+    public void GoToIdlePhase() //used on the Hurt animation to switch to Idle
+    {
+        myState = State.Idle; 
+
+    }
+
+    public void RocksFalling() //falling rocks animation and other effects
     {
         IntroCameraShake();
         fallingRocks.Play();
         AudioManager.instance.PlayClip("BossThud");
         lives--;
         myState = State.Hurt;
-        counterFirstAttacks = numberOfAttacksFirstPhase;
-        timer2 = 5f; //timer2 keeps decreasing -> next attack phase will never trigger
+        counterFirstAttacks = 0;
     }
 
     public void Dying()
@@ -228,7 +310,6 @@ public class WorldThreeBoss : MonoBehaviour
         endingScene.Play();
         yield return new WaitForSeconds(2f);
         Destroy(gameObject);
-        //endPortal.SetActive(true);
     }
 
     public void PlayThudSound() //this is used on the dying animation in keyframes

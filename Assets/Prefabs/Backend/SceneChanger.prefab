@@ -189,6 +189,7 @@ GameObject:
   - component: {fileID: 4935605157957814554}
   - component: {fileID: 4935605157957814552}
   - component: {fileID: 4935605157957814553}
+  - component: {fileID: 5321352429128035408}
   m_Layer: 0
   m_Name: SceneChanger
   m_TagString: Untagged
@@ -247,6 +248,18 @@ MonoBehaviour:
   escapeButton: {fileID: 0}
   quitCanvas: {fileID: 0}
   settingsCanvas: {fileID: 0}
+--- !u!114 &5321352429128035408
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 4935605157957814555}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 42f5a9a3418b3ed4ab66aa02d37ae04c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
 --- !u!1 &4935605158404146358
 GameObject:
   m_ObjectHideFlags: 0

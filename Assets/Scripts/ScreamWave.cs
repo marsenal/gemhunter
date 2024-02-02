@@ -13,25 +13,32 @@ public class ScreamWave : MonoBehaviour
 
     void Start()
     {
-        if (FindObjectOfType<Player>()) destination = new Vector2(FindObjectOfType<Player>().transform.position.x - transform.position.x, FindObjectOfType<Player>().transform.position.y - transform.position.y);
-
+        if (FindObjectOfType<Player>())
+        {
+            Player player = FindObjectOfType<Player>();
+            destination = new Vector2(player.transform.position.x - transform.position.x, player.transform.position.y - transform.position.y); 
+        }
+        transform.rotation = Quaternion.Euler (0f,0f, Vector2.SignedAngle(transform.position, destination));
         myRigidbody = GetComponent<Rigidbody2D>();
     }
 
     private void Update()
     {
-
+        if (isFlying) MoveTowardsPlayer();
     }
 
     void FixedUpdate()
     {
-        if (isFlying) MoveTowardsPlayer();
+        //if (isFlying) MoveTowardsPlayer();
     }
 
 
     public void MoveTowardsPlayer()
     {
-        if (FindObjectOfType<Player>()) myRigidbody.velocity = Vector2.MoveTowards(myRigidbody.velocity, destination, speed);
+        if (FindObjectOfType<Player>())
+        {
+            myRigidbody.velocity = Vector2.MoveTowards(myRigidbody.velocity, destination, speed * Time.deltaTime);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D collision)
@@ -43,10 +50,11 @@ public class ScreamWave : MonoBehaviour
             if (collision.tag =="Weapon")
             {
                 DestroyMe();
+                AudioManager.instance.PlayClip("EnemyDead");
                 isFlying = false;
                 myRigidbody.velocity = new Vector2(0f, 0f);
                 FindObjectOfType<WorldThreeBoss>().RocksFalling();
-                Destroy(collision.gameObject);
+                collision.gameObject.GetComponent<Animator>().SetTrigger("isDestroyed");
             }
         }
     }

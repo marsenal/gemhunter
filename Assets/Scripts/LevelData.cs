@@ -10,9 +10,16 @@ public class LevelData
 {
     public List<int> levelData;
     public List<int> gemData;
+    public int deathData;
+    public float bestTime;
+    public int setLanguageID;
+
     public LevelData ()
     {
         levelData = LevelSystem.GetLevelList();
         gemData = LevelSystem.GetGemList();
+        deathData = LevelSystem.GetDeathCount();
+        bestTime = LevelSystem.GetBestTime();
+        setLanguageID = LevelSystem.setLanguageID;
     }
 }

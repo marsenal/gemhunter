@@ -35,7 +35,7 @@ public class LevelButton : MonoBehaviour
     {
         isGemCollected = LevelSystem.IsOnTheGemList(levelIndex);
         isLevelCompleted = LevelSystem.IsOnTheLevelList(levelIndex);
-       if (!isLevelAccessible) isLevelAccessible = LevelSystem.IsOnTheLevelList(levelIndex - 1); //this is not checked here, because 
+        if (!isLevelAccessible) isLevelAccessible = LevelSystem.IsOnTheLevelList(levelIndex - 1); //this is not checked here, because 
         SetLevelAccessibilityOnButton();
         SetLevelCompletionOnButton();
         SetGemCollectionOnButton();

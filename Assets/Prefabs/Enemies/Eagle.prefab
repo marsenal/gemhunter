@@ -14,6 +14,7 @@ GameObject:
   - component: {fileID: 3021815083681219906}
   - component: {fileID: 3021815083681219907}
   - component: {fileID: 3633718214944140277}
+  - component: {fileID: 5754963408148133108}
   m_Layer: 7
   m_Name: Eagle
   m_TagString: Enemy
@@ -117,7 +118,7 @@ BoxCollider2D:
   m_IsTrigger: 1
   m_UsedByEffector: 0
   m_UsedByComposite: 0
-  m_Offset: {x: -0.09060055, y: -0.30533838}
+  m_Offset: {x: -0.09060055, y: -0.40527946}
   m_SpriteTilingProperty:
     border: {x: 0, y: 0, z: 0, w: 0}
     pivot: {x: 0.5, y: 0.5}
@@ -128,7 +129,7 @@ BoxCollider2D:
     adaptiveTiling: 0
   m_AutoTiling: 0
   serializedVersion: 2
-  m_Size: {x: 1.8898338, y: 0.56596065}
+  m_Size: {x: 1.8898338, y: 0.25503266}
   m_EdgeRadius: 0
 --- !u!50 &3021815083681219907
 Rigidbody2D:
@@ -171,3 +172,19 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorStateOnDisable: 0
+--- !u!58 &5754963408148133108
+CircleCollider2D:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3021815083681219910}
+  m_Enabled: 0
+  m_Density: 1
+  m_Material: {fileID: 0}
+  m_IsTrigger: 1
+  m_UsedByEffector: 0
+  m_UsedByComposite: 0
+  m_Offset: {x: -0.15999997, y: -0.41078144}
+  serializedVersion: 2
+  m_Radius: 0.59258693
