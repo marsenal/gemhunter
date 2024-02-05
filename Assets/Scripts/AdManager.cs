@@ -5,6 +5,27 @@ using UnityEngine.Advertisements;
 
 public class AdManager : MonoBehaviour, IUnityAdsInitializationListener, IUnityAdsLoadListener, IUnityAdsShowListener
 {
+    [SerializeField] private string androidGameID;
+
+    [SerializeField] private bool testMode = true;
+
+    [SerializeField] private string androidAdUnitID;
+
+    public static AdManager instance;
+
+    private string gameID;
+
+    private string adUnitID;
+
+    private bool canPlay;
+    public int numberOfDeaths;
+    [SerializeField] private int deathNumbersToTriggerAd;
+
+    private void Awake()
+    {
+        if (instance != null && instance != this)
+        { Destroy(gameObject); }
+        else
         {
             InitializeAds();
 
@@ -13,6 +34,22 @@ public class AdManager : MonoBehaviour, IUnityAdsInitializationListener, IUnityA
         }
     }
 
+    private void InitializeAds()
+    {
+        gameID = androidGameID;
+        adUnitID = androidAdUnitID;
+        if (!Advertisement.isInitialized)
+        {
+            Advertisement.Initialize(gameID, testMode, this);
+        }
+    }
+
+    public void OnInitializationComplete()
+    {
+        Debug.Log("Ads initizalization complete");
+    }
+
+    public void OnInitializationFailed(UnityAdsInitializationError error, string message)
     {
         Debug.Log("Ads initizalization failed");
     }
@@ -34,18 +71,18 @@ public class AdManager : MonoBehaviour, IUnityAdsInitializationListener, IUnityA
 
     public void OnUnityAdsShowStart(string placementId)
     {
-       
+
     }
 
     public void OnUnityAdsShowClick(string placementId)
     {
-        
+
     }
 
     public void OnUnityAdsShowComplete(string placementId, UnityAdsShowCompletionState showCompletionState)
     {
-       if (placementId.Equals(adUnitID) && showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED)) //only if completed, if skipped dont do this
-                                                                                                            //also, placementID check is needed if there are different type of ads setup
+        if (placementId.Equals(adUnitID) && showCompletionState.Equals(UnityAdsShowCompletionState.COMPLETED)) //only if completed, if skipped dont do this
+                                                                                                               //also, placementID check is needed if there are different type of ads setup
         {
             numberOfDeaths = 0;
             Debug.Log("Ad showing is completed");

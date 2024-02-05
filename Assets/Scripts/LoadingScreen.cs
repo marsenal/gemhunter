@@ -12,7 +12,7 @@ public class LoadingScreen : MonoBehaviour
     IEnumerator Start()
     {
         yield return new WaitForSeconds(loadingSeconds);
-        FindObjectOfType<Authentication>().OpenSavedGame(false);
+       // FindObjectOfType<Authentication>().OpenSavedGame(false);
         yield return LocalizationSettings.InitializationOperation;
         Debug.Log(LevelSystem.setLanguageID);
         if (LevelSystem.setLanguageID == -1)

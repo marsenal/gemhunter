@@ -24,7 +24,15 @@
 
 public static class GPGSIds
 {
-        public const string achievement_play_a_level = "CgkI967U96ofEAIQAQ"; // <GPGSID>
+        public const string achievement_treasure_hunter = "CgkI967U96ofEAIQBg"; // <GPGSID>
+        public const string achievement_that_belongs_in_my_pocket = "CgkI967U96ofEAIQBA"; // <GPGSID>
+        public const string achievement_hoarder_of_gems = "CgkI967U96ofEAIQBQ"; // <GPGSID>
+        public const string leaderboard_top_times = "CgkI967U96ofEAIQAw"; // <GPGSID>
+        public const string achievement_jungling_around = "CgkI967U96ofEAIQBw"; // <GPGSID>
+        public const string achievement_wood_you_kindly_stop_that = "CgkI967U96ofEAIQCA"; // <GPGSID>
+        public const string achievement_lucky_me = "CgkI967U96ofEAIQAg"; // <GPGSID>
+        public const string achievement_newfound_friendship = "CgkI967U96ofEAIQCQ"; // <GPGSID>
+        public const string achievement_that_was_easy = "CgkI967U96ofEAIQAQ"; // <GPGSID>
 
 }
 
