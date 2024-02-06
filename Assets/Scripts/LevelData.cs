@@ -14,6 +14,10 @@ public class LevelData
     public float bestTime;
     public int setLanguageID;
 
+    public float timeWorld1;
+    public float timeWorld2;
+    public float timeWorld3;
+
     public LevelData ()
     {
         levelData = LevelSystem.GetLevelList();
@@ -21,5 +25,8 @@ public class LevelData
         deathData = LevelSystem.GetDeathCount();
         bestTime = LevelSystem.GetBestTime();
         setLanguageID = LevelSystem.setLanguageID;
+        timeWorld1 = LevelSystem.timeWorld1;
+        timeWorld2 = LevelSystem.timeWorld2;
+        timeWorld3 = LevelSystem.timeWorld3;
     }
 }

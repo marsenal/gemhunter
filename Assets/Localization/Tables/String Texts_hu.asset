@@ -229,6 +229,18 @@ MonoBehaviour:
     m_Localized: "Legjobb id\u0151k"
     m_Metadata:
       m_Items: []
+  - m_Id: 9403996111151104
+    m_Localized: "D\xF6nts rekordot az id\u0151ddel az \u0150si Dzsungel vil\xE1gban!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9404024665972736
+    m_Localized: "D\xF6nts rekordot az id\u0151ddel a Zavaros Rengeteg vil\xE1gban!"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9404036795899904
+    m_Localized: "D\xF6nts rekordot az id\u0151ddel a Roppant Hegyek vil\xE1gban!"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

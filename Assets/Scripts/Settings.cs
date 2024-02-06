@@ -35,12 +35,11 @@ public class Settings : MonoBehaviour
         Input.backButtonLeavesApp = true;
     }
 
-    public void EraseDataButton() //erase all data - level and gem progress
+    public void EraseDataButton() //erase all data - level and gem progress - currently not used
     {
         LevelSystem.EraseData();
         SaveSystem.SaveGame(); //save locally
         FindObjectOfType<Authentication>().OpenSavedGame(true);   //save to cloud
-        //FindObjectOfType<Authentication>().SaveProgressToCloud();
         LevelButton[] levelButtons = FindObjectsOfType<LevelButton>();
         foreach (LevelButton lvlbtn in levelButtons)
         {

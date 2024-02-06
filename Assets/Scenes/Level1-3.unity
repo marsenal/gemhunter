@@ -5849,11 +5849,11 @@ CompositeCollider2D:
         Y: -140000000
     - - X: 140000000
         Y: -95625000
-      - X: 169375008
+      - X: 159375008
         Y: -95625000
-      - X: 170000000
+      - X: 160000000
         Y: -95000000
-      - X: 170000000
+      - X: 160000000
         Y: -90000000
       - X: 140000000
         Y: -90000000
@@ -5912,9 +5912,9 @@ CompositeCollider2D:
       - {x: 21.000029, y: -3}
     - - {x: 13.999971, y: -15}
       - {x: 14.000029, y: -9.5625}
-      - {x: 16.93751, y: -9.562493}
-      - {x: 17, y: -9.499989}
-      - {x: 16.999971, y: -9}
+      - {x: 15.937509, y: -9.562493}
+      - {x: 16, y: -9.499989}
+      - {x: 15.999971, y: -9}
       - {x: 14, y: -8.99997}
       - {x: 13.999971, y: -7}
       - {x: 10, y: -7.0000296}
@@ -6047,7 +6047,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 6522204105853027272, guid: c06b150b0ebfd9a4cb46cae4bd15c6cc, type: 3}
       propertyPath: m_LocalPosition.y
-      value: -1.56
+      value: -1.32
       objectReference: {fileID: 0}
     - target: {fileID: 6522204105853027272, guid: c06b150b0ebfd9a4cb46cae4bd15c6cc, type: 3}
       propertyPath: m_LocalPosition.z

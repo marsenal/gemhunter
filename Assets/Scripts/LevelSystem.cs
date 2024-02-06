@@ -15,6 +15,9 @@ public static class LevelSystem
     public static int deaths; //total number of deaths
 
     public static float bestTime;
+    public static float timeWorld1;
+    public static float timeWorld2;
+    public static float timeWorld3;
 
     public static int setLanguageID = -1;
 
@@ -33,6 +36,9 @@ public static class LevelSystem
 
         deaths = data.deathData;
         bestTime = data.bestTime;
+        timeWorld1 = data.timeWorld1;
+        timeWorld2 = data.timeWorld2;
+        timeWorld3 = data.timeWorld3;
 
         setLanguageID = data.setLanguageID;
     }

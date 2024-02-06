@@ -6,19 +6,8 @@ using UnityEngine.SocialPlatforms;
 
 public class Leaderboard : MonoBehaviour
 {
-
-    void Start()
+    public void ShowLeaderboard(string leaderBoardID)
     {
-        
-    }
-
-    void Update()
-    {
-        
-    }
-
-    public void ShowLeaderboard()
-    {
-        PlayGamesPlatform.Instance.ShowLeaderboardUI("CgkI967U96ofEAIQAw");
+        PlayGamesPlatform.Instance.ShowLeaderboardUI(leaderBoardID);
     }
 }

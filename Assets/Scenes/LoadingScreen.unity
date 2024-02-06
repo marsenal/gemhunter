@@ -513,19 +513,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 42f5a9a3418b3ed4ab66aa02d37ae04c, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
---- !u!114 &790972791
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 790972789}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: d3eaac169bcab884986146ac1391653c, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  loadingSeconds: 3
 --- !u!114 &790972792 stripped
 MonoBehaviour:
   m_CorrespondingSourceObject: {fileID: 6757874766284729874, guid: 181a9e3d4503bc743a2b5765515a7bb8, type: 3}
@@ -768,6 +755,7 @@ GameObject:
   - component: {fileID: 1317625110}
   - component: {fileID: 1317625109}
   - component: {fileID: 1317625108}
+  - component: {fileID: 1317625112}
   m_Layer: 5
   m_Name: LoadingScreen Canvas
   m_TagString: Untagged
@@ -857,6 +845,19 @@ RectTransform:
   m_AnchoredPosition: {x: 0, y: 0}
   m_SizeDelta: {x: 0, y: 0}
   m_Pivot: {x: 0, y: 0}
+--- !u!114 &1317625112
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1317625107}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d3eaac169bcab884986146ac1391653c, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  loadingSeconds: 3
 --- !u!1 &1658144202
 GameObject:
   m_ObjectHideFlags: 0

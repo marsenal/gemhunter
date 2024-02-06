@@ -14,33 +14,102 @@ public class EndScreenSpeedrun : MonoBehaviour
     [SerializeField] Canvas speedrunCanvas;
     void Start()
     {
-        if (FindObjectOfType<StopWatch>() != null)
+        if (FindObjectOfType<StopWatch>() != null) //if this was a speedrun
         {
-            StopWatch stopWatch = FindObjectOfType<StopWatch>();
             endGameCanvas.enabled = false;
             speedrunCanvas.enabled = true;
-            float currentTime = stopWatch.GetTimer();
-            float bestTime = LevelSystem.GetBestTime();
-            currentTimeText.text = TimeSpan.FromSeconds(currentTime).ToString(@"m\:ss");
-            if (currentTime <= bestTime || bestTime==0f)
+            if (!FindObjectOfType<StopWatch>().IsThisAPartialRun()) //if this was a full speedrun
             {
-                bestTimeText.text = TimeSpan.FromSeconds(currentTime).ToString(@"m\:ss");
-                LevelSystem.SetBestTime(currentTime);
-                SaveSystem.SaveGame();  //save locally
-                FindObjectOfType<Authentication>().OpenSavedGame(true); //save to cloud
-                Social.ReportScore((long)currentTime, "CgkI967U96ofEAIQAw", (bool success) => { //post best (current) time to leaderboard
-                    if (success == true)
-                    {
-                        Debug.Log("New best time posted to leaderboard");
-                    }
-                    else { Debug.Log("New best time failed to post to leaderboard"); }
-                });
+                StopWatch stopWatch = FindObjectOfType<StopWatch>();
+                float currentTime = stopWatch.GetTimer();
+                float bestTime = LevelSystem.GetBestTime();
+                currentTimeText.text = TimeSpan.FromSeconds(currentTime).ToString(@"m\:ss");
+                if (currentTime <= bestTime || bestTime == 0f)
+                {
+                    bestTimeText.text = TimeSpan.FromSeconds(currentTime).ToString(@"m\:ss");
+                    LevelSystem.SetBestTime(currentTime);
+                    SaveSystem.SaveGame();  //save locally
+                    FindObjectOfType<Authentication>().OpenSavedGame(true); //save to cloud
+                    Social.ReportScore((long)currentTime, "CgkI967U96ofEAIQAw", (bool success) =>
+                    { //post best (current) time to leaderboard
+                        if (success == true)
+                        {
+                            Debug.Log("New best time posted to leaderboard");
+                        }
+                        else { Debug.Log("New best time failed to post to leaderboard"); }
+                    });
+                }
+                else if (bestTime != 0f)
+                {
+                    bestTimeText.text = TimeSpan.FromSeconds(bestTime).ToString(@"m\:ss");
+                }
             }
-            else if(bestTime != 0f)
+            else //if this was a partial (one world) speedrun
             {
-                bestTimeText.text = TimeSpan.FromSeconds(bestTime).ToString(@"m\:ss");
-            }
+                StopWatch stopWatch = FindObjectOfType<StopWatch>();
+                float currentTime = stopWatch.GetTimer();
+                currentTimeText.text = TimeSpan.FromSeconds(currentTime).ToString(@"m\:ss");
+                float bestTime = new float();
+                switch (stopWatch.world)
+                {
+                    case 1:
+                        bestTime = LevelSystem.timeWorld1;
+                        if (currentTime <= bestTime || bestTime == 0f)
+                        {
+                            bestTimeText.text = TimeSpan.FromSeconds(currentTime).ToString(@"m\:ss");
+                            LevelSystem.timeWorld1 = currentTime;
+                            SaveSystem.SaveGame();  //save locally
+                            FindObjectOfType<Authentication>().OpenSavedGame(true); //save to cloud
+                            Social.ReportScore((long)currentTime, "CgkI967U96ofEAIQCw", (bool success) =>
+                            { //post best (current) time to leaderboard
+                                if (success == true)
+                                {
+                                    Debug.Log("New best time posted to leaderboard");
+                                }
+                                else { Debug.Log("New best time failed to post to leaderboard"); }
+                            });
+                        }
+                        break;
+                    case 2:
+                        bestTime = LevelSystem.timeWorld2;
+                        if (currentTime <= bestTime || bestTime == 0f)
+                        {
+                            bestTimeText.text = TimeSpan.FromSeconds(currentTime).ToString(@"m\:ss");
+                            LevelSystem.timeWorld2 = currentTime;
+                            SaveSystem.SaveGame();  //save locally
+                            FindObjectOfType<Authentication>().OpenSavedGame(true); //save to cloud
+                            Social.ReportScore((long)currentTime, "CgkI967U96ofEAIQDA", (bool success) =>
+                            { //post best (current) time to leaderboard
+                                if (success == true)
+                                {
+                                    Debug.Log("New best time posted to leaderboard");
+                                }
+                                else { Debug.Log("New best time failed to post to leaderboard"); }
+                            });
+                        }
+                        break;
+                    case 3:
+                        bestTime = LevelSystem.timeWorld3;
+                        if (currentTime <= bestTime || bestTime == 0f)
+                        {
+                            bestTimeText.text = TimeSpan.FromSeconds(currentTime).ToString(@"m\:ss");
+                            LevelSystem.timeWorld3 = currentTime;
+                            SaveSystem.SaveGame();  //save locally
+                            FindObjectOfType<Authentication>().OpenSavedGame(true); //save to cloud
+                            Social.ReportScore((long)currentTime, "CgkI967U96ofEAIQDQ", (bool success) =>
+                            { //post best (current) time to leaderboard
+                                if (success == true)
+                                {
+                                    Debug.Log("New best time posted to leaderboard");
+                                }
+                                else { Debug.Log("New best time failed to post to leaderboard"); }
+                            });
+                        }
+                        break;
+                }
 
+
+            }
         }
         else
         {

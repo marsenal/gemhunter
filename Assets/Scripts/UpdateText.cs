@@ -12,7 +12,6 @@ public class UpdateText : MonoBehaviour
     void Start()
     {
         StartCoroutine(InitializeLanguage());
-
     }
 
     IEnumerator InitializeLanguage()

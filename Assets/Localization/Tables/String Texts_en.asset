@@ -228,6 +228,18 @@ MonoBehaviour:
     m_Localized: Leaderboard
     m_Metadata:
       m_Items: []
+  - m_Id: 9403996111151104
+    m_Localized: Beat the Ancient Jungle and record your time!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9404024665972736
+    m_Localized: Beat the Murky Woods and record your time!
+    m_Metadata:
+      m_Items: []
+  - m_Id: 9404036795899904
+    m_Localized: Beat the High Mountains and record your time!
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

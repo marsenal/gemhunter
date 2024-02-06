@@ -141,7 +141,6 @@ public class ContraptionBoss : MonoBehaviour
         while (timer < dyingTimer)
         {
             timer += Time.deltaTime;
-            ShakeCamera();
             yield return null;
         }
         isActive = false; //so it stops charging
@@ -172,7 +171,7 @@ public class ContraptionBoss : MonoBehaviour
         }
     }
 
-    private void ShakeCamera() //use this to shake the camera on command
+    public void ShakeCamera() //use this to shake the camera on command
     {
         impulseSource.GenerateImpulseAtPositionWithVelocity(transform.position, impulseSource.m_DefaultVelocity);
     }

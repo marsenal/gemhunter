@@ -112,6 +112,16 @@ public class Authentication : MonoBehaviour
 
     void Awake()
     {
+        int numberOfInstances = FindObjectsOfType<Authentication>().Length;
+        if (numberOfInstances > 1)
+        {
+            Destroy(gameObject);
+        }
+        else
+        {
+            DontDestroyOnLoad(gameObject);
+        }
+
         PlayGamesPlatform.Activate();
     }
 
@@ -120,6 +130,7 @@ public class Authentication : MonoBehaviour
         await UnityServices.InitializeAsync();
         await LoginGooglePlayGames();
         await SignInWithGooglePlayGamesAsync(Token);
+       // await LinkWithGooglePlayGamesAsync(Token);
         OpenSavedGame(false);
     }
     //Fetch the Token / Auth code
@@ -144,6 +155,7 @@ public class Authentication : MonoBehaviour
                 Error = "Failed to retrieve Google play games authorization code";
                 Debug.Log("Login Unsuccessful");
                 tcs.SetException(new Exception("Failed"));
+                LevelSystem.SetDataLocally();
             }
         });
         return tcs.Task;
@@ -158,6 +170,32 @@ public class Authentication : MonoBehaviour
             Debug.Log($"PlayerID: {AuthenticationService.Instance.PlayerId}"); //Display the Unity Authentication PlayerID
             Debug.Log("SignIn is successful.");
         }
+        catch (AuthenticationException ex)
+        {
+            // Compare error code to AuthenticationErrorCodes
+            // Notify the player with the proper error message
+            Debug.LogException(ex);
+        }
+        catch (RequestFailedException ex)
+        {
+            // Compare error code to CommonErrorCodes
+            // Notify the player with the proper error message
+            Debug.LogException(ex);
+        }
+    }
+    async Task LinkWithGooglePlayGamesAsync(string authCode) //promote anonymous to registered
+    {
+        try
+        {
+            await AuthenticationService.Instance.LinkWithGooglePlayGamesAsync(authCode);
+            Debug.Log("Link is successful.");
+        }
+        catch (AuthenticationException ex) when (ex.ErrorCode == AuthenticationErrorCodes.AccountAlreadyLinked)
+        {
+            // Prompt the player with an error message.
+            Debug.LogError("This user is already linked with another account. Log in instead.");
+        }
+
         catch (AuthenticationException ex)
         {
             // Compare error code to AuthenticationErrorCodes
@@ -201,10 +239,13 @@ public class Authentication : MonoBehaviour
                 SavedGameMetadataUpdate updateForMetadata = new SavedGameMetadataUpdate.Builder().WithUpdatedDescription("Metadata was updated at: " + System.DateTime.Now.ToString()).Build();
 
                 PlayGamesPlatform.Instance.SavedGame.CommitUpdate(meta, updateForMetadata, binaryData, SaveCallback);
+
+                Debug.Log("Save file opened from cloud for saving");
             }
             else //loading from the cloud
             {
                 PlayGamesPlatform.Instance.SavedGame.ReadBinaryData(meta, LoadCallBack);
+                Debug.Log("Save file opened from cloud for loading");
             }
         }
         else

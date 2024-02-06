@@ -10,32 +10,44 @@ public class StopWatch : MonoBehaviour
     private float time;
     private bool isStopWatchRunning;
 
+    [SerializeField][Tooltip("Tick this if this stopwatch is for a 'world' speedrun and not 'game' speedrun")] bool isThisAPartialRun;
+    [SerializeField] int lastLevelOfTheWorld;
+
+    [Range(1,3)] public int world;
+
     [SerializeField] TextMeshProUGUI stopWatchText;
     [SerializeField] Image stopWatchButton;
     [SerializeField] Image stopWatchBackground;
 
     private void Awake()
     {
-        if (LevelSystem.IsEveryLevelCompleted())
-        {
-            stopWatchButton.enabled = true;
+        if (isThisAPartialRun) 
+        { 
+            if (LevelSystem.IsOnTheLevelList(lastLevelOfTheWorld))
+            {
+                stopWatchButton.enabled = true;
+            }
+            else stopWatchButton.enabled = false;
         }
-        else stopWatchButton.enabled = false;
+        else
+        {
+            if (LevelSystem.IsEveryLevelCompleted())
+            {
+                stopWatchButton.enabled = true;
+            }
+            else stopWatchButton.enabled = false;
+        }
     }
 
     void Update()
     {
         if (isStopWatchRunning)
         {
-            stopWatchBackground.enabled = true;
-            stopWatchText.enabled = true;
             time += Time.deltaTime;
             stopWatchText.text = TimeSpan.FromSeconds(time).ToString(@"m\:ss");
         }
         else
         {
-            stopWatchBackground.enabled = false;
-            stopWatchText.enabled = false;
         }
     }
 
@@ -52,7 +64,8 @@ public class StopWatch : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
         }
-        FindObjectOfType<SceneChanger>().LoadScene(36);
+        stopWatchBackground.enabled = true;
+        stopWatchText.enabled = true;
         time = 0f;
         isStopWatchRunning = true;
     }
@@ -60,6 +73,8 @@ public class StopWatch : MonoBehaviour
     public void StopTimer() //to finish the timer (if you finish all levels)
     {
         isStopWatchRunning = false;
+        stopWatchBackground.enabled = false;
+        stopWatchText.enabled = false;
     }
 
     public void DestroyTimer() //to destroy this when exiting to the title screen from a level
@@ -81,5 +96,10 @@ public class StopWatch : MonoBehaviour
     public void DisableSpeedrunMode()
     {
         stopWatchButton.enabled = false;
+    }
+
+    public bool IsThisAPartialRun()
+    {
+        return isThisAPartialRun;
     }
 }

@@ -7,6 +7,9 @@ public class EndPortal : MonoBehaviour
     [SerializeField] int sceneToLoad;
     [SerializeField] bool shouldAudiomanagerReset;
 
+    [SerializeField] bool isFinalEndPortal;
+    private int finalScene = 40;
+
     [SerializeField] string achievementToUnlock;
 
     public int GetSceneIndex()
@@ -18,6 +21,7 @@ public class EndPortal : MonoBehaviour
                                                                                     // handle success or failure
             });
         }
-        return sceneToLoad;
+        if (isFinalEndPortal && FindObjectOfType<StopWatch>().IsThisAPartialRun()) return finalScene;
+        else return sceneToLoad;
     }
 }

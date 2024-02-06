@@ -13,7 +13,7 @@ public class LoadingScreen : MonoBehaviour
     {
         yield return new WaitForSeconds(loadingSeconds);
        // FindObjectOfType<Authentication>().OpenSavedGame(false);
-        yield return LocalizationSettings.InitializationOperation;
+       /* yield return LocalizationSettings.InitializationOperation;
         Debug.Log(LevelSystem.setLanguageID);
         if (LevelSystem.setLanguageID == -1)
         {
@@ -35,7 +35,7 @@ public class LoadingScreen : MonoBehaviour
         {
             localeId = LevelSystem.setLanguageID;
         }
-        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[localeId];
+        LocalizationSettings.SelectedLocale = LocalizationSettings.AvailableLocales.Locales[localeId];*/
         SceneManager.LoadScene(1);
     }
 }
