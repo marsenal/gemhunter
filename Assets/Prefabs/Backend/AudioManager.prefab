@@ -135,7 +135,7 @@ MonoBehaviour:
     loop: 0
   - isMusic: 0
     name: GemPickup
-    clip: {fileID: 8300000, guid: 603d554861d621240b1545aa5332fd34, type: 3}
+    clip: {fileID: 8300000, guid: ec7d7762a6db19c4b9c710780e4c4263, type: 3}
     volume: 1
     pitch: 1
     playOnAwake: 0
@@ -151,7 +151,7 @@ MonoBehaviour:
     loop: 0
   - isMusic: 0
     name: Menu
-    clip: {fileID: 8300000, guid: b3fe4a717cfba614a9c01353e098692b, type: 3}
+    clip: {fileID: 8300000, guid: 3ef14788475c25845a8332bfe1affe9e, type: 3}
     volume: 1
     pitch: 1
     playOnAwake: 0
