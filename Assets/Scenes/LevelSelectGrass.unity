@@ -1992,6 +1992,14 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_MethodName
       value: ButtonSound
       objectReference: {fileID: 0}
+    - target: {fileID: 2901841060264581930, guid: 30056681f8309f648aaf35df0bc150ca, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2022019585}
+    - target: {fileID: 2901841060264581930, guid: 30056681f8309f648aaf35df0bc150ca, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ButtonSound
+      objectReference: {fileID: 0}
     - target: {fileID: 5890135165388480161, guid: 30056681f8309f648aaf35df0bc150ca, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
       value: 
@@ -4630,11 +4638,6 @@ Tilemap:
     e31: 0
     e32: 0
     e33: 1
---- !u!95 &1303054337 stripped
-Animator:
-  m_CorrespondingSourceObject: {fileID: 2123519707753882795, guid: a7dc3c038d1fd364ea0449930ea80dfa, type: 3}
-  m_PrefabInstance: {fileID: 1584562824}
-  m_PrefabAsset: {fileID: 0}
 --- !u!1001 &1325783869
 PrefabInstance:
   m_ObjectHideFlags: 0
@@ -5001,7 +5004,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   m_Material: {fileID: 0}
-  m_Color: {r: 0, g: 0, b: 0, a: 0.6}
+  m_Color: {r: 0, g: 0, b: 0, a: 0.29803923}
   m_RaycastTarget: 1
   m_RaycastPadding: {x: 0, y: 0, z: 0, w: 0}
   m_Maskable: 1
@@ -5289,7 +5292,7 @@ PrefabInstance:
     - target: {fileID: 7350205830311911591, guid: a7dc3c038d1fd364ea0449930ea80dfa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_Target
       value: 
-      objectReference: {fileID: 1303054337}
+      objectReference: {fileID: 0}
     - target: {fileID: 7350205830311911591, guid: a7dc3c038d1fd364ea0449930ea80dfa, type: 3}
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[2].m_CallState
       value: 2

@@ -17,11 +17,15 @@ public class EndPortal : MonoBehaviour
         if (shouldAudiomanagerReset) AudioManager.instance.StopAllClips();
         if (achievementToUnlock != null)
         {
-            Social.ReportProgress(achievementToUnlock, 100.0f, (bool success) => { //Find a Gem achievement handling
-                                                                                    // handle success or failure
+            Social.ReportProgress(achievementToUnlock, 100.0f, (bool success) => { //
+                                                                                // handle success or failure
             });
         }
-        if (isFinalEndPortal && FindObjectOfType<StopWatch>().IsThisAPartialRun()) return finalScene;
+        if (isFinalEndPortal && FindObjectOfType<StopWatch>()!= null)
+        {
+            if (FindObjectOfType<StopWatch>().IsThisAPartialRun()) return finalScene;
+            else return sceneToLoad;
+        }
         else return sceneToLoad;
     }
 }

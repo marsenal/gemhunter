@@ -89,7 +89,7 @@ public static class LevelSystem
         if (!gems.Contains(level))
         {
             gems.Add(level);
-            if (gems.Count < 2)
+            if (gems.Count == 1)
             {
                 Social.ReportProgress("CgkI967U96ofEAIQAg", 100.0f, (bool success) => { //Find a Gem achievement handling
                     // handle success or failure
@@ -97,8 +97,9 @@ public static class LevelSystem
             }
             else if (gems.Count == 10)
             {
-                Social.ReportProgress("CgkI967U96ofEAIQBA", 100.0f, (bool success) => { //Find a Gem achievement handling
+                Social.ReportProgress("CgkI967U96ofEAIQDw", 100.0f, (bool success) => { //Find a Gem achievement handling
                     // handle success or failure
+                    //CgkI967U96ofEAIQBA
                 });
             }
             else if (gems.Count == 20)

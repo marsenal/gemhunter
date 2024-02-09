@@ -523,8 +523,8 @@ public class Player : MonoBehaviour
     /// </summary>
     public void EnterPortal()
     {
+        FindObjectOfType<SceneChanger>().LoadScene( FindObjectOfType<EndPortal>().GetSceneIndex());
         Destroy(gameObject);
-        FindObjectOfType<SceneChanger>().LoadScene(FindObjectOfType<EndPortal>().GetSceneIndex());
     }
     /// <summary>
     /// This is used in the PlayerSpawn animation last keyframe to give control to player.
