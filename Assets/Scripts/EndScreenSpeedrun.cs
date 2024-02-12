@@ -64,10 +64,14 @@ public class EndScreenSpeedrun : MonoBehaviour
                             { //post best (current) time to leaderboard
                                 if (success == true)
                                 {
-                                    Debug.Log("New best time posted to leaderboard");
+                                    Debug.Log("New best time posted to leaderboard of world 1");
                                 }
-                                else { Debug.Log("New best time failed to post to leaderboard"); }
+                                else { Debug.Log("New best time failed to post to leaderboard of world 1"); }
                             });
+                        }
+                        else if (bestTime != 0f)
+                        {
+                            bestTimeText.text = TimeSpan.FromSeconds(bestTime).ToString(@"m\:ss");
                         }
                         break;
                     case 2:
@@ -82,10 +86,14 @@ public class EndScreenSpeedrun : MonoBehaviour
                             { //post best (current) time to leaderboard
                                 if (success == true)
                                 {
-                                    Debug.Log("New best time posted to leaderboard");
+                                    Debug.Log("New best time posted to leaderboard of world 2");
                                 }
-                                else { Debug.Log("New best time failed to post to leaderboard"); }
+                                else { Debug.Log("New best time failed to post to leaderboard of world 2"); }
                             });
+                        }
+                        else if (bestTime != 0f)
+                        {
+                            bestTimeText.text = TimeSpan.FromSeconds(bestTime).ToString(@"m\:ss");
                         }
                         break;
                     case 3:
@@ -100,10 +108,14 @@ public class EndScreenSpeedrun : MonoBehaviour
                             { //post best (current) time to leaderboard
                                 if (success == true)
                                 {
-                                    Debug.Log("New best time posted to leaderboard");
+                                    Debug.Log("New best time posted to leaderboard of world 3");
                                 }
-                                else { Debug.Log("New best time failed to post to leaderboard"); }
+                                else { Debug.Log("New best time failed to post to leaderboard of world 3"); }
                             });
+                        }
+                        else if (bestTime != 0f)
+                        {
+                            bestTimeText.text = TimeSpan.FromSeconds(bestTime).ToString(@"m\:ss");
                         }
                         break;
                 }

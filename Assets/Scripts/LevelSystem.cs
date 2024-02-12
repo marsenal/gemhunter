@@ -63,15 +63,12 @@ public static class LevelSystem
     }
     public static void AddToLevelList(int level) //The level is added to the list of levels - usually when entering the end portal
     {
+        /*if (level == 13) Social.ReportProgress("CgkI967U96ofEAIQDw", 100.0f, (bool success) => { //use this for debugging 
+                                                                                                 /
+        });*/
         if (!levels.Contains(level))
         {
             levels.Add(level);
-            if (levels.Count < 3)
-            {
-                Social.ReportProgress("CgkI967U96ofEAIQAQ", 100.0f, (bool success) => { //Complete a Level achievement handling
-                    // handle success or failure
-                });
-            }
         }
     }
     /// <summary>

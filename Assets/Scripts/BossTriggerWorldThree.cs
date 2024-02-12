@@ -71,7 +71,7 @@ public class BossTriggerWorldThree : MonoBehaviour
         sceneChanger.FadeOutThenFadeIn();
     }
 
-    public void PlaySound(string soundName)
+    public void PlaySound(string soundName) //used on the timeline
     {
         AudioManager.instance.PlayClip(soundName);
     }

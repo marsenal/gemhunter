@@ -124,7 +124,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   lives: 2
-  vulnerableDuration: 0
   dyingTimer: 0
   numberOfAttacksThirdPhase: 3
   thirdAttackDuration: 3
@@ -137,15 +136,14 @@ MonoBehaviour:
   secondPhaseTransformTwo: {fileID: 0}
   featherAttack: {fileID: 0}
   introDuration: 3
+  idleDuration: 0
   fallingRocks: {fileID: 1271443815100138809, guid: 57a9e1a5aff88604492be3af2b40b29c, type: 3}
   endingScene: {fileID: 0}
   isActive: 0
   timer: 0
-  timer2: 0
   timer3: 0
   counterFirstAttacks: 0
   myState: 0
-  myPhase: 0
   myDifficulty: 0
 --- !u!320 &4730428239037939078
 PlayableDirector:
@@ -164,6 +162,12 @@ PlayableDirector:
   m_SceneBindings:
   - key: {fileID: -6835131403657249875, guid: 4aa07d037714c594ba9d4449b604c0a4, type: 2}
     value: {fileID: 4730428239037939076}
+  - key: {fileID: -3505365788426886981, guid: 4aa07d037714c594ba9d4449b604c0a4, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -6238802314134275219, guid: 4aa07d037714c594ba9d4449b604c0a4, type: 2}
+    value: {fileID: 0}
+  - key: {fileID: -1913446421289328217, guid: 4aa07d037714c594ba9d4449b604c0a4, type: 2}
+    value: {fileID: 0}
   m_ExposedReferences:
     m_References: []
 --- !u!61 &4730428239037939079

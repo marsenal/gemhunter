@@ -433,7 +433,8 @@ public class Player : MonoBehaviour
         {
             CutScene cutscene = FindObjectOfType<CutScene>(); //delete the dontdestroyonload objects
             BossTrigger bosstrigger = FindObjectOfType<BossTrigger>();
-            BossTriggerSecondWorld secondlvlbosstrigger = FindObjectOfType<BossTriggerSecondWorld>(); 
+            BossTriggerSecondWorld secondlvlbosstrigger = FindObjectOfType<BossTriggerSecondWorld>();
+            Destroy(FindObjectOfType<BossTriggerWorldThree>());
             if (bosstrigger) Destroy(bosstrigger.gameObject);
             if (secondlvlbosstrigger) Destroy(secondlvlbosstrigger.gameObject);
             //if (cutscene != null) cutscene.DestroyMe(); //destroy the dontdestroyonload cutscene

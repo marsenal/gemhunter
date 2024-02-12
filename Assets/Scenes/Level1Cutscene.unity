@@ -2197,6 +2197,10 @@ PrefabInstance:
       value: 4
       objectReference: {fileID: 0}
     - target: {fileID: 757195538692715969, guid: 8896b6ee41558c846885c5c98b72780c, type: 3}
+      propertyPath: achievementToUnlock
+      value: CgkI967U96ofEAIQEA
+      objectReference: {fileID: 0}
+    - target: {fileID: 757195538692715969, guid: 8896b6ee41558c846885c5c98b72780c, type: 3}
       propertyPath: shouldAudiomanagerReset
       value: 1
       objectReference: {fileID: 0}

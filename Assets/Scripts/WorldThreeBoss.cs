@@ -69,6 +69,9 @@ public class WorldThreeBoss : MonoBehaviour
     [SerializeField] Difficulty myDifficulty;
     void Start()
     {
+
+        ShootFeathers(0);
+
         startingXPosition = transform.position.x;
 
         impulseSource = GetComponent<CinemachineImpulseSource>();
@@ -300,21 +303,23 @@ public class WorldThreeBoss : MonoBehaviour
 
     public void Dying()
     {
+        myAnimator.SetTrigger("isDead");
+        transform.position = Vector2.MoveTowards(transform.position, new Vector2(transform.position.x, -10f), 8f * Time.deltaTime);
         StartCoroutine(DyingCoroutine());
     }
 
     IEnumerator DyingCoroutine()
     {
         AudioManager.instance.StopClipWithoutFade("BossTheme"); //stop boss music
-        Destroy(FindObjectOfType<BossTriggerWorldThree>());
         endingScene.Play();
         yield return new WaitForSeconds(2f);
         Destroy(gameObject);
     }
 
-    public void PlayThudSound() //this is used on the dying animation in keyframes
+    public void ScreamSound() //this is used on the dying animation in keyframes
     {
-        AudioManager.instance.StopClipWithoutFade("BossThud");
+        Debug.Log("Scream sound called");
+        AudioManager.instance.PlayClip("ScreamWave");
         impulseSource.GenerateImpulseAtPositionWithVelocity(transform.position, impulseSource.m_DefaultVelocity);
     }
 
