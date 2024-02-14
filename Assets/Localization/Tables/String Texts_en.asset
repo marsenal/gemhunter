@@ -240,6 +240,14 @@ MonoBehaviour:
     m_Localized: Beat the High Mountains and record your time!
     m_Metadata:
       m_Items: []
+  - m_Id: 11936538492182528
+    m_Localized: Remove ads
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11936744998739968
+    m_Localized: Buy premium
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

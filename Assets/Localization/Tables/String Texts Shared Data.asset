@@ -235,6 +235,14 @@ MonoBehaviour:
     m_Key: speedrunWorld3
     m_Metadata:
       m_Items: []
+  - m_Id: 11936538492182528
+    m_Key: adsText
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11936744998739968
+    m_Key: adsButton
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

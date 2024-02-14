@@ -9,6 +9,9 @@ public class Settings : MonoBehaviour
     [SerializeField] Toggle musicToggle;
     [SerializeField] Toggle soundToggle;
 
+    [SerializeField] Image musicToggleIndicator;
+    [SerializeField] Image soundToggleIndicator;
+
     string settingsJson;
 
     void Start()
@@ -24,6 +27,8 @@ public class Settings : MonoBehaviour
             musicToggle.isOn = settingsData.isMusicEnabled;
             soundToggle.isOn = settingsData.isSoundEnabled;
 
+            musicToggleIndicator.enabled = !musicToggle.isOn;
+            soundToggleIndicator.enabled = !soundToggle.isOn;
 
             EnableMusic(); //I believe this is needed here to set the volume again to the default value after audiomanager is destroyed
         }
@@ -72,10 +77,13 @@ public class Settings : MonoBehaviour
     public void EnableMusic() //used on the Music Toggle
     {
         AudioManager.instance.SetMusic(musicToggle.isOn, settingsData.musicVolume);
+        musicToggleIndicator.enabled = !musicToggle.isOn;
     }
 
     public void EnableSound() //used on the Sound Toggle
     {
         AudioManager.instance.SetSound(soundToggle.isOn);
+        soundToggleIndicator.enabled = !soundToggle.isOn;
     }
+
 }

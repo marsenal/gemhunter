@@ -60,7 +60,7 @@ public class LevelSelect : MonoBehaviour
                 shownScreen = 2;
                 break;
         }
-        FindObjectOfType<AudioManager>().PlayClip("CrankActivate");
+        AudioManager.instance.PlayClip("Menu");
        // audioManager.;
     }
 

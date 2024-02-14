@@ -121,7 +121,7 @@ public class Authentication : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
         }
-
+ 
         PlayGamesPlatform.Activate();
     }
 

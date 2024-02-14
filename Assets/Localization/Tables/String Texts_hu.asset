@@ -241,6 +241,14 @@ MonoBehaviour:
     m_Localized: "D\xF6nts rekordot az id\u0151ddel a Roppant Hegyek vil\xE1gban!"
     m_Metadata:
       m_Items: []
+  - m_Id: 11936538492182528
+    m_Localized: "Rekl\xE1mok megsz\u0171ntet\xE9se"
+    m_Metadata:
+      m_Items: []
+  - m_Id: 11936744998739968
+    m_Localized: "Pr\xE9mium v\xE1s\xE1rl\xE1s"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []
