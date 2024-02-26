@@ -117,11 +117,9 @@ public class AudioManager : MonoBehaviour
                 if (s.GetSource().volume == 0f)//this is needed, else the GO is destroyed immediately
                 {
                     Destroy(gameObject);
-                    Debug.Log("Audiomanager is destroyed");
                 }
                 else
                 {
-                    Debug.Log("Audiomanager is not destroyed");
                 }
                 yield return null;
             }

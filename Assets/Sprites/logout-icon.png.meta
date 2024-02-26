@@ -1,5 +1,5 @@
 fileFormatVersion: 2
-guid: 22bff00b8cee59f4fa6166769ee41cd9
+guid: 69729db6f3398ec45b9d057f3a944e39
 TextureImporter:
   internalIDToNameTable: []
   externalObjects: {}
@@ -42,12 +42,12 @@ TextureImporter:
   nPOTScale: 0
   lightmap: 0
   compressionQuality: 50
-  spriteMode: 2
+  spriteMode: 1
   spriteExtrude: 1
   spriteMeshType: 1
   alignment: 0
   spritePivot: {x: 0.5, y: 0.5}
-  spritePixelsToUnits: 16
+  spritePixelsToUnits: 100
   spriteBorder: {x: 0, y: 0, z: 0, w: 0}
   spriteGenerateFallbackPhysicsShape: 1
   alphaUsage: 1
@@ -127,115 +127,7 @@ TextureImporter:
     forceMaximumCompressionQuality_BC6H_BC7: 0
   spriteSheet:
     serializedVersion: 2
-    sprites:
-    - serializedVersion: 2
-      name: disappearing-platform-idle_0
-      rect:
-        serializedVersion: 2
-        x: 0
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -8, y: -3}
-        - {x: -8, y: 7}
-        - {x: -6, y: 8}
-        - {x: 6, y: 8}
-        - {x: 8, y: 7}
-        - {x: 8, y: -3}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 34da5fac580cb554499aedfd5c6bf180
-      internalID: 1012168275
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: disappearing-platform-idle_1
-      rect:
-        serializedVersion: 2
-        x: 16
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -8, y: -3}
-        - {x: -8, y: 7}
-        - {x: -6, y: 8}
-        - {x: 6, y: 8}
-        - {x: 8, y: 7}
-        - {x: 8, y: -3}
-      tessellationDetail: 0
-      bones: []
-      spriteID: a08d41f6785a6924ba16c5a0d91c154c
-      internalID: 646153727
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: disappearing-platform-idle_2
-      rect:
-        serializedVersion: 2
-        x: 32
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -8, y: -3}
-        - {x: -8, y: 7}
-        - {x: -4, y: 8}
-        - {x: 5, y: 8}
-        - {x: 8, y: 7}
-        - {x: 8, y: -3}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 945b1e1718ec77642a85e15843bda78f
-      internalID: -402274822
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
-    - serializedVersion: 2
-      name: disappearing-platform-idle_3
-      rect:
-        serializedVersion: 2
-        x: 48
-        y: 0
-        width: 16
-        height: 16
-      alignment: 0
-      pivot: {x: 0.5, y: 0.5}
-      border: {x: 0, y: 0, z: 0, w: 0}
-      outline: []
-      physicsShape:
-      - - {x: -8, y: -3}
-        - {x: -8, y: 7}
-        - {x: -5, y: 8}
-        - {x: 5, y: 8}
-        - {x: 8, y: 7}
-        - {x: 8, y: -3}
-      tessellationDetail: 0
-      bones: []
-      spriteID: 7529f0b66967bf94db19637fe6e3fda5
-      internalID: -753918086
-      vertices: []
-      indices: 
-      edges: []
-      weights: []
+    sprites: []
     outline: []
     physicsShape: []
     bones: []
@@ -246,11 +138,7 @@ TextureImporter:
     edges: []
     weights: []
     secondaryTextures: []
-    nameFileIdTable:
-      disappearing-platform-idle_0: 1012168275
-      disappearing-platform-idle_1: 646153727
-      disappearing-platform-idle_2: -402274822
-      disappearing-platform-idle_3: -753918086
+    nameFileIdTable: {}
   spritePackingTag: 
   pSDRemoveMatte: 0
   pSDShowRemoveMatteOption: 0

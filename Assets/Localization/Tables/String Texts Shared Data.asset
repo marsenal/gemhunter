@@ -243,6 +243,14 @@ MonoBehaviour:
     m_Key: adsButton
     m_Metadata:
       m_Items: []
+  - m_Id: 12661282296340480
+    m_Key: premiumBought
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15557312734076928
+    m_Key: signoutgoogle
+    m_Metadata:
+      m_Items: []
   m_Metadata:
     m_Items: []
   m_KeyGenerator:

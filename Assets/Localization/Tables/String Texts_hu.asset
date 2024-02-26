@@ -249,6 +249,15 @@ MonoBehaviour:
     m_Localized: "Pr\xE9mium v\xE1s\xE1rl\xE1s"
     m_Metadata:
       m_Items: []
+  - m_Id: 12661282296340480
+    m_Localized: "Premium v\xE1s\xE1rl\xE1s sikeres. Minden rekl\xE1m kikapcsolva
+      mostant\xF3l."
+    m_Metadata:
+      m_Items: []
+  - m_Id: 15557312734076928
+    m_Localized: "Biztosan kijelentkezel a Google J\xE1t\xE9k fi\xF3kodb\xF3l?"
+    m_Metadata:
+      m_Items: []
   references:
     version: 2
     RefIds: []

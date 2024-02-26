@@ -23,15 +23,26 @@ public class AdManager : MonoBehaviour, IUnityAdsInitializationListener, IUnityA
 
     private void Awake()
     {
-        if (instance != null && instance != this || LevelSystem.areAdsRemoved)
-        { Destroy(gameObject);
-            Debug.Log("Ads removed because VIP player"); }
+        if ((instance != null && instance != this))
+        {
+            Destroy(gameObject);
+        }
         else
         {
             InitializeAds();
 
             instance = this;
             DontDestroyOnLoad(gameObject);
+        }
+    }
+
+    private void Start()
+    {
+        if  (LevelSystem.areAdsRemoved && FindObjectOfType<MyIAPManager>().IsAdsRemovedPurchased())
+        {
+            Destroy(gameObject);
+            Debug.Log("Ads removed because VIP player");
+            
         }
     }
 
@@ -103,8 +114,9 @@ public class AdManager : MonoBehaviour, IUnityAdsInitializationListener, IUnityA
         }
     }
 
-    public void AdsRemovedDestroyThis()
+    public void AdsRemovedDisableThis()
     {
         Destroy(gameObject);
     }
+
 }

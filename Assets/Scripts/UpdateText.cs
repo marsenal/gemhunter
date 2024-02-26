@@ -17,7 +17,7 @@ public class UpdateText : MonoBehaviour
     IEnumerator InitializeLanguage()
     {
         yield return LocalizationSettings.InitializationOperation;
-        Debug.Log(LevelSystem.setLanguageID);
+        
         if (LevelSystem.setLanguageID == -1)
         {
             SystemLanguage language = Application.systemLanguage;

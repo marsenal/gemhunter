@@ -20,6 +20,8 @@ public class LevelData
 
     public bool areAdsRemoved;
 
+    public bool isLoginSkipped;
+
     public LevelData ()
     {
         levelData = LevelSystem.GetLevelList();
@@ -32,5 +34,7 @@ public class LevelData
         timeWorld3 = LevelSystem.timeWorld3;
 
         areAdsRemoved = LevelSystem.areAdsRemoved;
+
+        isLoginSkipped = LevelSystem.isLoginSkipped;
     }
 }

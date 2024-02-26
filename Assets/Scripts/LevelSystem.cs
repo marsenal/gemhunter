@@ -21,7 +21,9 @@ public static class LevelSystem
 
     public static int setLanguageID = -1;
 
-    public static bool areAdsRemoved;
+    public static bool areAdsRemoved = false;
+
+    public static bool isLoginSkipped;
 
     private const int NUMBER_OF_LEVELS = 30; //needed to check game completion
     private const int NUMBER_OF_GEMS = 30; //needed to check game 100% completion
@@ -61,6 +63,7 @@ public static class LevelSystem
 
         areAdsRemoved = data.areAdsRemoved;
 
+        isLoginSkipped = data.isLoginSkipped;
     }
 
     public static void EraseData() //clear the lists - clear all data (this is used in the Settings canvas with the save system's erase data)

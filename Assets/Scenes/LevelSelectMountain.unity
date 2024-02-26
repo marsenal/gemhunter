@@ -6037,6 +6037,22 @@ PrefabInstance:
       propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[0].m_MethodName
       value: SetTrigger
       objectReference: {fileID: 0}
+    - target: {fileID: 4427295908515839491, guid: a7dc3c038d1fd364ea0449930ea80dfa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Target
+      value: 
+      objectReference: {fileID: 2022019585}
+    - target: {fileID: 4427295908515839491, guid: a7dc3c038d1fd364ea0449930ea80dfa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_MethodName
+      value: ButtonSound
+      objectReference: {fileID: 0}
+    - target: {fileID: 4427295908515839491, guid: a7dc3c038d1fd364ea0449930ea80dfa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_TargetAssemblyTypeName
+      value: SceneChanger, Assembly-CSharp
+      objectReference: {fileID: 0}
+    - target: {fileID: 4427295908515839491, guid: a7dc3c038d1fd364ea0449930ea80dfa, type: 3}
+      propertyPath: m_OnClick.m_PersistentCalls.m_Calls.Array.data[1].m_Arguments.m_ObjectArgumentAssemblyTypeName
+      value: UnityEngine.Object, UnityEngine
+      objectReference: {fileID: 0}
     - target: {fileID: 6964003771398635935, guid: a7dc3c038d1fd364ea0449930ea80dfa, type: 3}
       propertyPath: m_PresetInfoIsWorld
       value: 1

@@ -11,7 +11,7 @@ public class SecretArea : MonoBehaviour
     {
         if (collision.CompareTag("Player"))
         {
-            GetComponent<Tilemap>().color = new Color(0.5f, 0.5f, 0.5f, 0.5f); 
+            GetComponent<Tilemap>().color = new Color(1f, 1f, 1f, 0.2f); 
         }
     }
 

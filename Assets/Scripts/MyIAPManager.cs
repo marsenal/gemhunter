@@ -95,7 +95,7 @@ public class MyIAPManager : MonoBehaviour, IStoreListener
         BuyProductID(NO_ADS);
     }
 
-    public void CompletePurchase()
+    public void CompletePurchase(UnityEngine.Purchasing.Product product)
     {
         if (test_product == null)
             MyDebug("Cannot complete purchase, product not initialized.");
@@ -103,6 +103,10 @@ public class MyIAPManager : MonoBehaviour, IStoreListener
         {
             m_StoreController.ConfirmPendingPurchase(test_product);
             MyDebug("Completed purchase with " + test_product.transactionID.ToString());
+        }
+        if (product.definition.id == NO_ADS)
+        {
+
         }
 
     }
@@ -198,6 +202,16 @@ public class MyIAPManager : MonoBehaviour, IStoreListener
         if (return_complete)
         {
             MyDebug(string.Format("ProcessPurchase: Complete. Product:" + args.purchasedProduct.definition.id + " - " + test_product.transactionID.ToString()));
+            if (args.purchasedProduct.definition.id == NO_ADS) {
+
+                Debug.Log("Ads removed with bough premium at " + Time.time.ToString());
+             LevelSystem.areAdsRemoved = true;
+             SaveSystem.SaveGame();
+              if (FindObjectOfType<Authentication>()) FindObjectOfType<Authentication>().OpenSavedGame(true);
+              if (FindObjectOfType<AdManager>()) FindObjectOfType<AdManager>().AdsRemovedDisableThis();
+
+                if (FindObjectOfType<Settings>()) FindObjectOfType<Settings>().CheckForAds(true);
+            }
             return PurchaseProcessingResult.Complete;
         }
         else
@@ -224,6 +238,11 @@ public class MyIAPManager : MonoBehaviour, IStoreListener
             else
                 MyDebug("No receipt for " + item.definition.id.ToString());
         }
+    }
+
+    public bool IsAdsRemovedPurchased() //check if 'ads removed' was purchased - if it has receipt it was, if not it either wasn't, or it was refunded
+    {
+        return m_StoreController.products.WithID(NO_ADS).hasReceipt;
     }
     private void MyDebug(string debug)
     {

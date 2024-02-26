@@ -2722,7 +2722,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 886471277
-  m_SortingLayer: 5
+  m_SortingLayer: 6
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -2810,12 +2810,21 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 96f73805b8813e84aa20ec90256d39b1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  moveSpeed: 10
-  jumpSpeed: 15
   groundLayerMask:
     serializedVersion: 2
     m_Bits: 64
-  feetPosition: {fileID: 76620876}
+  moveSpeed: 10
+  jumpSpeed: 15
+  highFrictMat: {fileID: 0}
+  coyoteSeconds: 0
+  dashSpeed: 0
+  dustTrail: {fileID: 0}
+  dustTrailLanding: {fileID: 0}
+  controlCanvas: {fileID: 0}
+  dashButton: {fileID: 0}
+  cutSceneModeCanvas: {fileID: 0}
+  isDashing: 0
+  myState: 0
 --- !u!114 &275712634
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2973,6 +2982,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollSpeedX: -0.01
   scrollSpeedY: 0
+  isAlwaysScrolling: 0
 --- !u!212 &391111841
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3022,7 +3032,7 @@ SpriteRenderer:
   m_Size: {x: 48, y: 30}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &451076385
@@ -3124,6 +3134,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollSpeedX: -0.1
   scrollSpeedY: 0
+  isAlwaysScrolling: 0
 --- !u!1 &519420028
 GameObject:
   m_ObjectHideFlags: 0
@@ -3136,6 +3147,7 @@ GameObject:
   - component: {fileID: 519420031}
   - component: {fileID: 519420029}
   - component: {fileID: 519420033}
+  - component: {fileID: 519420034}
   m_Layer: 0
   m_Name: Main Camera
   m_TagString: MainCamera
@@ -3250,6 +3262,39 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
+--- !u!114 &519420034
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 519420028}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: a79441f348de89743a2939f4d699eac1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  m_RenderShadows: 1
+  m_RequiresDepthTextureOption: 2
+  m_RequiresOpaqueTextureOption: 2
+  m_CameraType: 0
+  m_Cameras: []
+  m_RendererIndex: -1
+  m_VolumeLayerMask:
+    serializedVersion: 2
+    m_Bits: 1
+  m_VolumeTrigger: {fileID: 0}
+  m_VolumeFrameworkUpdateModeOption: 2
+  m_RenderPostProcessing: 0
+  m_Antialiasing: 0
+  m_AntialiasingQuality: 2
+  m_StopNaN: 0
+  m_Dithering: 0
+  m_ClearDepth: 1
+  m_AllowXRRendering: 1
+  m_RequiresDepthTexture: 0
+  m_RequiresColorTexture: 0
+  m_Version: 2
 --- !u!1 &619161691
 GameObject:
   m_ObjectHideFlags: 3
@@ -3429,7 +3474,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 313780167
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5bccf13ce09bd43e39c1c3416d5de92c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3471,10 +3516,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10395929aad8b5f47a57253087e42e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointA: {fileID: 1427220629}
-  pointB: {fileID: 1148529505}
+  isPlatform: 0
+  pointALeftLowest: {fileID: 0}
+  pointBRightHighest: {fileID: 0}
   moveSpeed: 2
+  isActive: 1
+  boxState: 0
   moveDirection: 0
+  waitingTimeInLowerPosition: 0
+  waitingTimeInHigherPosition: 0
 --- !u!1 &725566872
 GameObject:
   m_ObjectHideFlags: 0
@@ -3547,10 +3597,10 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 313780167
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
-  m_ChunkCullingBounds: {x: 0.03125, y: 0, z: 0}
+  m_ChunkCullingBounds: {x: 0.06666666, y: 0, z: 0}
   m_MaxChunkCount: 16
   m_MaxFrameAge: 16
   m_SortOrder: 0
@@ -3798,6 +3848,9 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   moveSpeed: 2
+  movingEnemy: 0
+  bounceSpeed: 0
+  respawnTimer: 0
 --- !u!212 &917521002
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -3837,7 +3890,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 1163393115
-  m_SortingLayer: 4
+  m_SortingLayer: 5
   m_SortingOrder: 0
   m_Sprite: {fileID: 7482667652216324306, guid: 311925a002f4447b3a28927169b83ea6, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -3979,7 +4032,7 @@ SpriteRenderer:
   m_Size: {x: 48, y: 30}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!4 &948015600
@@ -4011,6 +4064,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollSpeedX: -0.01
   scrollSpeedY: 0
+  isAlwaysScrolling: 0
 --- !u!1 &1069399125
 GameObject:
   m_ObjectHideFlags: 0
@@ -4058,6 +4112,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollSpeedX: -0.1
   scrollSpeedY: 0
+  isAlwaysScrolling: 0
 --- !u!212 &1069399128
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4157,6 +4212,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollSpeedX: -0.01
   scrollSpeedY: 0
+  isAlwaysScrolling: 0
 --- !u!212 &1081739276
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4206,7 +4262,7 @@ SpriteRenderer:
   m_Size: {x: 48, y: 30}
   m_AdaptiveModeThreshold: 0.5
   m_SpriteTileMode: 0
-  m_WasSpriteAssigned: 1
+  m_WasSpriteAssigned: 0
   m_MaskInteraction: 0
   m_SpriteSortPoint: 0
 --- !u!1 &1148529504
@@ -4456,10 +4512,15 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 10395929aad8b5f47a57253087e42e26, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  pointA: {fileID: 1327324936}
-  pointB: {fileID: 1642029774}
+  isPlatform: 0
+  pointALeftLowest: {fileID: 0}
+  pointBRightHighest: {fileID: 0}
   moveSpeed: 2
+  isActive: 1
+  boxState: 0
   moveDirection: 1
+  waitingTimeInLowerPosition: 0
+  waitingTimeInHigherPosition: 0
 --- !u!61 &1398096058
 BoxCollider2D:
   m_ObjectHideFlags: 0
@@ -4525,7 +4586,7 @@ SpriteRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 313780167
-  m_SortingLayer: 3
+  m_SortingLayer: 2
   m_SortingOrder: 0
   m_Sprite: {fileID: 21300000, guid: 5bccf13ce09bd43e39c1c3416d5de92c, type: 3}
   m_Color: {r: 1, g: 1, b: 1, a: 1}
@@ -4736,6 +4797,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollSpeedX: -0.1
   scrollSpeedY: 0
+  isAlwaysScrolling: 0
 --- !u!212 &1548873945
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -4988,6 +5050,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   scrollSpeedX: -0.1
   scrollSpeedY: 0
+  isAlwaysScrolling: 0
 --- !u!212 &1767229879
 SpriteRenderer:
   m_ObjectHideFlags: 0
@@ -5308,7 +5371,7 @@ TilemapRenderer:
   m_AutoUVMaxAngle: 89
   m_LightmapParameters: {fileID: 0}
   m_SortingLayerID: 948401519
-  m_SortingLayer: 2
+  m_SortingLayer: 3
   m_SortingOrder: 0
   m_ChunkSize: {x: 32, y: 32, z: 32}
   m_ChunkCullingBounds: {x: 0, y: 0, z: 0}

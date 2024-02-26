@@ -12,6 +12,7 @@ public class EndScreenSpeedrun : MonoBehaviour
     [SerializeField] TextMeshProUGUI bestTimeText;
     [SerializeField] Canvas endGameCanvas;
     [SerializeField] Canvas speedrunCanvas;
+
     void Start()
     {
         if (FindObjectOfType<StopWatch>() != null) //if this was a speedrun
@@ -53,21 +54,22 @@ public class EndScreenSpeedrun : MonoBehaviour
                 switch (stopWatch.world)
                 {
                     case 1:
-                        bestTime = LevelSystem.timeWorld1;
+                        bestTime = LevelSystem.timeWorld1; 
+                        Social.ReportScore((long)currentTime, "CgkI967U96ofEAIQCw", (bool success) =>
+                        { //post best (current) time to leaderboard
+                            if (success == true)
+                            {
+                                Debug.Log("New best time posted to leaderboard of world 1");
+                            }
+                            else { Debug.Log("New best time failed to post to leaderboard of world 1"); }
+                        });
                         if (currentTime <= bestTime || bestTime == 0f)
                         {
                             bestTimeText.text = TimeSpan.FromSeconds(currentTime).ToString(@"m\:ss");
                             LevelSystem.timeWorld1 = currentTime;
                             SaveSystem.SaveGame();  //save locally
                             FindObjectOfType<Authentication>().OpenSavedGame(true); //save to cloud
-                            Social.ReportScore((long)currentTime, "CgkI967U96ofEAIQCw", (bool success) =>
-                            { //post best (current) time to leaderboard
-                                if (success == true)
-                                {
-                                    Debug.Log("New best time posted to leaderboard of world 1");
-                                }
-                                else { Debug.Log("New best time failed to post to leaderboard of world 1"); }
-                            });
+
                         }
                         else if (bestTime != 0f)
                         {
@@ -75,21 +77,22 @@ public class EndScreenSpeedrun : MonoBehaviour
                         }
                         break;
                     case 2:
-                        bestTime = LevelSystem.timeWorld2;
+                        bestTime = LevelSystem.timeWorld2; 
+                        Social.ReportScore((long)currentTime, "CgkI967U96ofEAIQDA", (bool success) =>
+                        { //post best (current) time to leaderboard
+                            if (success == true)
+                            {
+                                Debug.Log("New best time posted to leaderboard of world 2");
+                            }
+                            else { Debug.Log("New best time failed to post to leaderboard of world 2"); }
+                        });
                         if (currentTime <= bestTime || bestTime == 0f)
                         {
                             bestTimeText.text = TimeSpan.FromSeconds(currentTime).ToString(@"m\:ss");
                             LevelSystem.timeWorld2 = currentTime;
                             SaveSystem.SaveGame();  //save locally
                             FindObjectOfType<Authentication>().OpenSavedGame(true); //save to cloud
-                            Social.ReportScore((long)currentTime, "CgkI967U96ofEAIQDA", (bool success) =>
-                            { //post best (current) time to leaderboard
-                                if (success == true)
-                                {
-                                    Debug.Log("New best time posted to leaderboard of world 2");
-                                }
-                                else { Debug.Log("New best time failed to post to leaderboard of world 2"); }
-                            });
+
                         }
                         else if (bestTime != 0f)
                         {
@@ -98,20 +101,21 @@ public class EndScreenSpeedrun : MonoBehaviour
                         break;
                     case 3:
                         bestTime = LevelSystem.timeWorld3;
+                        Social.ReportScore((long)currentTime, "CgkI967U96ofEAIQDQ", (bool success) =>
+                        { //post best (current) time to leaderboard
+                            if (success == true)
+                            {
+                                Debug.Log("New best time posted to leaderboard of world 3");
+                            }
+                            else { Debug.Log("New best time failed to post to leaderboard of world 3"); }
+                        });
                         if (currentTime <= bestTime || bestTime == 0f)
                         {
                             bestTimeText.text = TimeSpan.FromSeconds(currentTime).ToString(@"m\:ss");
                             LevelSystem.timeWorld3 = currentTime;
                             SaveSystem.SaveGame();  //save locally
                             FindObjectOfType<Authentication>().OpenSavedGame(true); //save to cloud
-                            Social.ReportScore((long)currentTime, "CgkI967U96ofEAIQDQ", (bool success) =>
-                            { //post best (current) time to leaderboard
-                                if (success == true)
-                                {
-                                    Debug.Log("New best time posted to leaderboard of world 3");
-                                }
-                                else { Debug.Log("New best time failed to post to leaderboard of world 3"); }
-                            });
+
                         }
                         else if (bestTime != 0f)
                         {

@@ -931,94 +931,6 @@ MonoBehaviour:
   m_CameraActivatedEvent:
     m_PersistentCalls:
       m_Calls: []
---- !u!1 &528681996
-GameObject:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  serializedVersion: 6
-  m_Component:
-  - component: {fileID: 528681998}
-  - component: {fileID: 528681997}
-  - component: {fileID: 528681999}
-  m_Layer: 0
-  m_Name: AdManager
-  m_TagString: Untagged
-  m_Icon: {fileID: 0}
-  m_NavMeshLayer: 0
-  m_StaticEditorFlags: 0
-  m_IsActive: 1
---- !u!114 &528681997
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 528681996}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 467ed6dbd442a574b87a4a4ce1c89a09, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  androidGameID: 5499429
-  testMode: 0
-  androidAdUnitID: Rewarded_Android
-  numberOfDeaths: 0
-  deathNumbersToTriggerAd: 2
---- !u!4 &528681998
-Transform:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 528681996}
-  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 19.64862, y: 20.533, z: -13.033602}
-  m_LocalScale: {x: 1, y: 1, z: 1}
-  m_ConstrainProportionsScale: 0
-  m_Children: []
-  m_Father: {fileID: 0}
-  m_RootOrder: 11
-  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &528681999
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 528681996}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 8f7dd963c1a8b427b96975fa211478a1, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  consumePurchase: 1
-  dontDestroyOnLoad: 1
-  onProductsFetched:
-    m_PersistentCalls:
-      m_Calls: []
-  onPurchaseComplete:
-    m_PersistentCalls:
-      m_Calls:
-      - m_Target: {fileID: 1087261751}
-        m_TargetAssemblyTypeName: Store, Assembly-CSharp
-        m_MethodName: OnPurchaseComplete
-        m_Mode: 0
-        m_Arguments:
-          m_ObjectArgument: {fileID: 0}
-          m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-          m_IntArgument: 0
-          m_FloatArgument: 0
-          m_StringArgument: 
-          m_BoolArgument: 0
-        m_CallState: 2
-  onPurchaseFailed:
-    m_PersistentCalls:
-      m_Calls: []
-  onPurchaseDetailedFailedEvent:
-    m_PersistentCalls:
-      m_Calls: []
 --- !u!1 &605210403
 GameObject:
   m_ObjectHideFlags: 0
@@ -1750,17 +1662,6 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: a7dc3c038d1fd364ea0449930ea80dfa, type: 3}
---- !u!114 &1087261751 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 8798094293310510432, guid: a7dc3c038d1fd364ea0449930ea80dfa, type: 3}
-  m_PrefabInstance: {fileID: 1087261750}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 78012075ed5f4904f87c25a44a17c97a, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
 --- !u!1 &1195844675
 GameObject:
   m_ObjectHideFlags: 0
@@ -1872,18 +1773,6 @@ MonoBehaviour:
           m_TargetAssemblyTypeName: SceneChanger, Assembly-CSharp
           m_MethodName: ButtonSound
           m_Mode: 1
-          m_Arguments:
-            m_ObjectArgument: {fileID: 0}
-            m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
-            m_IntArgument: 0
-            m_FloatArgument: 0
-            m_StringArgument: 
-            m_BoolArgument: 0
-          m_CallState: 2
-        - m_Target: {fileID: 6757874766633245468}
-          m_TargetAssemblyTypeName: Authentication, Assembly-CSharp
-          m_MethodName: OpenSavedGame
-          m_Mode: 6
           m_Arguments:
             m_ObjectArgument: {fileID: 0}
             m_ObjectArgumentAssemblyTypeName: UnityEngine.Object, UnityEngine
@@ -5728,7 +5617,7 @@ PrefabInstance:
     m_Modifications:
     - target: {fileID: 6757874766284729873, guid: 181a9e3d4503bc743a2b5765515a7bb8, type: 3}
       propertyPath: m_RootOrder
-      value: 12
+      value: 11
       objectReference: {fileID: 0}
     - target: {fileID: 6757874766284729873, guid: 181a9e3d4503bc743a2b5765515a7bb8, type: 3}
       propertyPath: m_LocalPosition.x
@@ -5770,6 +5659,10 @@ PrefabInstance:
       propertyPath: m_LocalEulerAnglesHint.z
       value: 0
       objectReference: {fileID: 0}
+    - target: {fileID: 6757874766284729874, guid: 181a9e3d4503bc743a2b5765515a7bb8, type: 3}
+      propertyPath: m_Enabled
+      value: 0
+      objectReference: {fileID: 0}
     - target: {fileID: 6757874766284729875, guid: 181a9e3d4503bc743a2b5765515a7bb8, type: 3}
       propertyPath: m_Name
       value: AuthenticationManager
@@ -5780,14 +5673,3 @@ PrefabInstance:
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: 181a9e3d4503bc743a2b5765515a7bb8, type: 3}
---- !u!114 &6757874766633245468 stripped
-MonoBehaviour:
-  m_CorrespondingSourceObject: {fileID: 6757874766284729874, guid: 181a9e3d4503bc743a2b5765515a7bb8, type: 3}
-  m_PrefabInstance: {fileID: 6757874766633245467}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 0}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 47a0ceef5e591124b8dedddddea2002f, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 

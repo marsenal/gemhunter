@@ -17,7 +17,9 @@ public static class SaveSystem
         LevelData data = new LevelData();
 
         formatter.Serialize(stream, data);
-        stream.Close();        
+        stream.Close();
+
+        Debug.Log("Save file saved to the drive");
     }
 
     public static LevelData LoadGame()
@@ -31,6 +33,8 @@ public static class SaveSystem
 
             LevelData data = formatter.Deserialize(stream) as LevelData;
             stream.Close();
+
+            Debug.Log("Save file loaded from the drive");
 
             return data;
         } else
@@ -52,6 +56,8 @@ public static class SaveSystem
 
             formatter.Serialize(stream, data);
             stream.Close();
+
+        Debug.Log("Save file erased");
         
     }
 

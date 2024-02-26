@@ -12,6 +12,11 @@ public class Settings : MonoBehaviour
     [SerializeField] Image musicToggleIndicator;
     [SerializeField] Image soundToggleIndicator;
 
+    [SerializeField] GameObject adsPanel;
+    [SerializeField] Canvas successfulPurchasePanel;
+
+    [SerializeField] Canvas googleLogoutCanvas;
+
     string settingsJson;
 
     void Start()
@@ -31,6 +36,8 @@ public class Settings : MonoBehaviour
             soundToggleIndicator.enabled = !soundToggle.isOn;
 
             EnableMusic(); //I believe this is needed here to set the volume again to the default value after audiomanager is destroyed
+
+            CheckForAds(false);
         }
         else
         {
@@ -86,4 +93,55 @@ public class Settings : MonoBehaviour
         soundToggleIndicator.enabled = !soundToggle.isOn;
     }
 
+    public void CheckForAds(bool showSuccessfulPurchasePanel)
+    {
+        Debug.Log("Checking for ads...");
+        if (LevelSystem.areAdsRemoved && FindObjectOfType<MyIAPManager>().IsAdsRemovedPurchased())
+        {
+           Debug.Log("Ads Manager not found - disabling purchase panel");
+           adsPanel.SetActive(false);
+           if (showSuccessfulPurchasePanel)
+            {
+                successfulPurchasePanel.enabled = true;
+            }
+
+        }
+        else
+        {
+            LevelSystem.areAdsRemoved = false;
+            SaveSystem.SaveGame();
+            if (FindObjectOfType<Authentication>()) FindObjectOfType<Authentication>().OpenSavedGame(true);
+        }
+    }
+
+    public async void LogInOrLogout()
+    {
+        //  FindObjectOfType<Authentication>().LoginOrLogout();
+        if (FindObjectOfType<Authentication>().IsAuthenticatedAndLoggedIn())
+        {
+            googleLogoutCanvas.GetComponent<Animator>().SetTrigger("isShown");
+        }
+        else
+        {
+            await FindObjectOfType<Authentication>().LoginOrLogout();
+        }
+    }
+
+    public async void LogIn()
+    {
+        await FindObjectOfType<Authentication>().ManuallyAuthenticate();
+    }
+
+    public void LogOut()
+    {
+        FindObjectOfType<Authentication>().UnlinkAccount();
+    }
+
+    public void ShowLogOutCanvas()
+    {
+        if (FindObjectOfType<Authentication>().IsAuthenticatedAndLoggedIn())
+        {
+            googleLogoutCanvas.enabled = true;
+        }
+    }
 }

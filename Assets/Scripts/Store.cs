@@ -11,7 +11,7 @@ public class Store : MonoBehaviour
         LevelSystem.areAdsRemoved = true;
         SaveSystem.SaveGame();
         if (FindObjectOfType<Authentication>()) FindObjectOfType<Authentication>().OpenSavedGame(true);
-        if (FindObjectOfType<AdManager>()) FindObjectOfType<AdManager>().AdsRemovedDestroyThis();
+        if (FindObjectOfType<AdManager>()) FindObjectOfType<AdManager>().AdsRemovedDisableThis();
     }
 
     public void OnPurchaseFailed(Product product, PurchaseFailureDescription reason)

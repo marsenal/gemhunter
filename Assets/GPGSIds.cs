@@ -24,15 +24,25 @@
 
 public static class GPGSIds
 {
-        public const string achievement_treasure_hunter = "CgkI967U96ofEAIQBg"; // <GPGSID>
-        public const string achievement_that_belongs_in_my_pocket = "CgkI967U96ofEAIQBA"; // <GPGSID>
+        public const string achievement_newfound_friendship = "CgkI967U96ofEAIQCQ"; // <GPGSID>
+        public const string achievement_test2_gems = "CgkI967U96ofEAIQDw"; // <GPGSID>
+        public const string achievement_test_1 = "CgkI967U96ofEAIQDg"; // <GPGSID>
+        public const string leaderboard_murky_woods_best_times = "CgkI967U96ofEAIQDA"; // <GPGSID>
+        public const string achievement_complete_1_level = "CgkI967U96ofEAIQEA"; // <GPGSID>
+        public const string achievement_jungling_around = "CgkI967U96ofEAIQBw"; // <GPGSID>
         public const string achievement_hoarder_of_gems = "CgkI967U96ofEAIQBQ"; // <GPGSID>
         public const string leaderboard_top_times = "CgkI967U96ofEAIQAw"; // <GPGSID>
-        public const string achievement_jungling_around = "CgkI967U96ofEAIQBw"; // <GPGSID>
-        public const string achievement_wood_you_kindly_stop_that = "CgkI967U96ofEAIQCA"; // <GPGSID>
-        public const string achievement_lucky_me = "CgkI967U96ofEAIQAg"; // <GPGSID>
-        public const string achievement_newfound_friendship = "CgkI967U96ofEAIQCQ"; // <GPGSID>
+        public const string achievement_world_3 = "CgkI967U96ofEAIQFA"; // <GPGSID>
+        public const string achievement_world_2 = "CgkI967U96ofEAIQEw"; // <GPGSID>
+        public const string achievement_world_1 = "CgkI967U96ofEAIQEg"; // <GPGSID>
+        public const string achievement_treasure_hunter = "CgkI967U96ofEAIQBg"; // <GPGSID>
         public const string achievement_that_was_easy = "CgkI967U96ofEAIQAQ"; // <GPGSID>
+        public const string achievement_wood_you_kindly_stop_that = "CgkI967U96ofEAIQCA"; // <GPGSID>
+        public const string leaderboard_ancient_jungle_best_times = "CgkI967U96ofEAIQCw"; // <GPGSID>
+        public const string achievement_that_belongs_in_my_pocket = "CgkI967U96ofEAIQBA"; // <GPGSID>
+        public const string achievement_lucky_me = "CgkI967U96ofEAIQAg"; // <GPGSID>
+        public const string leaderboard_high_mountains_best_times = "CgkI967U96ofEAIQDQ"; // <GPGSID>
+        public const string achievement_find_1_gem = "CgkI967U96ofEAIQEQ"; // <GPGSID>
 
 }
 

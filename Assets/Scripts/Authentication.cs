@@ -1,4 +1,5 @@
 using System.Collections.Generic;
+using System.Collections;
 using System.IO;
 using Unity.Services.Authentication;
 using Unity.Services.CloudSave;
@@ -8,6 +9,7 @@ using GooglePlayGames;
 using GooglePlayGames.BasicApi;
 using GooglePlayGames.BasicApi.SavedGame;
 using UnityEngine;
+using UnityEngine.SocialPlatforms;
 using System;
 using System.Threading.Tasks;
 /// <summary>
@@ -15,101 +17,13 @@ using System.Threading.Tasks;
 /// </summary>
 public class Authentication : MonoBehaviour
 {
-    /* public  string Token;
-     public  string Error;
-
-     void Awake()
-     {
-         int numberOfInstances = FindObjectsOfType<Authentication>().Length;
-         if (numberOfInstances > 1)
-         {
-             Destroy(gameObject);
-         }
-         else
-         {
-             DontDestroyOnLoad(gameObject);
-         }
-             //Initialize PlayGamesPlatform
-         PlayGamesPlatform.Activate();
-         LoginGooglePlayGames();
-         OpenSavedGame(false);
-     }*/
-
-    /* public void LoginGooglePlayGames()
-     {
-         PlayGamesPlatform.Instance.Authenticate((success) =>
-         {
-             if (success == SignInStatus.Success)
-             {
-                 Debug.Log("Login with Google Play games successful.");
-
-                 PlayGamesPlatform.Instance.RequestServerSideAccess(true, code =>
-                 {
-                     Debug.Log("Authorization code: " + code);
-                     Token = code;
-                     // This token serves as an example to be used for SignInWithGooglePlayGames
-                 });
-             }
-             else
-             {
-                 Error = "Failed to retrieve Google play games authorization code";
-                 Debug.Log("Login Unsuccessful");
-
-                 PlayGamesPlatform.Instance.ManuallyAuthenticate((success) =>
-                 {
-                     if (success == SignInStatus.Success)
-                     {
-                         Debug.Log("Manual login with Google Play games successful.");
-                     }
-                     else
-                     {
-                         Debug.Log("Manual login with Google Play games failed.");
-                     }
-                 });
-
-             }
-         });
-     }*/
-
-
-    /*private async void Awake()
-    {
-        int numberOfInstances = FindObjectsOfType<Authentication>().Length;
-        if (numberOfInstances > 1)
-        {
-            Destroy(gameObject);
-        }
-        else
-        {
-            DontDestroyOnLoad(gameObject);
-        }
-        await UnityServices.InitializeAsync(); //Authenticate initialization
-        await AuthenticationService.Instance.SignInAnonymouslyAsync();
-        LoadProgressFromCloud(); //when done, load progress > and save it locally ?
-    }*/
-
-    /*public async void SaveProgressToCloud() //save progress to the cloud in file named "save"
-    {
-        string path = Application.persistentDataPath + "/save.snld";
-        byte[] file = File.ReadAllBytes(path);
-        await CloudSaveService.Instance.Files.Player.SaveAsync("save", file);
-    }
-    public async void LoadProgressFromCloud() //create a stream from the "save" in the cloud 
-    {                                         //deserialize it as LevelData >>>> Use that to set the Data          
-        Stream file = await CloudSaveService.Instance.Files.Player.LoadStreamAsync("save");
-        if (file == null)
-        {
-            return;
-        }    
-        else
-        {
-            LevelSystem.SetData(SaveSystem.LoadDataFromCloud(file));
-        }
-    }*/
 
     public string Token;
     public string Error;
 
+    public bool isLoggedIn = false;
+
+    
     void Awake()
     {
         int numberOfInstances = FindObjectsOfType<Authentication>().Length;
@@ -121,23 +35,24 @@ public class Authentication : MonoBehaviour
         {
             DontDestroyOnLoad(gameObject);
         }
- 
-        PlayGamesPlatform.Activate();
+        PlayGamesPlatform.Activate(); 
     }
 
     async void Start()
     {
         await UnityServices.InitializeAsync();
+
         await LoginGooglePlayGames();
         await SignInWithGooglePlayGamesAsync(Token);
-       // await LinkWithGooglePlayGamesAsync(Token);
+        //await LinkWithGooglePlayGamesAsync(Token);
         OpenSavedGame(false);
+
     }
     //Fetch the Token / Auth code
     public Task LoginGooglePlayGames()
     {
         var tcs = new TaskCompletionSource<object>();
-        PlayGamesPlatform.Instance.Authenticate((success) =>
+        PlayGamesPlatform.Instance.ManuallyAuthenticate(success =>
         {
             if (success == SignInStatus.Success)
             {
@@ -147,13 +62,14 @@ public class Authentication : MonoBehaviour
                     Debug.Log("Authorization code: " + code);
                     Token = code;
                     // This token serves as an example to be used for SignInWithGooglePlayGames
+
                     tcs.SetResult(null);
                 });
             }
             else
             {
                 Error = "Failed to retrieve Google play games authorization code";
-                Debug.Log("Login Unsuccessful");
+                Debug.Log("Login Unsuccessful" + Error);
                 tcs.SetException(new Exception("Failed"));
                 LevelSystem.SetDataLocally();
             }
@@ -162,11 +78,13 @@ public class Authentication : MonoBehaviour
     }
 
 
+
     async Task SignInWithGooglePlayGamesAsync(string authCode)
     {
         try
         {
             await AuthenticationService.Instance.SignInWithGooglePlayGamesAsync(authCode);
+            isLoggedIn = true;
             Debug.Log($"PlayerID: {AuthenticationService.Instance.PlayerId}"); //Display the Unity Authentication PlayerID
             Debug.Log("SignIn is successful.");
         }
@@ -196,6 +114,28 @@ public class Authentication : MonoBehaviour
             Debug.LogError("This user is already linked with another account. Log in instead.");
         }
 
+        catch (AuthenticationException ex)
+        {
+            // Compare error code to AuthenticationErrorCodes
+            // Notify the player with the proper error message
+            Debug.LogException(ex);
+        }
+        catch (RequestFailedException ex)
+        {
+            // Compare error code to CommonErrorCodes
+            // Notify the player with the proper error message
+            Debug.LogException(ex);
+        }
+    }
+
+    async Task UnlinkGooglePlayGamesAsync(string idToken)
+    {
+        try
+        {
+            await AuthenticationService.Instance.UnlinkGooglePlayGamesAsync();
+            isLoggedIn = false;
+            Debug.Log("Unlink is successful.");
+        }
         catch (AuthenticationException ex)
         {
             // Compare error code to AuthenticationErrorCodes
@@ -277,5 +217,88 @@ public class Authentication : MonoBehaviour
         {
             Debug.Log("Game save failed");
         }
+    }
+
+    public async Task LoginOrLogout()
+    {
+        Debug.Log("Logging in or logging out");
+       // if (!isLoggedIn)
+       // {
+            PlayGamesPlatform.Instance.ManuallyAuthenticate(success =>
+            {
+                if (success == SignInStatus.Success)
+                {
+                    Debug.Log("Login manually with Google Play games successful.");
+                    PlayGamesPlatform.Instance.RequestServerSideAccess(true, code =>
+                    {
+                        Debug.Log("Authorization code: " + code);
+                        Token = code;
+                    });
+                    LevelSystem.isLoginSkipped = false;
+                    SaveSystem.SaveGame();
+                    OpenSavedGame(false);
+                }
+                else
+                {
+                    Debug.Log("Login manually failed");
+                }
+            });
+            await SignInWithGooglePlayGamesAsync(Token);
+       // }
+       // else
+      //  {
+
+                await UnlinkGooglePlayGamesAsync(Token);
+                AuthenticationService.Instance.SignOut(true);
+            //isLoggedIn = false;
+            LevelSystem.isLoginSkipped = true;
+                SaveSystem.SaveGame();
+      //  }
+        FindObjectOfType<GoogleLoginButton>().UpdateIcon();
+    }
+
+    public async Task ManuallyAuthenticate()
+    {
+        Debug.Log("Starting Authentication");
+        PlayGamesPlatform.Instance.ManuallyAuthenticate(success =>
+        {
+            if (success == SignInStatus.Success)
+            {
+                Debug.Log("Login manually with Google Play games successful.");
+                PlayGamesPlatform.Instance.RequestServerSideAccess(true, code =>
+                {
+                    Debug.Log("Authorization code: " + code);
+                    Token = code;
+                }); 
+                //LevelSystem.isLoginSkipped = false;
+                //SaveSystem.SaveGame();
+                OpenSavedGame(false);
+            }
+            else
+            {
+                Debug.Log("Login manually failed");
+            }
+        });
+        await SignInWithGooglePlayGamesAsync(Token);
+
+        FindObjectOfType<GoogleLoginButton>().UpdateIcon();
+    }
+
+    public async void UnlinkAccount()
+    {
+        Debug.Log("Starting Unlinking");
+        await UnlinkGooglePlayGamesAsync(Token);
+        AuthenticationService.Instance.SignOut(true);
+        AuthenticationService.Instance.ClearSessionToken();
+        Debug.Log("User ID: " + AuthenticationService.Instance.GetPlayerInfoAsync().Result.GetGooglePlayGamesId());
+        // LevelSystem.isLoginSkipped = true;
+        // SaveSystem.SaveGame();
+
+        FindObjectOfType<GoogleLoginButton>().UpdateIcon();
+    }
+
+    public bool IsAuthenticatedAndLoggedIn()
+    {
+        return isLoggedIn;
     }
 }
